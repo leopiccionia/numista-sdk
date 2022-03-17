@@ -26,7 +26,7 @@ export class NumistaConnector {
    * Find a coin by ID
    * @param numistaId ID of the coin to fetch
    * @param config Other params
-   * */
+   */
   getCoin (numistaId: number | string, config: Partial<GetCoinRequest> = {}): Promise<GetCoinResponse> {
     const defaultConfig: GetCoinRequest = {
       lang: this.#config.defaultLanguage,
@@ -41,7 +41,7 @@ export class NumistaConnector {
    * Search for coins
    * @param query Search query
    * @param config Other params
-   * */
+   */
   async searchCoins (query: string, config: Partial<Omit<SearchCoinsRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>> {
     const defaultConfig: Omit<SearchCoinsRequest, 'q'> = {
       count: 50,

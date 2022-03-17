@@ -3,6 +3,7 @@ import type { PaginatedRequest } from './types/requests'
 import type { PaginatedResponse } from './types/responses'
 import { deepClone, mergeObjects } from './utils'
 
+/** A paginated response */
 export class PaginatedResult<Req extends PaginatedRequest, Res extends PaginatedResponse> {
 
   #count: number
@@ -24,6 +25,10 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
     this.#url = url
   }
 
+  /**
+   * Fetch all missing pages
+   * @returns All items
+   */
   async collect (): Promise<Omit<Res, 'count'>> {
     while (this.hasNext()) {
       await this.next()
@@ -31,18 +36,25 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
     return Promise.resolve(this.data)
   }
 
+  /** Total number of items */
   get count (): number {
     return this.#count
   }
 
+  /** All items already fetched */
   get data (): Omit<Res, 'count'> {
     return deepClone(this.#data)
   }
 
+  /** If there are items still unfetched */
   hasNext (): boolean {
     return (this.#params.count * this.#page) < this.#count
   }
 
+  /**
+   * Fetch next page
+   * @returns The next page
+  */
   async next (): Promise<Res> {
     const nextPage = this.#page + 1
     const params: Req = { ...this.#params, page: nextPage }
@@ -55,10 +67,15 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
     return res
   }
 
+  /** Last fetched page */
   get page (): number {
     return this.#page
   }
 
+  /**
+   * Fetch and stream all missing pages (experimental)
+   * @returns A WHATWG-compatible readable stream
+   */
   stream (): ReadableStream<Omit<Res, 'count'>> {
     let canceled = false
 
