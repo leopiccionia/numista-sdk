@@ -5,7 +5,8 @@ import { deepClone, mergeObjects } from './utils'
 
 export class PaginatedResult<Req extends PaginatedRequest, Res extends PaginatedResponse> {
 
-  #data: Res
+  #count: number
+  #data: Omit<Res, 'count'>
   #isAuthenticated: boolean
   #page: number
   #params: Req
@@ -13,7 +14,9 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
   #url: string
 
   constructor (rest: RestConnector, res: Res, url: string, params: Req, isAuthenticated = false) {
-    this.#data = res
+    const { count, ...data } = res
+    this.#count = count
+    this.#data = data
     this.#isAuthenticated = isAuthenticated
     this.#page = 1
     this.#params = deepClone(params)
@@ -21,29 +24,36 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
     this.#url = url
   }
 
-  get count(): number {
-    return this.#data.count
+  async collect (): Promise<Omit<Res, 'count'>> {
+    while (this.hasNext()) {
+      await this.next()
+    }
+    return Promise.resolve(this.data)
   }
 
-  get data (): Readonly<Omit<Res, 'count'>> {
+  get count (): number {
+    return this.#count
+  }
+
+  get data (): Omit<Res, 'count'> {
     return deepClone(this.#data)
   }
 
   hasNext (): boolean {
-    return (this.#params.count * this.#page) < this.#data.count
+    return (this.#params.count * this.#page) < this.#count
   }
 
-  async next (): Promise<Res> {
+  async next (): Promise<void> {
     const nextPage = this.#page + 1
     const params: Req = { ...this.#params, page: nextPage }
 
-    const result = await this.#rest.request<Res>('GET', this.#url, params, null, this.#isAuthenticated)
-    this.#data = mergeObjects<Res>(this.#data, result)
+    const { count, ...data } = await this.#rest.request<Res>('GET', this.#url, params, null, this.#isAuthenticated)
+    this.#count = count
+    this.#data = mergeObjects(this.#data, data)
     this.#page = nextPage
-    return result
   }
 
-  get page(): number {
+  get page (): number {
     return this.#page
   }
 }

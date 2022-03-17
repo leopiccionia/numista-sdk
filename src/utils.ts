@@ -3,7 +3,7 @@ export function deepClone<T> (original: T): Readonly<T> {
 }
 
 export function mergeObjects<T> (acc: T, curr: T): Readonly<T> {
-  const merge: Record<string, any> = deepClone(acc)
+  const merge: Record<string, any> = { ...acc }
 
   for (const key of Object.keys(curr)) {
     /** @ts-ignore */
