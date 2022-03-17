@@ -1,8 +1,12 @@
-import { Coin } from './schemas'
+import type { Coin } from './schemas'
+
+export interface PaginatedResponse {
+  count: number
+}
 
 export type GetCoinResponse = Coin
 
-export interface SearchCoinsResponse {
+export interface SearchCoinsResponse extends PaginatedResponse {
   /** Total count of matching coins */
   count: number,
   /** List of matching coins on the given page */

@@ -8,8 +8,22 @@ describe('Searching for coins', () => {
     const numista = createConnector()
     const centavos = await numista.searchCoins('centavos', { count: 10 })
 
-    expect(centavos.coins.length).toBe(10)
     expect(centavos.count).toBeGreaterThan(10)
+    expect(centavos.data.coins.length).toBe(10)
+  })
+
+  it('is paginated', async () => {
+    const numista = createConnector()
+    const centavos = await numista.searchCoins('centavos', { count: 10 })
+
+    expect(centavos.count).toBeGreaterThan(20)
+    expect(centavos.data.coins.length).toBe(10)
+    expect(centavos.hasNext()).toBe(true)
+
+    await centavos.next()
+
+    expect(centavos.count).toBeGreaterThan(20)
+    expect(centavos.data.coins.length).toBe(20)
   })
 
   it('can return empty result', async () => {
@@ -17,6 +31,6 @@ describe('Searching for coins', () => {
     const largeFortunes = await numista.searchCoins('one trillion dollars')
 
     expect(largeFortunes.count).toBe(0)
-    expect(largeFortunes.coins).toEqual([])
+    expect(largeFortunes.data.coins).toEqual([])
   })
 })

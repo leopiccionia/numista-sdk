@@ -1,4 +1,5 @@
-import { ConnectorConfig, NumistaConnector } from '#lib'
+import { NumistaConnector } from '#lib'
+import type { ConnectorConfig } from '#lib'
 
 export const NUMISTA_KEY: string = (import.meta as any).env.VITE_NUMISTA_API_KEY
 
