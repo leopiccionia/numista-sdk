@@ -19,7 +19,7 @@
     "type": "git",
     "url": "https://github.com/leopiccionia/numista-sdk.git"
   },
-  "homepage": "https://github.com/leopiccionia/numista-sdk",
+  "homepage": "https://github.com/leopiccionia/numista-sdk#readme",
   "bugs": {
     "email": "leopiccionia@gmail.com",
     "url": "https://github.com/leopiccionia/numista-sdk/issues"
