@@ -42,7 +42,7 @@ export class NumistaConnector {
    * @param query Search query
    * @param config Other params
    */
-  async searchCoins (query: string, config: Partial<Omit<SearchCoinsRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>> {
+  async searchCoins (query: string, config: Partial<Omit<SearchCoinsRequest, 'q'>> = {}): Promise<SearchCoinsResponse> {
     const defaultConfig: Omit<SearchCoinsRequest, 'q'> = {
       count: 50,
       lang: this.#config.defaultLanguage,
@@ -51,8 +51,25 @@ export class NumistaConnector {
 
     const params: SearchCoinsRequest = { ...defaultConfig, ...config, q: query }
 
-    const initialData = await this.#rest.request<SearchCoinsResponse>('GET', '/coins', params)
-
-    return new PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>(this.#rest, initialData, '/coins', params)
+    return this.#rest.request<SearchCoinsResponse>('GET', '/coins', params)
   }
+
+  /**
+   * Paginated search for coins
+   * @param query Search query
+   * @param config Other params
+   */
+     async searchCoinsWithPagination (query: string, config: Partial<Omit<SearchCoinsRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>> {
+      const defaultConfig: Omit<SearchCoinsRequest, 'q'> = {
+        count: 50,
+        lang: this.#config.defaultLanguage,
+        page: 1,
+      }
+
+      const params: SearchCoinsRequest = { ...defaultConfig, ...config, q: query }
+
+      const initialData = await this.#rest.request<SearchCoinsResponse>('GET', '/coins', params)
+
+      return new PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>(this.#rest, initialData, '/coins', params)
+    }
 }

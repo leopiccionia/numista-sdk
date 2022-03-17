@@ -292,7 +292,7 @@ export interface Issue {
 export interface Issuer {
   /** Unique ID of the issuer on Numista */
   code: string
-  // Name of the issuer
+  /** Name of the issuer */
   name: string
 }
 
