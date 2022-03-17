@@ -15,6 +15,15 @@
     "name": "Leonardo Piccioni de Almeida",
     "url": "https://github.com/leopiccionia"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leopiccionia/numista-sdk.git"
+  },
+  "homepage": "https://github.com/leopiccionia/numista-sdk",
+  "bugs": {
+    "email": "leopiccionia@gmail.com",
+    "url": "https://github.com/leopiccionia/numista-sdk/issues"
+  },
   "dependencies": {
     "cross-fetch": "^3.1.5"
   },
