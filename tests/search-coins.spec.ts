@@ -7,7 +7,16 @@ describe('Searching for coins', () => {
 
   it('works', async () => {
     const numista = new NumistaConnector(NUMISTA_KEY)
-    const centavos = await numista.searchCoins('centavos')
-    expect(centavos.count).toBeGreaterThan(0)
+    const centavos = await numista.searchCoins('centavos', { count: 10 })
+
+    expect(centavos.count).toBeGreaterThan(10)
+  })
+
+  it('can return empty result', async () => {
+    const numista = new NumistaConnector(NUMISTA_KEY)
+    const largeFortunes = await numista.searchCoins('one trillion dollars')
+
+    expect(largeFortunes.count).toBe(0)
+    expect(largeFortunes.coins).toEqual([])
   })
 })

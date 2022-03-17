@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { NumistaConnector } from '../src'
+import { ConnectorError, NumistaConnector } from '../src'
 import { NUMISTA_KEY } from './setup'
 
 describe('Finding a coin by ID', () => {
@@ -13,5 +13,15 @@ describe('Finding a coin by ID', () => {
     expect(morganDollar.min_year).toBe(1878)
     expect(morganDollar.max_year).toBe(1921)
     expect(morganDollar.obverse?.engravers?.[0]?.includes('Morgan')).toBeTruthy()
+  })
+
+  it('can fail', async () => {
+    const numista = new NumistaConnector(NUMISTA_KEY)
+    const request = numista.getCoin(999_999_999)
+
+    await request.catch((error: ConnectorError) => {
+      expect(error).toBeInstanceOf(ConnectorError)
+      expect(error.status).toBe(404)
+    })
   })
 })
