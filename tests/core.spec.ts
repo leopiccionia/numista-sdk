@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { ConnectorError, NumistaConnector } from '../src'
+import { ConnectorError, NumistaConnector } from '#lib'
 
 describe('NumistaConnector', () => {
 

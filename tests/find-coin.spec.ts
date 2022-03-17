@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import { ConnectorError, NumistaConnector } from '../src'
-import { NUMISTA_KEY } from './setup'
+import { ConnectorError } from '#lib'
+import { createConnector } from '#tests'
 
 describe('Finding a coin by ID', () => {
 
   it('works', async () => {
-    const numista = new NumistaConnector(NUMISTA_KEY)
+    const numista = createConnector()
     const morganDollar = await numista.getCoin(1492)
 
     expect(morganDollar.title.includes('Morgan')).toBeTruthy()
@@ -16,7 +16,7 @@ describe('Finding a coin by ID', () => {
   })
 
   it('can fail', async () => {
-    const numista = new NumistaConnector(NUMISTA_KEY)
+    const numista = createConnector()
     const request = numista.getCoin(999_999_999)
 
     await request.catch((error: ConnectorError) => {

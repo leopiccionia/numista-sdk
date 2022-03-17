@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "esModuleInterop": true,
     "lib": ["DOM", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "Node",
+    "paths": {
+      "#lib": ["src/index.ts"],
+      "#tests": ["tests/setup.ts"],
+    },
     "strict": true,
     "target": "ESNext"
   }
