@@ -4,8 +4,6 @@ export interface PaginatedResponse {
   count: number
 }
 
-export type GetCoinResponse = Coin
-
 export interface SearchCoinsResponse extends PaginatedResponse {
   /** Total count of matching coins */
   count: number,

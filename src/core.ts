@@ -1,8 +1,8 @@
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
-import type { Language } from './types/schemas'
-import type { GetCoinRequest, SearchCoinsRequest } from './types/requests'
-import type { GetCoinResponse, SearchCoinsResponse } from './types/responses'
+import type { Language, Coin } from './types/schemas'
+import type { BaseRequest, SearchCoinsRequest } from './types/requests'
+import type { SearchCoinsResponse } from './types/responses'
 
 export interface ConnectorConfig {
   defaultLanguage: Language
@@ -27,14 +27,14 @@ export class NumistaConnector {
    * @param numistaId ID of the coin to fetch
    * @param config Other params
    */
-  getCoin (numistaId: number | string, config: Partial<GetCoinRequest> = {}): Promise<GetCoinResponse> {
-    const defaultConfig: GetCoinRequest = {
+  getCoin (numistaId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
+    const defaultConfig: BaseRequest = {
       lang: this.#config.defaultLanguage,
     }
 
-    const params: GetCoinRequest = { ...defaultConfig, ...config }
+    const params: BaseRequest = { ...defaultConfig, ...config }
 
-    return this.#rest.request<GetCoinResponse>('GET', `/coins/${numistaId}`, params)
+    return this.#rest.request<Coin>('GET', `/coins/${numistaId}`, params)
   }
 
   /**

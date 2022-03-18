@@ -1,13 +1,13 @@
 import type { Language } from './schemas'
 
+export interface BaseRequest {
+  /** Language */
+  lang?: Language
+}
+
 export interface PaginatedRequest {
   count: number
   page: number
-}
-
-export interface GetCoinRequest {
-  /** Language */
-  lang?: Language
 }
 
 export interface SearchCoinsRequest extends PaginatedRequest {
