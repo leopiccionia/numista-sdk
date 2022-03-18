@@ -2,7 +2,7 @@ export type CompositionType = 'plain'
 
 export type CoinType = 'common_coin' | 'commemorative_coin' | 'non_circulating_coin' | 'token' | 'pattern'
 
-export type Language = 'en' | 'fr'
+export type Language = 'en' | 'es' | 'fr'
 
 export type Orientation = 'coin' | 'medal' | 'variable'
 
@@ -316,7 +316,7 @@ export interface IssueUpdate {
 }
 
 export interface LocalizedLabel {
-  /** Language code ("en" or "fr") */
+  /** Language code */
   language: Language
   /** Label in the given language */
   label: string
