@@ -31,13 +31,13 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 ### Endpoints
 
 - [x] Search for coins
-- [ ] Add a coin to the catalog
+- [ ] Add a coin to the catalogue
 - [x] Find a coin by ID
 - [ ] Find the issues of a coin
 - [ ] Add a coin issue
 - [ ] Get estimates for the price of an issue of a coin
-- [ ] Retrieve the list of issuing countries and territories
-- [ ] Retrieve the list of catalogs used for coin references
+- [x] Retrieve the list of issuing countries and territories
+- [x] Retrieve the list of catalogues used for coin references
 - [ ] Get OAuth access token
 - [ ] Get information about a user
 - [ ] Get the coins owned by a user

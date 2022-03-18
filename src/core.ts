@@ -2,7 +2,7 @@ import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
 import type { Language, Coin } from './types/schemas'
 import type { BaseRequest, SearchCoinsRequest } from './types/requests'
-import type { SearchCoinsResponse } from './types/responses'
+import type { GetCataloguesResponse, GetIssuersResponse, SearchCoinsResponse } from './types/responses'
 
 export interface ConnectorConfig {
   defaultLanguage: Language
@@ -22,6 +22,11 @@ export class NumistaConnector {
     this.#rest = new RestConnector(apiKey)
   }
 
+  /** Retrieve the list of catalogues used for coin references */
+  getCatalogues (): Promise<GetCataloguesResponse> {
+    return this.#rest.request<GetCataloguesResponse>('GET', '/catalogues', {})
+  }
+
   /**
    * Find a coin by ID
    * @param numistaId ID of the coin to fetch
@@ -35,6 +40,17 @@ export class NumistaConnector {
     const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<Coin>('GET', `/coins/${numistaId}`, params)
+  }
+
+  /** Retrieve the list of issuing countries and territories */
+  getIssuers (config: Partial<BaseRequest> = {}): Promise<GetIssuersResponse> {
+    const defaultConfig: BaseRequest = {
+      lang: this.#config.defaultLanguage,
+    }
+
+    const params: BaseRequest = { ...defaultConfig, ...config }
+
+    return this.#rest.request<GetIssuersResponse>('GET', '/issuers', params)
   }
 
   /**

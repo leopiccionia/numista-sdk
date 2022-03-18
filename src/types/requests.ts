@@ -6,7 +6,9 @@ export interface BaseRequest {
 }
 
 export interface PaginatedRequest {
+  /** Results per page */
   count: number
+  /** Page of results */
   page: number
 }
 
