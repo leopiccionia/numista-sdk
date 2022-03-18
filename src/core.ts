@@ -59,7 +59,7 @@ export class NumistaConnector {
    * @param query Search query
    * @param config Other params
    */
-     async searchCoinsWithPagination (query: string, config: Partial<Omit<SearchCoinsRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>> {
+     async searchCoinsPaginated (query: string, config: Partial<Omit<SearchCoinsRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>> {
       const defaultConfig: Omit<SearchCoinsRequest, 'q'> = {
         count: 50,
         lang: this.#config.defaultLanguage,
