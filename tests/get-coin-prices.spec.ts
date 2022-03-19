@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { ConnectorError } from '#lib'
 import { createConnector } from '#tests'
 
-describe.concurrent('Finding a coin by ID', () => {
+describe.concurrent('Getting estimates for the price of an issue of a coin', () => {
 
   it('works', async () => {
     const numista = createConnector()
