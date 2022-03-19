@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { ConnectorError } from '#lib'
+import { RequestError } from '#lib'
 import { createConnector } from '#tests'
 
 describe.concurrent('Getting estimates for the price of an issue of a coin', () => {
@@ -17,8 +17,8 @@ describe.concurrent('Getting estimates for the price of an issue of a coin', () 
     const numista = createConnector()
     const request = numista.coinPrices(1492, 999_999_999, { currency: 'USD' })
 
-    await request.catch((error: ConnectorError) => {
-      expect(error).toBeInstanceOf(ConnectorError)
+    await request.catch((error: RequestError) => {
+      expect(error).toBeInstanceOf(RequestError)
       expect(error.status).toBe(404)
     })
   })

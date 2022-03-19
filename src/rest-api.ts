@@ -1,6 +1,6 @@
 import fetch, { Headers } from 'cross-fetch'
 
-import { ConnectorError, NetworkError } from './errors'
+import { ConnectionError, RequestError } from './errors'
 import type { APIError } from './types/schemas'
 
 type HttpMethod = 'GET' | 'POST'
@@ -45,13 +45,13 @@ export class RestConnector {
       if (res.ok) {
         return data as Promise<T>
       } else {
-        return Promise.reject(new ConnectorError(res.status, res.statusText, (data as APIError).error_message))
+        return Promise.reject(new RequestError(res.status, res.statusText, (data as APIError).error_message))
       }
     } catch (err: unknown) {
       if (err instanceof Error) {
-        return Promise.reject(new NetworkError(err))
+        return Promise.reject(new ConnectionError(err))
       } else {
-        return Promise.reject(new NetworkError(new Error('Unknown error')))
+        return Promise.reject(new ConnectionError(new Error('Unknown error')))
       }
     }
   }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { ConnectorError, NetworkError } from '#lib'
+import { ConnectionError } from '#lib'
 import { createConnector } from '#tests'
 
 describe('Getting the coins owned by a user', () => {
@@ -20,8 +20,8 @@ describe('Getting the coins owned by a user', () => {
 
     const request = numista.myCoins()
 
-    request.catch((error: NetworkError) => {
-      expect(error.name).toBe('NetworkError')
+    request.catch((error: ConnectionError) => {
+      expect(error.name).toBe('ConnectionError')
       expect(error.message).toBe('Current user is not set')
     })
   })

@@ -1,5 +1,15 @@
+/** Error because server and client could not connect */
+export class ConnectionError extends Error {
+
+  constructor (error: Error) {
+    super(error.message)
+    this.name = 'ConnectionError'
+    this.cause = error
+  }
+}
+
 /** Server returned error */
-export class ConnectorError extends Error {
+export class RequestError extends Error {
 
   /** HTTP status code */
   status: number
@@ -8,18 +18,8 @@ export class ConnectorError extends Error {
 
   constructor (status: number, statusText: string, message: string) {
     super(message)
-    this.name = 'ConnectorError'
+    this.name = 'RequestError'
     this.status = status
     this.statusText = statusText
-  }
-}
-
-/** Error because server and client could not connect */
-export class NetworkError extends Error {
-
-  constructor (error: Error) {
-    super(error.message)
-    this.name = 'NetworkError'
-    this.cause = error
   }
 }

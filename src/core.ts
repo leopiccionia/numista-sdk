@@ -1,4 +1,4 @@
-import { NetworkError } from './errors'
+import { ConnectionError } from './errors'
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
 import type { Coin, Issue, Language, Scope } from './types/schemas'
@@ -93,7 +93,7 @@ export class NumistaConnector {
    */
   myCoins (config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
     if (!this.#userId) {
-      return Promise.reject(new NetworkError(new Error('Current user is not set')))
+      return Promise.reject(new ConnectionError(new Error('Current user is not set')))
     }
 
     return this.userCoins(this.#userId, config)

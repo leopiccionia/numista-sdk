@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { ConnectorError } from '#lib'
+import { RequestError } from '#lib'
 import { createConnector } from '#tests'
 
 describe.concurrent('Getting information about a user', () => {
@@ -16,8 +16,8 @@ describe.concurrent('Getting information about a user', () => {
     const numista = createConnector()
     const missingUser = numista.user(999_999_999)
 
-    await missingUser.catch((error: ConnectorError) => {
-      expect(error).toBeInstanceOf(ConnectorError)
+    await missingUser.catch((error: RequestError) => {
+      expect(error).toBeInstanceOf(RequestError)
       expect(error.status).toBe(404)
     })
   })
