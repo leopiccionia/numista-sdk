@@ -31,7 +31,7 @@ export class RestConnector {
     if (body) {
       headers.append('Content-Type', 'application/json')
     }
-    if (useAuth) {
+    if (useAuth && this.#oauthToken) {
       headers.append('Authorization', `Bearer ${this.#oauthToken}`)
     }
 

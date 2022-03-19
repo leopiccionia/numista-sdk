@@ -1,8 +1,9 @@
+import { NetworkError } from './errors'
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
-import type { Coin, Issue, Language } from './types/schemas'
-import type { BaseRequest, CoinPricesRequest, SearchCoinsRequest } from './types/requests'
-import type { CataloguesResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse, UserResponse } from './types/responses'
+import type { Coin, Issue, Language, Scope } from './types/schemas'
+import type { BaseRequest, CoinPricesRequest, CollectedCoinsRequest, OAuthClientCredentialsRequest, SearchCoinsRequest } from './types/requests'
+import type { CataloguesResponse, CollectedCoinsResponse, CoinPricesResponse, IssuersResponse, OAuthResponse, SearchCoinsResponse, UserResponse } from './types/responses'
 
 export interface ConnectorConfig {
   defaultLanguage: Language
@@ -12,6 +13,7 @@ export class NumistaConnector {
 
   #config: ConnectorConfig
   #rest: RestConnector
+  #userId?: number
 
   constructor (apiKey: string, config: Partial<ConnectorConfig> = {}) {
     const defaultConfig: ConnectorConfig = {
@@ -86,11 +88,23 @@ export class NumistaConnector {
   }
 
   /**
+   * Get the coins owned by the user
+   * @param config Params
+   */
+  myCoins (config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
+    if (!this.#userId) {
+      return Promise.reject(new NetworkError(new Error('Current user is not set')))
+    }
+
+    return this.userCoins(this.#userId, config)
+  }
+
+  /**
    * Search for coins
    * @param query Search query
    * @param config Other params
    */
-  async searchCoins (query: string, config: Partial<Omit<SearchCoinsRequest, 'q'>> = {}): Promise<SearchCoinsResponse> {
+  searchCoins (query: string, config: Partial<Omit<SearchCoinsRequest, 'q'>> = {}): Promise<SearchCoinsResponse> {
     const defaultConfig: Omit<SearchCoinsRequest, 'q'> = {
       count: 50,
       lang: this.#config.defaultLanguage,
@@ -126,7 +140,7 @@ export class NumistaConnector {
    * @param userId ID of the user
    * @param config Other params
    */
-  async user (userId: number | string, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
+  user (userId: number | string, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
     const defaultConfig: BaseRequest = {
       lang: this.#config.defaultLanguage,
     }
@@ -134,5 +148,35 @@ export class NumistaConnector {
     const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<UserResponse>('GET', `/users/${userId}`, params)
+  }
+
+  /**
+   * Get the coins owned by a user
+   * @param userId ID of the user
+   * @param config Other params
+   */
+  userCoins (userId: number | string, config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
+    const defaultConfig: CollectedCoinsRequest = {
+      lang: this.#config.defaultLanguage,
+    }
+
+    const params: CollectedCoinsRequest = { ...defaultConfig, ...config }
+
+    return this.#rest.request<CollectedCoinsResponse>('GET', `/users/${userId}/collected_coins`, params, null, true)
+  }
+
+  /**
+   * Get OAuth access token via user credentials
+   * @param scope List of permissions
+   */
+  async useUserCredentials (scope: Scope[]): Promise<void> {
+    const params: OAuthClientCredentialsRequest = {
+      grant_type: 'client_credentials',
+      scope: scope.join(','),
+    }
+
+    const response = await this.#rest.request<OAuthResponse>('GET', '/oauth_token', params)
+    this.#userId = response.user_id
+    this.#rest.configureOauth(response.access_token)
   }
 }

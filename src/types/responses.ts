@@ -1,4 +1,4 @@
-import type { Coin, Grade, Issuer } from './schemas'
+import type { Coin, Collection, Grade, Issue, Issuer, Price } from './schemas'
 
 export interface PaginatedResponse {
   count: number
@@ -35,6 +35,52 @@ export interface CoinPricesResponse {
   }>
 }
 
+export interface CollectedCoinsResponse {
+  /** Warning message (e.g. in case of user not authenticated but some data can be retrieved since the collection is public) */
+  warning?: string
+  /** Count of coins owned by the user */
+  coin_count: number
+  /** Count of coins offered for swap by the user */
+  coin_for_swap_count: number
+  /** Count of different coin types owned by the user */
+  coin_type_count: number
+  /** Count of different coin types offered for swap by the user */
+  coin_type_for_swap_count: number
+  /** List of collected coins */
+  collected_coins: Array<{
+    /** Unique ID of the coin in collection */
+    id: number
+    /** Quantity of coins */
+    quantity: number
+    /** Describe the type of coin */
+    coin: {
+      /** ID of the type of coin */
+      id: number
+      /** Title of the type of coin */
+      title: string
+      issuer?: Issuer
+    }
+    issue?: Issue
+    /** Indicate whether the coin is available for swap */
+    for_swap: boolean
+    /** Grade of the coin ("g", "vg", "f", "vf", "xf", "au" or "unc") */
+    grade?: Grade
+    /** Private comment (not available if the user is not authenticated) */
+    private_comment?: string
+    /** Public comment */
+    public_comment?: string
+    price?: Price
+    collection?: Collection
+    /** List of pictures or PDF documents. PDF documents are available only if the user is not authenticated. */
+    pictures?: Array<{
+      /** URL to the picture or the document in original size */
+      url: string
+      /** URL to the thumbnail of the picture or document */
+      thumbnail_url: string
+    }>
+  }>
+}
+
 export interface IssuersResponse {
   /** Count of issuers */
   count: number
@@ -48,6 +94,17 @@ export interface IssuersResponse {
     wikidata_id?: string
     parent: Issuer
   }>
+}
+
+export interface OAuthResponse {
+  /** Token granting access to the data of a Numista user */
+  access_token: string
+  /** Type of token ("bearer") */
+  token_type: 'bearer'
+  /** Delay in seconds before the token expires */
+  expires_in: number
+  /** ID of the user who authenticated */
+  user_id: number
 }
 
 export interface SearchCoinsResponse extends PaginatedResponse {
