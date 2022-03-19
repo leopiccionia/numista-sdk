@@ -1,4 +1,4 @@
-import type { Coin, Issuer } from './schemas'
+import type { Coin, Grade, Issuer } from './schemas'
 
 export interface PaginatedResponse {
   count: number
@@ -23,6 +23,17 @@ export interface GetCataloguesResponse {
   }>
 }
 
+export interface GetIssuePricesResponse {
+  /** 3-letter ISO 4217 code of the currency in which the prices are provided */
+  currency: string
+  /** List of zero or more prices for each grade */
+  prices: Array<{
+    /** Grade of the coin ("g", "vg", "f", "vf", "xf", "au" or "unc") */
+    grade: Grade
+    /** Estimate of the price determined by Numista */
+    price: number
+  }>
+}
 export interface GetIssuersResponse {
   /** Count of issuers */
   count: number

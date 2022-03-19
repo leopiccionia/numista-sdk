@@ -12,7 +12,14 @@ export interface PaginatedRequest {
   page: number
 }
 
-export interface SearchCoinsRequest extends PaginatedRequest {
+export interface GetIssuePricesRequest extends BaseRequest {
+  /** Language */
+  lang?: Language
+  /** 3-letter ISO 4217 currency code */
+  currency?: string
+}
+
+export interface SearchCoinsRequest extends BaseRequest, PaginatedRequest {
   /** Language */
   lang?: Language
   /** Search query */

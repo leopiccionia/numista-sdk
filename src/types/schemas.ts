@@ -2,6 +2,8 @@ export type CompositionType = 'plain'
 
 export type CoinType = 'common_coin' | 'commemorative_coin' | 'non_circulating_coin' | 'token' | 'pattern'
 
+export type Grade = 'g' | 'vg' | 'f' | 'vf' | 'xf' | 'au' | 'unc'
+
 export type Language = 'en' | 'es' | 'fr'
 
 export type Orientation = 'coin' | 'medal' | 'variable'

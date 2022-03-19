@@ -33,9 +33,9 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 - [x] Search for coins
 - [ ] Add a coin to the catalogue
 - [x] Find a coin by ID
-- [ ] Find the issues of a coin
+- [x] Find the issues of a coin
 - [ ] Add a coin issue
-- [ ] Get estimates for the price of an issue of a coin
+- [x] Get estimates for the price of an issue of a coin
 - [x] Retrieve the list of issuing countries and territories
 - [x] Retrieve the list of catalogues used for coin references
 - [ ] Get OAuth access token
