@@ -2,7 +2,7 @@ import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
 import type { Coin, Issue, Language } from './types/schemas'
 import type { BaseRequest, CoinPricesRequest, SearchCoinsRequest } from './types/requests'
-import type { CataloguesResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse } from './types/responses'
+import type { CataloguesResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse, UserResponse } from './types/responses'
 
 export interface ConnectorConfig {
   defaultLanguage: Language
@@ -63,7 +63,7 @@ export class NumistaConnector {
    * @param issueId ID of the issue of the coin
    * @param config Other params
    */
-    coinPrices (coinId: number | string, issueId: number | string, config: Partial<CoinPricesRequest> = {}): Promise<CoinPricesResponse> {
+  coinPrices (coinId: number | string, issueId: number | string, config: Partial<CoinPricesRequest> = {}): Promise<CoinPricesResponse> {
     const defaultConfig: CoinPricesRequest = {
       currency: 'EUR',
       lang: this.#config.defaultLanguage,
@@ -119,5 +119,20 @@ export class NumistaConnector {
     const initialData = await this.#rest.request<SearchCoinsResponse>('GET', '/coins', params)
 
     return new PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>(this.#rest, initialData, '/coins', params)
+  }
+
+  /**
+   * Get information about a user
+   * @param userId ID of the user
+   * @param config Other params
+   */
+  async user (userId: number | string, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
+    const defaultConfig: BaseRequest = {
+      lang: this.#config.defaultLanguage,
+    }
+
+    const params: BaseRequest = { ...defaultConfig, ...config }
+
+    return this.#rest.request<UserResponse>('GET', `/users/${userId}`, params)
   }
 }

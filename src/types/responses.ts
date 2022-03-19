@@ -56,3 +56,10 @@ export interface SearchCoinsResponse extends PaginatedResponse {
   /** List of matching coins on the given page */
   coins: Array<Pick<Coin, 'id' | 'issuer' | 'max_year' | 'min_year' |  'title'>>,
 }
+
+export interface UserResponse {
+  /** User name */
+  username: string
+  /** URL to the avatar picture of the user */
+  avatar: string
+}
