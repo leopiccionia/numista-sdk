@@ -1,8 +1,8 @@
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
 import type { Coin, Issue, Language } from './types/schemas'
-import type { BaseRequest, GetIssuePricesRequest, SearchCoinsRequest } from './types/requests'
-import type { GetCataloguesResponse, GetIssuePricesResponse, GetIssuersResponse, SearchCoinsResponse } from './types/responses'
+import type { BaseRequest, CoinPricesRequest, SearchCoinsRequest } from './types/requests'
+import type { CataloguesResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse } from './types/responses'
 
 export interface ConnectorConfig {
   defaultLanguage: Language
@@ -23,8 +23,8 @@ export class NumistaConnector {
   }
 
   /** Retrieve the list of catalogues used for coin references */
-  getCatalogues (): Promise<GetCataloguesResponse> {
-    return this.#rest.request<GetCataloguesResponse>('GET', '/catalogues', {})
+  catalogues (): Promise<CataloguesResponse> {
+    return this.#rest.request<CataloguesResponse>('GET', '/catalogues', {})
   }
 
   /**
@@ -32,7 +32,7 @@ export class NumistaConnector {
    * @param numistaId ID of the coin to fetch
    * @param config Other params
    */
-  getCoin (numistaId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
+  coin (numistaId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
     const defaultConfig: BaseRequest = {
       lang: this.#config.defaultLanguage,
     }
@@ -47,7 +47,7 @@ export class NumistaConnector {
    * @param coinId ID of the coin to fetch the issues from
    * @param config Other params
    */
-  getCoinIssues (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
+  coinIssues (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
     const defaultConfig: BaseRequest = {
       lang: this.#config.defaultLanguage,
     }
@@ -63,26 +63,26 @@ export class NumistaConnector {
    * @param issueId ID of the issue of the coin
    * @param config Other params
    */
-  getIssuePrices (coinId: number | string, issueId: number | string, config: Partial<GetIssuePricesRequest> = {}): Promise<GetIssuePricesResponse> {
-    const defaultConfig: GetIssuePricesRequest = {
+    coinPrices (coinId: number | string, issueId: number | string, config: Partial<CoinPricesRequest> = {}): Promise<CoinPricesResponse> {
+    const defaultConfig: CoinPricesRequest = {
       currency: 'EUR',
       lang: this.#config.defaultLanguage,
     }
 
-    const params: GetIssuePricesRequest = { ...defaultConfig, ...config }
+    const params: CoinPricesRequest = { ...defaultConfig, ...config }
 
-    return this.#rest.request<GetIssuePricesResponse>('GET', `/coins/${coinId}/issues/${issueId}/prices`, params)
+    return this.#rest.request<CoinPricesResponse>('GET', `/coins/${coinId}/issues/${issueId}/prices`, params)
   }
 
   /** Retrieve the list of issuing countries and territories */
-  getIssuers (config: Partial<BaseRequest> = {}): Promise<GetIssuersResponse> {
+  issuers (config: Partial<BaseRequest> = {}): Promise<IssuersResponse> {
     const defaultConfig: BaseRequest = {
       lang: this.#config.defaultLanguage,
     }
 
     const params: BaseRequest = { ...defaultConfig, ...config }
 
-    return this.#rest.request<GetIssuersResponse>('GET', '/issuers', params)
+    return this.#rest.request<IssuersResponse>('GET', '/issuers', params)
   }
 
   /**

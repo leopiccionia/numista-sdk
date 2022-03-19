@@ -14,7 +14,7 @@ import { NumistaConnector } from '@leopiccionia/numista-sdk'
 const numista = new NumistaConnector('YOUR-API-KEY', { defaultLanguage: 'en' })
 
 // Get the Morgan Dollar
-const morganDollar = await numista.getCoin(1492)
+const morganDollar = await numista.coin(1492)
 
 // Get all American coins depicting a buffalo
 const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' })

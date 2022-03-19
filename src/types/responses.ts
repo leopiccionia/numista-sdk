@@ -4,7 +4,7 @@ export interface PaginatedResponse {
   count: number
 }
 
-export interface GetCataloguesResponse {
+export interface CataloguesResponse {
   /** Count of catalogues */
   count: number
   catalogues: Array<{
@@ -23,7 +23,7 @@ export interface GetCataloguesResponse {
   }>
 }
 
-export interface GetIssuePricesResponse {
+export interface CoinPricesResponse {
   /** 3-letter ISO 4217 code of the currency in which the prices are provided */
   currency: string
   /** List of zero or more prices for each grade */
@@ -34,7 +34,8 @@ export interface GetIssuePricesResponse {
     price: number
   }>
 }
-export interface GetIssuersResponse {
+
+export interface IssuersResponse {
   /** Count of issuers */
   count: number
   /** List of issuers */

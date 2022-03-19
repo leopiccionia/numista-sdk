@@ -7,7 +7,7 @@ describe('Retrieving the list of issuing countries and territories', () => {
   it('works', async () => {
     const numista = createConnector()
 
-    const issuers = await numista.getIssuers()
+    const issuers = await numista.issuers()
 
     expect(issuers.count).toBeGreaterThan(100)
     expect(issuers.issuers.length).toBeGreaterThan(100)
