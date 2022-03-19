@@ -1,6 +1,7 @@
 import fetch, { Headers } from 'cross-fetch'
 
 import { ConnectionError, RequestError } from './errors'
+import { OAuthToken } from './types/oauth'
 import type { APIError } from './types/schemas'
 
 type HttpMethod = 'GET' | 'POST'
@@ -15,15 +16,18 @@ function searchParams (obj: Record<string, any>): URLSearchParams {
 export class RestConnector {
 
   #apiKey: string
-  #oauthToken: string
+  #oauthToken?: OAuthToken
 
   constructor (apiKey: string) {
     this.#apiKey = apiKey
-    this.#oauthToken = ''
   }
 
-  configureOauth (token: string) {
+  configureOauth (token: OAuthToken) {
     this.#oauthToken = token
+
+    setTimeout(() => {
+      this.#oauthToken = undefined
+    }, token.expires_in * 1000)
   }
 
   async request<T> (method: HttpMethod, url: string, params: object, body = null, useAuth = false): Promise<T> {
@@ -32,7 +36,7 @@ export class RestConnector {
       headers.append('Content-Type', 'application/json')
     }
     if (useAuth && this.#oauthToken) {
-      headers.append('Authorization', `Bearer ${this.#oauthToken}`)
+      headers.append('Authorization', `Bearer ${this.#oauthToken.access_token}`)
     }
 
     try {

@@ -1,9 +1,9 @@
-import { ConnectionError } from './errors'
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
 import type { Coin, Issue, Language, Scope } from './types/schemas'
+import type { OAuthToken } from './types/oauth'
 import type { BaseRequest, CoinPricesRequest, CollectedCoinsRequest, OAuthClientCredentialsRequest, SearchCoinsRequest } from './types/requests'
-import type { CataloguesResponse, CollectedCoinsResponse, CoinPricesResponse, IssuersResponse, OAuthResponse, SearchCoinsResponse, UserResponse } from './types/responses'
+import type { CataloguesResponse, CollectedCoinsResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse, UserResponse } from './types/responses'
 
 export interface ConnectorConfig {
   defaultLanguage: Language
@@ -13,7 +13,6 @@ export class NumistaConnector {
 
   #config: ConnectorConfig
   #rest: RestConnector
-  #userId?: number
 
   constructor (apiKey: string, config: Partial<ConnectorConfig> = {}) {
     const defaultConfig: ConnectorConfig = {
@@ -91,12 +90,10 @@ export class NumistaConnector {
    * Get the coins owned by the user
    * @param config Params
    */
-  myCoins (config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
-    if (!this.#userId) {
-      return Promise.reject(new ConnectionError(new Error('Current user is not set')))
-    }
+  async myCoins (config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
+    const userId: number = await this.useUserCredentials(['view_collection'])
 
-    return this.userCoins(this.#userId, config)
+    return this.userCoins(userId, config)
   }
 
   /**
@@ -168,15 +165,16 @@ export class NumistaConnector {
   /**
    * Get OAuth access token via user credentials
    * @param scope List of permissions
+   * @returns ID of the user who authenticated
    */
-  async useUserCredentials (scope: Scope[]): Promise<void> {
+  async useUserCredentials (scope: Scope[]): Promise<number> {
     const params: OAuthClientCredentialsRequest = {
       grant_type: 'client_credentials',
       scope: scope.join(','),
     }
 
-    const response = await this.#rest.request<OAuthResponse>('GET', '/oauth_token', params)
-    this.#userId = response.user_id
-    this.#rest.configureOauth(response.access_token)
+    const response = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)
+    this.#rest.configureOauth(response)
+    return response.user_id
   }
 }

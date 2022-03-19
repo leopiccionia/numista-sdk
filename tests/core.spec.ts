@@ -4,7 +4,7 @@ import { NumistaConnector, RequestError } from '#lib'
 
 describe('NumistaConnector', () => {
 
-  it('requires API Key', async () => {
+  it('requires API key', async () => {
     const numista = new NumistaConnector('INVALID_KEY')
     const request = numista.searchCoins('dollar')
 
