@@ -1,27 +1,39 @@
-<script setup lang="ts">
+<script lang="ts">
   import { NumistaConnector } from '@leopiccionia/numista-sdk'
   import type { CollectedCoinsResponse } from '@leopiccionia/numista-sdk'
-  import { watch } from 'vue'
-  import { $$, $computed, $ref } from 'vue/macros'
+  import { defineComponent } from 'vue'
 
-  let clicked = $ref(false)
-
-  let apiKey = $ref('')
-  let clientId = $ref('')
-  let code = $ref('')
-  let lang = $ref('en')
-  let redirectUri = $ref('https://postman-echo.com/get')
-
-  const numista = $computed(() => new NumistaConnector(apiKey))
-  const oauth = $computed(() => numista.useAuthorizationCode(clientId, redirectUri, ['view_collection']))
-
-  let collectedCoins = $ref<CollectedCoinsResponse|null>(null)
-
-  const clickedLink = () => clicked = true
-
-  watch($$(code), async () => {
-    const userId = await oauth.setCode(code)
-    collectedCoins = await numista.userCoins(userId)
+  export default defineComponent({
+    data () {
+      return {
+        apiKey: '',
+        clicked: false,
+        clientId: '',
+        code: '',
+        collectedCoins: null as CollectedCoinsResponse | null,
+        lang: 'en',
+        redirectUri: 'https://postman-echo.com/get',
+      }
+    },
+    computed: {
+      numista (): NumistaConnector {
+        return new NumistaConnector(this.apiKey)
+      },
+      oauth (): ReturnType<NumistaConnector['useAuthorizationCode']> {
+        return this.numista.useAuthorizationCode(this.clientId, this.redirectUri, ['view_collection'])
+      },
+    },
+    watch: {
+      async code () {
+        const userId = await this.oauth.setCode(this.code)
+        this.collectedCoins = await this.numista.userCoins(userId)
+      },
+    },
+    methods: {
+      clickedLink () {
+        this.clicked = true
+      },
+    },
   })
 </script>
 
