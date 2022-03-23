@@ -8,8 +8,6 @@ export type Language = 'en' | 'es' | 'fr'
 
 export type Orientation = 'coin' | 'medal' | 'variable'
 
-export type Scope = 'view_collection'
-
 export interface APIError {
   /** Error message */
   error_message: string

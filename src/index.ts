@@ -1,3 +1,6 @@
 export { ConnectorConfig, NumistaConnector } from './core'
 export { ConnectionError, RequestError } from './errors'
+export * from './types/oauth'
 export * from './types/schemas'
+export * from './types/requests'
+export * from './types/responses'

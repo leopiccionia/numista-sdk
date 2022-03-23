@@ -1,3 +1,5 @@
+export type Scope = 'view_collection'
+
 export interface OAuthToken {
   /** Token granting access to the data of a Numista user */
   access_token: string

@@ -1,11 +1,13 @@
+import { OAuthConnector } from './oauth'
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
-import type { Coin, Issue, Language, Scope } from './types/schemas'
-import type { OAuthToken } from './types/oauth'
+import type { Coin, Issue, Language } from './types/schemas'
+import type { OAuthToken, Scope } from './types/oauth'
 import type { BaseRequest, CoinPricesRequest, CollectedCoinsRequest, OAuthClientCredentialsRequest, SearchCoinsRequest } from './types/requests'
 import type { CataloguesResponse, CollectedCoinsResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse, UserResponse } from './types/responses'
 
 export interface ConnectorConfig {
+  clientId?: string
   defaultLanguage: Language
 }
 
@@ -160,6 +162,24 @@ export class NumistaConnector {
     const params: CollectedCoinsRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<CollectedCoinsResponse>('GET', `/users/${userId}/collected_coins`, params, null, true)
+  }
+
+  /**
+   * Get OAuth access token via user credentials
+   * @param clientId Client ID which was assigned to your application and provided together with your API key
+   * @param redirectUri URI to redirect back the user to your application after they authenticate
+   * @param scope List of permissions you are requesting (e.g. 'view_collection')
+   * @param config Other params
+   * @returns OAuth adapter using authorization code
+   */
+  useAuthorizationCode (clientId: string, redirectUri: string, scope: Scope[], config: Partial<BaseRequest> = {}): OAuthConnector {
+    const defaultConfig: BaseRequest = {
+      lang: this.#config.defaultLanguage,
+    }
+
+    const params: BaseRequest = { ...defaultConfig, ...config }
+
+    return new OAuthConnector(this.#rest, clientId, redirectUri, scope, params)
   }
 
   /**

@@ -38,8 +38,8 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 - [x] Get estimates for the price of an issue of a coin
 - [x] Retrieve the list of issuing countries and territories
 - [x] Retrieve the list of catalogues used for coin references
-- [ ] Get OAuth access token
-  - [ ] Authorization code
+- [x] Get OAuth access token
+  - [x] Authorization code
   - [x] Client credentials
 - [x] Get information about a user
 - [x] Get the coins owned by a user

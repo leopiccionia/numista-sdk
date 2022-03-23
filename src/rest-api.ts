@@ -13,6 +13,8 @@ function searchParams (obj: Record<string, any>): URLSearchParams {
   return new URLSearchParams(entries)
 }
 
+export const GET_API_KEY = Symbol('apiKey')
+
 export class RestConnector {
 
   #apiKey: string
@@ -20,6 +22,10 @@ export class RestConnector {
 
   constructor (apiKey: string) {
     this.#apiKey = apiKey
+  }
+
+  get [GET_API_KEY](): string {
+    return this.#apiKey
   }
 
   configureOauth (token: OAuthToken) {
