@@ -1,6 +1,6 @@
 <script lang="ts">
   import { NumistaConnector } from '@leopiccionia/numista-sdk'
-  import type { CollectedCoinsResponse } from '@leopiccionia/numista-sdk'
+  import type { CollectedCoinsResponse, Language } from '@leopiccionia/numista-sdk'
   import { defineComponent } from 'vue'
 
   export default defineComponent({
@@ -11,7 +11,7 @@
         clientId: '',
         code: '',
         collectedCoins: null as CollectedCoinsResponse | null,
-        lang: 'en',
+        lang: 'en' as Language,
         redirectUri: 'https://postman-echo.com/get',
       }
     },
@@ -20,7 +20,7 @@
         return new NumistaConnector(this.apiKey)
       },
       oauth (): ReturnType<NumistaConnector['useAuthorizationCode']> {
-        return this.numista.useAuthorizationCode(this.clientId, this.redirectUri, ['view_collection'])
+        return this.numista.useAuthorizationCode(this.clientId, this.redirectUri, ['view_collection'], { lang: this.lang })
       },
     },
     watch: {
