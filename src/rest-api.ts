@@ -36,7 +36,7 @@ export class RestConnector {
     }, token.expires_in * 1000)
   }
 
-  async request<T> (method: HttpMethod, url: string, params: object, body = null, useAuth = false): Promise<T> {
+  async request<T> (method: HttpMethod, url: string, params: object, body: object | null = null, useAuth = false): Promise<T> {
     const headers = new Headers({ 'Numista-API-Key': this.#apiKey })
     if (body) {
       headers.append('Content-Type', 'application/json')

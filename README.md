@@ -1,7 +1,5 @@
 # An unofficial JS SDK for Numista
 
-> WORK IN PROGRESS
-
 A TypeScript SDK for [Numista](https://en.numista.com/) that can be used both in browser and servers.
 
 ## Getting started
@@ -27,19 +25,3 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 - Proper error handling:
   - Connector returns `ConnectionError` if connection failed
   - Connector returns `RequestError` if server returned an error message
-
-### Endpoints
-
-- [x] Search for coins
-- [ ] Add a coin to the catalogue
-- [x] Find a coin by ID
-- [x] Find the issues of a coin
-- [ ] Add a coin issue
-- [x] Get estimates for the price of an issue of a coin
-- [x] Retrieve the list of issuing countries and territories
-- [x] Retrieve the list of catalogues used for coin references
-- [x] Get OAuth access token
-  - [x] Authorization code
-  - [x] Client credentials
-- [x] Get information about a user
-- [x] Get the coins owned by a user

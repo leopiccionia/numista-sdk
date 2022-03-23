@@ -1,7 +1,7 @@
 import { OAuthConnector } from './oauth'
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
-import type { Coin, Issue, Language } from './types/schemas'
+import type { Coin, CoinUpdate, Issue, IssueUpdate, Language } from './types/schemas'
 import type { OAuthToken, Scope } from './types/oauth'
 import type { BaseRequest, CoinPricesRequest, CollectedCoinsRequest, OAuthClientCredentialsRequest, SearchCoinsRequest } from './types/requests'
 import type { CataloguesResponse, CollectedCoinsResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse, UserResponse } from './types/responses'
@@ -25,6 +25,43 @@ export class NumistaConnector {
     this.#rest = new RestConnector(apiKey)
   }
 
+  /**
+   * This endpoint allows to add a coin to the catalogue
+   *
+   * It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
+   * @param data Data related to the coin to add to the catalogue
+   * @param config Other params
+   * @returns The coin that has been added to the catalogue
+   */
+  addCoin (data: CoinUpdate, config: Partial<BaseRequest> = {}): Promise<Coin> {
+    const defaultConfig: BaseRequest = {
+      lang: this.#config.defaultLanguage,
+    }
+
+    const params: BaseRequest = { ...defaultConfig, ...config }
+
+    return this.#rest.request<Coin>('POST', '/coins', params, data)
+  }
+
+  /**
+   * Add a coin issue
+   *
+   * It requires a specific permission associated to your API key
+   * @param coinId ID of the coin to which the issue is added
+   * @param data Data related to the coin issue to add to the catalogue
+   * @param config Other params
+   * @returns The coin issue that has been added to the catalogue
+   */
+  addCoinIssue (coinId: number | string, data: IssueUpdate, config: Partial<BaseRequest> = {}): Promise<Issue> {
+    const defaultConfig: BaseRequest = {
+      lang: this.#config.defaultLanguage,
+    }
+
+    const params: BaseRequest = { ...defaultConfig, ...config }
+
+    return this.#rest.request<Issue>('POST', `/coins/${coinId}/issues`, params, data)
+  }
+
   /** Retrieve the list of catalogues used for coin references */
   catalogues (): Promise<CataloguesResponse> {
     return this.#rest.request<CataloguesResponse>('GET', '/catalogues', {})
@@ -32,17 +69,17 @@ export class NumistaConnector {
 
   /**
    * Find a coin by ID
-   * @param numistaId ID of the coin to fetch
+   * @param coinId ID of the coin to fetch
    * @param config Other params
    */
-  coin (numistaId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
+  coin (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
     const defaultConfig: BaseRequest = {
       lang: this.#config.defaultLanguage,
     }
 
     const params: BaseRequest = { ...defaultConfig, ...config }
 
-    return this.#rest.request<Coin>('GET', `/coins/${numistaId}`, params)
+    return this.#rest.request<Coin>('GET', `/coins/${coinId}`, params)
   }
 
   /**
