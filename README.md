@@ -1,15 +1,21 @@
-# An unofficial JS SDK for Numista
+# @leopiccionia/numista-sdk
 
-A TypeScript SDK for [Numista](https://en.numista.com/) that can be used both in browser and servers.
+This is an unofficial JavaScript/TypeScript SDK for [Numista](https://en.numista.com/). It can run in both browsers and servers.
+
+## Installing
+
+```bash
+npm install @leopiccionia/numista-sdk
+```
 
 ## Getting started
 
-Before starting, you'll need a Numista API key ([get one](https://en.numista.com/api/doc/index.php)).
+Before starting, you'll need a Numista API key ([get one here](https://en.numista.com/api/doc/index.php)).
 
 ```ts
 import { NumistaConnector } from '@leopiccionia/numista-sdk'
 
-const numista = new NumistaConnector('YOUR-API-KEY', { defaultLanguage: 'en' })
+const numista = new NumistaConnector(YOUR_API_KEY, YOUR_CLIENT_ID, { defaultLanguage: 'en' })
 
 // Get the Morgan Dollar
 const morganDollar = await numista.coin(1492)
@@ -20,8 +26,15 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 
 ## Features
 
-- `Promise`-based APIs, with `async`/`await` support
+- Good type-safety and IntelliSense support
+- `Promise`-based APIs, designed for `async`/`await`
 - Experimental [`ReadableStream`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)-based API for paginated requests
 - Proper error handling:
   - Connector returns `ConnectionError` if connection failed
   - Connector returns `RequestError` if server returned an error message
+
+![Screen capture](./assets/capture.png)
+
+## Demos
+
+- [OAuth authorization code with Vue](./demos/oauth)

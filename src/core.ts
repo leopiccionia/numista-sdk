@@ -8,7 +8,7 @@ import type { BaseRequest, CoinPricesRequest, CollectedCoinsRequest, OAuthClient
 import type { CataloguesResponse, CollectedCoinsResponse, CoinPricesResponse, IssuersResponse, SearchCoinsResponse, UserResponse } from './types/responses'
 
 export interface ConnectorConfig {
-  clientId?: string
+  /** The default language for use in other methods */
   defaultLanguage: Language
 }
 
@@ -18,6 +18,11 @@ export class NumistaConnector {
   #config: ConnectorConfig
   #rest: RestConnector
 
+  /**
+   * @param apiKey API key
+   * @param clientId Client ID
+   * @param config Other params
+   */
   constructor (apiKey: string, clientId: string, config: Partial<ConnectorConfig> = {}) {
     const defaultConfig: ConnectorConfig = {
       defaultLanguage: 'en',
