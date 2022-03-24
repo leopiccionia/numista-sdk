@@ -1,12 +1,12 @@
 import type { OAuthToken } from './types/oauth'
 
+/** @internal */
 export class Credentials {
 
   #apiKey: string
   #clientId: string
   #oauthToken?: OAuthToken
 
-  /** @internal */
   constructor (apiKey: string, clientId: string) {
     this.#apiKey = apiKey
     this.#clientId = clientId
