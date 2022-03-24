@@ -22,7 +22,9 @@ export class RestConnector {
   }
 
   async request<T> (method: HttpMethod, url: string, params: object, body: object | null = null, useAuth = false): Promise<T> {
-    const headers = new Headers({ 'Numista-API-Key': this.#credentials.apiKey })
+    const headers = new Headers({
+      'Numista-API-Key': this.#credentials.apiKey,
+    })
     if (body) {
       headers.append('Content-Type', 'application/json')
     }

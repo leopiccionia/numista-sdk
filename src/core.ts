@@ -24,12 +24,13 @@ export class NumistaConnector {
    * @param config Other params
    */
   constructor (apiKey: string, clientId: string, config: Partial<ConnectorConfig> = {}) {
-    const defaultConfig: ConnectorConfig = {
+    const mergedConfig: ConnectorConfig = {
       defaultLanguage: 'en',
+      ...config,
     }
 
     this.#credentials = new Credentials(apiKey, clientId)
-    this.#config = { ...defaultConfig, ...config }
+    this.#config = mergedConfig
     this.#rest = new RestConnector(this.#credentials)
   }
 
@@ -42,11 +43,10 @@ export class NumistaConnector {
    * @returns The coin that has been added to the catalogue
    */
   addCoin (data: CoinUpdate, config: Partial<BaseRequest> = {}): Promise<Coin> {
-    const defaultConfig: BaseRequest = {
+    const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<Coin>('POST', '/coins', params, data)
   }
@@ -61,11 +61,10 @@ export class NumistaConnector {
    * @returns The coin issue that has been added to the catalogue
    */
   addCoinIssue (coinId: number | string, data: IssueUpdate, config: Partial<BaseRequest> = {}): Promise<Issue> {
-    const defaultConfig: BaseRequest = {
+    const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<Issue>('POST', `/coins/${coinId}/issues`, params, data)
   }
@@ -81,11 +80,10 @@ export class NumistaConnector {
    * @param config Other params
    */
   coin (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
-    const defaultConfig: BaseRequest = {
+    const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<Coin>('GET', `/coins/${coinId}`, params)
   }
@@ -96,11 +94,10 @@ export class NumistaConnector {
    * @param config Other params
    */
   coinIssues (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
-    const defaultConfig: BaseRequest = {
+    const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<Issue[]>('GET', `/coins/${coinId}/issues`, params)
   }
@@ -112,23 +109,21 @@ export class NumistaConnector {
    * @param config Other params
    */
   coinPrices (coinId: number | string, issueId: number | string, config: Partial<CoinPricesRequest> = {}): Promise<CoinPricesResponse> {
-    const defaultConfig: CoinPricesRequest = {
+    const params: CoinPricesRequest = {
       currency: 'EUR',
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: CoinPricesRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<CoinPricesResponse>('GET', `/coins/${coinId}/issues/${issueId}/prices`, params)
   }
 
   /** Retrieve the list of issuing countries and territories */
   issuers (config: Partial<BaseRequest> = {}): Promise<IssuersResponse> {
-    const defaultConfig: BaseRequest = {
+    const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<IssuersResponse>('GET', '/issuers', params)
   }
@@ -149,13 +144,13 @@ export class NumistaConnector {
    * @param config Other params
    */
   searchCoins (query: string, config: Partial<Omit<SearchCoinsRequest, 'q'>> = {}): Promise<SearchCoinsResponse> {
-    const defaultConfig: Omit<SearchCoinsRequest, 'q'> = {
+    const params: SearchCoinsRequest = {
       count: 50,
       lang: this.#config.defaultLanguage,
       page: 1,
+      ...config,
+      q: query,
     }
-
-    const params: SearchCoinsRequest = { ...defaultConfig, ...config, q: query }
 
     return this.#rest.request<SearchCoinsResponse>('GET', '/coins', params)
   }
@@ -166,13 +161,13 @@ export class NumistaConnector {
    * @param config Other params
    */
   async searchCoinsPaginated (query: string, config: Partial<Omit<SearchCoinsRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>> {
-    const defaultConfig: Omit<SearchCoinsRequest, 'q'> = {
+    const params: SearchCoinsRequest = {
       count: 50,
       lang: this.#config.defaultLanguage,
       page: 1,
+      ...config,
+      q: query,
     }
-
-    const params: SearchCoinsRequest = { ...defaultConfig, ...config, q: query }
 
     const initialData = await this.#rest.request<SearchCoinsResponse>('GET', '/coins', params)
 
@@ -185,11 +180,10 @@ export class NumistaConnector {
    * @param config Other params
    */
   user (userId: number | string, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
-    const defaultConfig: BaseRequest = {
+    const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: BaseRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<UserResponse>('GET', `/users/${userId}`, params)
   }
@@ -200,11 +194,10 @@ export class NumistaConnector {
    * @param config Other params
    */
   userCoins (userId: number | string, config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
-    const defaultConfig: CollectedCoinsRequest = {
+    const params: CollectedCoinsRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: CollectedCoinsRequest = { ...defaultConfig, ...config }
 
     return this.#rest.request<CollectedCoinsResponse>('GET', `/users/${userId}/collected_coins`, params, null, true)
   }
@@ -217,11 +210,10 @@ export class NumistaConnector {
    * @returns OAuth adapter using authorization code
    */
   useAuthorizationCode (redirectUri: string, scope: Scope[], config: Partial<BaseRequest> = {}): OAuthConnector {
-    const defaultConfig: BaseRequest = {
+    const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
+      ...config,
     }
-
-    const params: BaseRequest = { ...defaultConfig, ...config }
 
     return new OAuthConnector(this.#rest, this.#credentials, redirectUri, scope, params)
   }
