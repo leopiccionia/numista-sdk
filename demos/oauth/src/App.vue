@@ -1,6 +1,6 @@
 <script lang="ts">
   import { NumistaConnector } from '@leopiccionia/numista-sdk'
-  import type { CollectedCoinsResponse, Language } from '@leopiccionia/numista-sdk'
+  import { CollectedCoinsResponse, Language, OAuthConnector } from '@leopiccionia/numista-sdk'
   import { defineComponent } from 'vue'
 
   export default defineComponent({
@@ -19,7 +19,7 @@
       numista (): NumistaConnector {
         return new NumistaConnector(this.apiKey)
       },
-      oauth (): ReturnType<NumistaConnector['useAuthorizationCode']> {
+      oauth (): OAuthConnector {
         return this.numista.useAuthorizationCode(this.clientId, this.redirectUri, ['view_collection'], { lang: this.lang })
       },
     },

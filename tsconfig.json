@@ -10,6 +10,7 @@
       "#tests": ["tests/setup.ts"],
     },
     "strict": true,
+    "stripInternal": true,
     "target": "ESNext"
   }
 }

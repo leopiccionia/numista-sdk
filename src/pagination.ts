@@ -14,6 +14,7 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
   #rest: RestConnector
   #url: string
 
+  /** @internal */
   constructor (rest: RestConnector, res: Res, url: string, params: Req, isAuthenticated = false) {
     const { count, ...data } = res
     this.#count = count
@@ -75,6 +76,7 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
   /**
    * Fetch and stream all missing pages (experimental)
    * @returns A WHATWG-compatible readable stream
+   * @experimental
    */
   stream (): ReadableStream<Omit<Res, 'count'>> {
     let canceled = false

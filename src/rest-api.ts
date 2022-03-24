@@ -22,8 +22,10 @@ export class RestConnector {
 
   constructor (apiKey: string) {
     this.#apiKey = apiKey
+    this.#oauthToken = undefined
   }
 
+  /** @internal */
   get [GET_API_KEY](): string {
     return this.#apiKey
   }

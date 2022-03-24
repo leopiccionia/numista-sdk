@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid'
 
 import { GET_API_KEY } from './rest-api'
 import type { RestConnector } from './rest-api'
-import type { Scope, OAuthToken } from './types/oauth'
+import type { OAuthToken, Scope } from './types/oauth'
 import type { OAuthAuthorizationCodeRequest } from './types/requests'
 import type { BaseRequest } from './types/requests'
 
@@ -16,6 +16,7 @@ export class OAuthConnector {
   #scope: string
   #state: string
 
+  /** @internal */
   constructor (rest: RestConnector, clientId: string, redirectUri: string, scope: Scope[], config: BaseRequest) {
     this.#clientId = clientId
     this.#config = config
