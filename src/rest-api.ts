@@ -1,7 +1,7 @@
 import fetch, { Headers } from 'cross-fetch'
 
+import { Credentials } from './credentials'
 import { ConnectionError, RequestError } from './errors'
-import { OAuthToken } from './types/oauth'
 import type { APIError } from './types/schemas'
 
 type HttpMethod = 'GET' | 'POST'
@@ -13,38 +13,21 @@ function searchParams (obj: Record<string, any>): URLSearchParams {
   return new URLSearchParams(entries)
 }
 
-export const GET_API_KEY = Symbol('apiKey')
-
 export class RestConnector {
 
-  #apiKey: string
-  #oauthToken?: OAuthToken
+  #credentials: Credentials
 
-  constructor (apiKey: string) {
-    this.#apiKey = apiKey
-    this.#oauthToken = undefined
-  }
-
-  /** @internal */
-  get [GET_API_KEY](): string {
-    return this.#apiKey
-  }
-
-  configureOauth (token: OAuthToken) {
-    this.#oauthToken = token
-
-    setTimeout(() => {
-      this.#oauthToken = undefined
-    }, token.expires_in * 1000)
+  constructor (credentials: Credentials) {
+    this.#credentials = credentials
   }
 
   async request<T> (method: HttpMethod, url: string, params: object, body: object | null = null, useAuth = false): Promise<T> {
-    const headers = new Headers({ 'Numista-API-Key': this.#apiKey })
+    const headers = new Headers({ 'Numista-API-Key': this.#credentials.apiKey })
     if (body) {
       headers.append('Content-Type', 'application/json')
     }
-    if (useAuth && this.#oauthToken) {
-      headers.append('Authorization', `Bearer ${this.#oauthToken.access_token}`)
+    if (useAuth && this.#credentials.oauthToken) {
+      headers.append('Authorization', `Bearer ${this.#credentials.oauthToken.access_token}`)
     }
 
     try {

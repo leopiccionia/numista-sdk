@@ -1,3 +1,4 @@
+import { Credentials } from './credentials'
 import { OAuthConnector } from './oauth'
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
@@ -13,16 +14,18 @@ export interface ConnectorConfig {
 
 export class NumistaConnector {
 
+  #credentials: Credentials
   #config: ConnectorConfig
   #rest: RestConnector
 
-  constructor (apiKey: string, config: Partial<ConnectorConfig> = {}) {
+  constructor (apiKey: string, clientId: string, config: Partial<ConnectorConfig> = {}) {
     const defaultConfig: ConnectorConfig = {
       defaultLanguage: 'en',
     }
 
+    this.#credentials = new Credentials(apiKey, clientId)
     this.#config = { ...defaultConfig, ...config }
-    this.#rest = new RestConnector(apiKey)
+    this.#rest = new RestConnector(this.#credentials)
   }
 
   /**
@@ -203,20 +206,19 @@ export class NumistaConnector {
 
   /**
    * Get OAuth access token via user credentials
-   * @param clientId Client ID which was assigned to your application and provided together with your API key
    * @param redirectUri URI to redirect back the user to your application after they authenticate
    * @param scope List of permissions you are requesting (e.g. 'view_collection')
    * @param config Other params
    * @returns OAuth adapter using authorization code
    */
-  useAuthorizationCode (clientId: string, redirectUri: string, scope: Scope[], config: Partial<BaseRequest> = {}): OAuthConnector {
+  useAuthorizationCode (redirectUri: string, scope: Scope[], config: Partial<BaseRequest> = {}): OAuthConnector {
     const defaultConfig: BaseRequest = {
       lang: this.#config.defaultLanguage,
     }
 
     const params: BaseRequest = { ...defaultConfig, ...config }
 
-    return new OAuthConnector(this.#rest, clientId, redirectUri, scope, params)
+    return new OAuthConnector(this.#rest, this.#credentials, redirectUri, scope, params)
   }
 
   /**
@@ -230,8 +232,8 @@ export class NumistaConnector {
       scope: scope.join(','),
     }
 
-    const response = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)
-    this.#rest.configureOauth(response)
-    return response.user_id
+    const token = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)
+    this.#credentials.oauthToken = token
+    return token.user_id
   }
 }

@@ -17,10 +17,10 @@
     },
     computed: {
       numista (): NumistaConnector {
-        return new NumistaConnector(this.apiKey)
+        return new NumistaConnector(this.apiKey, this.clientId)
       },
       oauth (): OAuthConnector {
-        return this.numista.useAuthorizationCode(this.clientId, this.redirectUri, ['view_collection'], { lang: this.lang })
+        return this.numista.useAuthorizationCode(this.redirectUri, ['view_collection'], { lang: this.lang })
       },
     },
     watch: {

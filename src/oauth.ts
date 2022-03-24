@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-import { GET_API_KEY } from './rest-api'
+import type { Credentials } from './credentials'
 import type { RestConnector } from './rest-api'
 import type { OAuthToken, Scope } from './types/oauth'
 import type { OAuthAuthorizationCodeRequest } from './types/requests'
@@ -9,7 +9,7 @@ import type { BaseRequest } from './types/requests'
 /** OAuth adapter using authorization code */
 export class OAuthConnector {
 
-  #clientId: string
+  #credentials: Credentials
   #config: BaseRequest
   #redirectUri: string
   #rest: RestConnector
@@ -17,8 +17,8 @@ export class OAuthConnector {
   #state: string
 
   /** @internal */
-  constructor (rest: RestConnector, clientId: string, redirectUri: string, scope: Scope[], config: BaseRequest) {
-    this.#clientId = clientId
+  constructor (rest: RestConnector, credentials: Credentials, redirectUri: string, scope: Scope[], config: BaseRequest) {
+    this.#credentials = credentials
     this.#config = config
     this.#redirectUri = redirectUri
     this.#rest = rest
@@ -31,7 +31,7 @@ export class OAuthConnector {
   }
 
   get url (): string {
-    const clientId = this.#clientId
+    const clientId = this.#credentials.clientId
     const lang = this.#config.lang
     const redirectUri = encodeURIComponent(this.#redirectUri)
     const scope = this.#scope
@@ -49,13 +49,13 @@ export class OAuthConnector {
     const params: OAuthAuthorizationCodeRequest = {
       grant_type: 'authorization_code',
       code,
-      client_id: this.#clientId,
-      client_secret: this.#rest[GET_API_KEY],
+      client_id: this.#credentials.clientId,
+      client_secret: this.#credentials.apiKey,
       redirect_uri: this.#redirectUri,
     }
 
-    const response = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)
-    this.#rest.configureOauth(response)
-    return response.user_id
+    const token = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)
+    this.#credentials.oauthToken = token
+    return token.user_id
   }
 }
