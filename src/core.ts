@@ -12,6 +12,7 @@ export interface ConnectorConfig {
   defaultLanguage: Language
 }
 
+/** The main entrypoint for Numista SDK */
 export class NumistaConnector {
 
   #credentials: Credentials
@@ -19,9 +20,9 @@ export class NumistaConnector {
   #rest: RestConnector
 
   /**
-   * @param apiKey API key
-   * @param clientId Client ID
-   * @param config Other params
+   * @param apiKey - API key
+   * @param clientId - Client ID
+   * @param config - Other params
    */
   constructor (apiKey: string, clientId: string, config: Partial<ConnectorConfig> = {}) {
     const mergedConfig: ConnectorConfig = {
@@ -38,8 +39,8 @@ export class NumistaConnector {
    * This endpoint allows to add a coin to the catalogue
    *
    * It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
-   * @param data Data related to the coin to add to the catalogue
-   * @param config Other params
+   * @param data - Data related to the coin to add to the catalogue
+   * @param config - Other params
    * @returns The coin that has been added to the catalogue
    */
   addCoin (data: CoinUpdate, config: Partial<BaseRequest> = {}): Promise<Coin> {
@@ -55,9 +56,9 @@ export class NumistaConnector {
    * Add a coin issue
    *
    * It requires a specific permission associated to your API key
-   * @param coinId ID of the coin to which the issue is added
-   * @param data Data related to the coin issue to add to the catalogue
-   * @param config Other params
+   * @param coinId - ID of the coin to which the issue is added
+   * @param data - Data related to the coin issue to add to the catalogue
+   * @param config - Other params
    * @returns The coin issue that has been added to the catalogue
    */
   addCoinIssue (coinId: number | string, data: IssueUpdate, config: Partial<BaseRequest> = {}): Promise<Issue> {
@@ -76,8 +77,8 @@ export class NumistaConnector {
 
   /**
    * Find a coin by ID
-   * @param coinId ID of the coin to fetch
-   * @param config Other params
+   * @param coinId - ID of the coin to fetch
+   * @param config - Other params
    */
   coin (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
     const params: BaseRequest = {
@@ -90,8 +91,8 @@ export class NumistaConnector {
 
   /**
    * Find the issues of a coin
-   * @param coinId ID of the coin to fetch the issues from
-   * @param config Other params
+   * @param coinId - ID of the coin to fetch the issues from
+   * @param config - Other params
    */
   coinIssues (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
     const params: BaseRequest = {
@@ -104,9 +105,9 @@ export class NumistaConnector {
 
   /**
    * Get estimates for the price of an issue of a coin
-   * @param coinId ID of the coin type
-   * @param issueId ID of the issue of the coin
-   * @param config Other params
+   * @param coinId - ID of the coin type
+   * @param issueId - ID of the issue of the coin
+   * @param config - Other params
    */
   coinPrices (coinId: number | string, issueId: number | string, config: Partial<CoinPricesRequest> = {}): Promise<CoinPricesResponse> {
     const params: CoinPricesRequest = {
@@ -130,7 +131,7 @@ export class NumistaConnector {
 
   /**
    * Get the coins owned by the user
-   * @param config Params
+   * @param config - Params
    */
   async myCoins (config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
     const userId: number = await this.useUserCredentials(['view_collection'])
@@ -140,8 +141,8 @@ export class NumistaConnector {
 
   /**
    * Search for coins
-   * @param query Search query
-   * @param config Other params
+   * @param query - Search query
+   * @param config - Other params
    */
   searchCoins (query: string, config: Partial<Omit<SearchCoinsRequest, 'q'>> = {}): Promise<SearchCoinsResponse> {
     const params: SearchCoinsRequest = {
@@ -157,8 +158,8 @@ export class NumistaConnector {
 
   /**
    * Paginated search for coins
-   * @param query Search query
-   * @param config Other params
+   * @param query - Search query
+   * @param config - Other params
    */
   async searchCoinsPaginated (query: string, config: Partial<Omit<SearchCoinsRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchCoinsRequest, SearchCoinsResponse>> {
     const params: SearchCoinsRequest = {
@@ -176,8 +177,8 @@ export class NumistaConnector {
 
   /**
    * Get information about a user
-   * @param userId ID of the user
-   * @param config Other params
+   * @param userId - ID of the user
+   * @param config - Other params
    */
   user (userId: number | string, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
     const params: BaseRequest = {
@@ -190,8 +191,8 @@ export class NumistaConnector {
 
   /**
    * Get the coins owned by a user
-   * @param userId ID of the user
-   * @param config Other params
+   * @param userId - ID of the user
+   * @param config - Other params
    */
   userCoins (userId: number | string, config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
     const params: CollectedCoinsRequest = {
@@ -204,9 +205,9 @@ export class NumistaConnector {
 
   /**
    * Get OAuth access token via user credentials
-   * @param redirectUri URI to redirect back the user to your application after they authenticate
-   * @param scope List of permissions you are requesting (e.g. 'view_collection')
-   * @param config Other params
+   * @param redirectUri - URI to redirect back the user to your application after they authenticate
+   * @param scope - List of permissions you are requesting (e.g. 'view_collection')
+   * @param config - Other params
    * @returns OAuth adapter using authorization code
    */
   useAuthorizationCode (redirectUri: string, scope: Scope[], config: Partial<BaseRequest> = {}): OAuthConnector {
@@ -220,7 +221,7 @@ export class NumistaConnector {
 
   /**
    * Get OAuth access token via user credentials
-   * @param scope List of permissions
+   * @param scope - List of permissions
    * @returns ID of the user who authenticated
    */
   async useUserCredentials (scope: Scope[]): Promise<number> {

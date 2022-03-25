@@ -42,7 +42,7 @@ export class OAuthConnector {
 
   /**
    * Exchange the authorization code for an access token
-   * @param code The authorization code
+   * @param code - The authorization code
    * @returns ID of the user who authenticated
    */
   async setCode (code: string): Promise<number> {

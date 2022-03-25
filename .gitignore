@@ -1,3 +1,5 @@
 .env
 dist
+docs
 node_modules
+temp

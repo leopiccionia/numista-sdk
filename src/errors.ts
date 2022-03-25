@@ -1,4 +1,6 @@
-/** Error because server and client could not connect */
+/**
+ * Error returned because server and client could not connect
+ */
 export class ConnectionError extends Error {
 
   constructor (error: Error) {
@@ -8,7 +10,9 @@ export class ConnectionError extends Error {
   }
 }
 
-/** Server returned error */
+/**
+ * Error returned if server returned an error status
+ */
 export class RequestError extends Error {
 
   /** HTTP status code */

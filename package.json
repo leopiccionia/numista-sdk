@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "vite build && tsup src/index.ts --dts-only --clean",
+    "docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs",
     "test": "vitest"
   },
   "keywords": [
@@ -39,6 +40,8 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.16.0",
+    "@microsoft/api-extractor": "^7.19.5",
     "@types/node": "^17.0.21",
     "@types/uuid": "^8.3.4",
     "tsup": "^5.12.1",

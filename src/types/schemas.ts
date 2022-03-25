@@ -8,6 +8,7 @@ export type Language = 'en' | 'es' | 'fr'
 
 export type Orientation = 'coin' | 'medal' | 'variable'
 
+/** @internal */
 export interface APIError {
   /** Error message */
   error_message: string

@@ -26,6 +26,7 @@ export interface CollectedCoinsRequest extends BaseRequest {
   type?: number
 }
 
+/** @internal */
 export interface OAuthAuthorizationCodeRequest {
   /** Grant type */
   grant_type: 'authorization_code'
@@ -39,6 +40,7 @@ export interface OAuthAuthorizationCodeRequest {
   redirect_uri: string
 }
 
+/** @internal */
 export interface OAuthClientCredentialsRequest {
   /** Grant type */
   grant_type: 'client_credentials'

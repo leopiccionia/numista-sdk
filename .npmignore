@@ -1,4 +1,6 @@
 .editorconfig
 .env
 demos
+docs
 node_modules
+temp
