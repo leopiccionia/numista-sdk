@@ -3,6 +3,7 @@
  */
 export class ConnectionError extends Error {
 
+  /** @internal */
   constructor (error: Error) {
     super(error.message)
     this.name = 'ConnectionError'
@@ -20,6 +21,7 @@ export class RequestError extends Error {
   /** HTTP status text */
   statusText: string
 
+  /** @internal */
   constructor (status: number, statusText: string, message: string) {
     super(message)
     this.name = 'RequestError'

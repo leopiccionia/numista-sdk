@@ -13,6 +13,7 @@ function searchParams (obj: Record<string, any>): URLSearchParams {
   return new URLSearchParams(entries)
 }
 
+/** @internal */
 export class RestConnector {
 
   #credentials: Credentials
