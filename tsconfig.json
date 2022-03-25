@@ -13,5 +13,10 @@
     "strict": true,
     "stripInternal": true,
     "target": "ESNext"
+  },
+  "include": ["src/**/*"],
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs",
   }
 }
