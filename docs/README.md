@@ -55,19 +55,11 @@
 
 Ƭ **CoinType**: ``"common_coin"`` \| ``"commemorative_coin"`` \| ``"non_circulating_coin"`` \| ``"token"`` \| ``"pattern"``
 
-#### Defined in
-
-[src/types/schemas.ts:3](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L3)
-
 ___
 
 ### CompositionType
 
 Ƭ **CompositionType**: ``"plain"``
-
-#### Defined in
-
-[src/types/schemas.ts:1](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L1)
 
 ___
 
@@ -75,19 +67,11 @@ ___
 
 Ƭ **Grade**: ``"g"`` \| ``"vg"`` \| ``"f"`` \| ``"vf"`` \| ``"xf"`` \| ``"au"`` \| ``"unc"``
 
-#### Defined in
-
-[src/types/schemas.ts:5](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L5)
-
 ___
 
 ### Language
 
 Ƭ **Language**: ``"en"`` \| ``"es"`` \| ``"fr"``
-
-#### Defined in
-
-[src/types/schemas.ts:7](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L7)
 
 ___
 
@@ -95,16 +79,8 @@ ___
 
 Ƭ **Orientation**: ``"coin"`` \| ``"medal"`` \| ``"variable"``
 
-#### Defined in
-
-[src/types/schemas.ts:9](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L9)
-
 ___
 
 ### Scope
 
 Ƭ **Scope**: ``"view_collection"``
-
-#### Defined in
-
-[src/types/oauth.ts:1](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/oauth.ts#L1)

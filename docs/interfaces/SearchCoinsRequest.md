@@ -32,10 +32,6 @@ Results per page
 
 [PaginatedRequest](PaginatedRequest.md).[count](PaginatedRequest.md#count)
 
-#### Defined in
-
-[src/types/requests.ts:61](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L61)
-
 ___
 
 ### issuer
@@ -43,10 +39,6 @@ ___
 • `Optional` **issuer**: `string`
 
 Issuer code. If provided, only the coins from the given issuer are returned
-
-#### Defined in
-
-[src/types/requests.ts:57](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L57)
 
 ___
 
@@ -60,10 +52,6 @@ Language
 
 [BaseRequest](BaseRequest.md).[lang](BaseRequest.md#lang)
 
-#### Defined in
-
-[src/types/requests.ts:53](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L53)
-
 ___
 
 ### page
@@ -76,10 +64,6 @@ Page of results
 
 [PaginatedRequest](PaginatedRequest.md).[page](PaginatedRequest.md#page)
 
-#### Defined in
-
-[src/types/requests.ts:59](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L59)
-
 ___
 
 ### q
@@ -87,7 +71,3 @@ ___
 • **q**: `string`
 
 Search query
-
-#### Defined in
-
-[src/types/requests.ts:55](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L55)

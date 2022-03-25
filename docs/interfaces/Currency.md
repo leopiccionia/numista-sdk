@@ -18,10 +18,6 @@
 
 Full name of the currency, including dates
 
-#### Defined in
-
-[src/types/schemas.ts:271](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L271)
-
 ___
 
 ### id
@@ -30,10 +26,6 @@ ___
 
 Unique ID of the currency on Numista
 
-#### Defined in
-
-[src/types/schemas.ts:267](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L267)
-
 ___
 
 ### name
@@ -41,7 +33,3 @@ ___
 • **name**: `string`
 
 Name of the currency
-
-#### Defined in
-
-[src/types/schemas.ts:269](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L269)

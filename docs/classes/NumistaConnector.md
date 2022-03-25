@@ -41,10 +41,6 @@ The main entrypoint for Numista SDK
 | `clientId` | `string` | Client ID |
 | `config` | `Partial`<[`ConnectorConfig`](../interfaces/ConnectorConfig.md)\> | Other params |
 
-#### Defined in
-
-[src/core.ts:27](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L27)
-
 ## Methods
 
 ### addCoin
@@ -67,10 +63,6 @@ It requires a specific permission associated to your API key. After adding a coi
 `Promise`<[`Coin`](../interfaces/Coin.md)\>
 
 The coin that has been added to the catalogue
-
-#### Defined in
-
-[src/core.ts:46](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L46)
 
 ___
 
@@ -96,10 +88,6 @@ It requires a specific permission associated to your API key
 
 The coin issue that has been added to the catalogue
 
-#### Defined in
-
-[src/core.ts:64](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L64)
-
 ___
 
 ### catalogues
@@ -111,10 +99,6 @@ Retrieve the list of catalogues used for coin references
 #### Returns
 
 `Promise`<[`CataloguesResponse`](../interfaces/CataloguesResponse.md)\>
-
-#### Defined in
-
-[src/core.ts:74](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L74)
 
 ___
 
@@ -135,10 +119,6 @@ Find a coin by ID
 
 `Promise`<[`Coin`](../interfaces/Coin.md)\>
 
-#### Defined in
-
-[src/core.ts:83](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L83)
-
 ___
 
 ### coinIssues
@@ -157,10 +137,6 @@ Find the issues of a coin
 #### Returns
 
 `Promise`<[`Issue`](../interfaces/Issue.md)[]\>
-
-#### Defined in
-
-[src/core.ts:97](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L97)
 
 ___
 
@@ -182,10 +158,6 @@ Get estimates for the price of an issue of a coin
 
 `Promise`<[`CoinPricesResponse`](../interfaces/CoinPricesResponse.md)\>
 
-#### Defined in
-
-[src/core.ts:112](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L112)
-
 ___
 
 ### issuers
@@ -204,10 +176,6 @@ Retrieve the list of issuing countries and territories
 
 `Promise`<[`IssuersResponse`](../interfaces/IssuersResponse.md)\>
 
-#### Defined in
-
-[src/core.ts:123](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L123)
-
 ___
 
 ### myCoins
@@ -225,10 +193,6 @@ Get the coins owned by the user
 #### Returns
 
 `Promise`<[`CollectedCoinsResponse`](../interfaces/CollectedCoinsResponse.md)\>
-
-#### Defined in
-
-[src/core.ts:136](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L136)
 
 ___
 
@@ -249,10 +213,6 @@ Search for coins
 
 `Promise`<[`SearchCoinsResponse`](../interfaces/SearchCoinsResponse.md)\>
 
-#### Defined in
-
-[src/core.ts:147](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L147)
-
 ___
 
 ### searchCoinsPaginated
@@ -271,10 +231,6 @@ Paginated search for coins
 #### Returns
 
 `Promise`<[`PaginatedResult`](PaginatedResult.md)<[`SearchCoinsRequest`](../interfaces/SearchCoinsRequest.md), [`SearchCoinsResponse`](../interfaces/SearchCoinsResponse.md)\>\>
-
-#### Defined in
-
-[src/core.ts:164](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L164)
 
 ___
 
@@ -298,10 +254,6 @@ Get OAuth access token via user credentials
 
 OAuth adapter using authorization code
 
-#### Defined in
-
-[src/core.ts:213](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L213)
-
 ___
 
 ### useUserCredentials
@@ -322,10 +274,6 @@ Get OAuth access token via user credentials
 
 ID of the user who authenticated
 
-#### Defined in
-
-[src/core.ts:227](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L227)
-
 ___
 
 ### user
@@ -345,10 +293,6 @@ Get information about a user
 
 `Promise`<[`UserResponse`](../interfaces/UserResponse.md)\>
 
-#### Defined in
-
-[src/core.ts:183](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L183)
-
 ___
 
 ### userCoins
@@ -367,7 +311,3 @@ Get the coins owned by a user
 #### Returns
 
 `Promise`<[`CollectedCoinsResponse`](../interfaces/CollectedCoinsResponse.md)\>
-
-#### Defined in
-
-[src/core.ts:197](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/core.ts#L197)

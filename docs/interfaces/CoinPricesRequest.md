@@ -23,10 +23,6 @@
 
 3-letter ISO 4217 currency code
 
-#### Defined in
-
-[src/types/requests.ts:19](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L19)
-
 ___
 
 ### lang
@@ -38,7 +34,3 @@ Language
 #### Overrides
 
 [BaseRequest](BaseRequest.md).[lang](BaseRequest.md#lang)
-
-#### Defined in
-
-[src/types/requests.ts:17](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L17)

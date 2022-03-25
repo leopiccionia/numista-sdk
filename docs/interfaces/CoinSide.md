@@ -24,10 +24,6 @@
 
 Description of the side of the coin
 
-#### Defined in
-
-[src/types/schemas.ts:111](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L111)
-
 ___
 
 ### engravers
@@ -35,10 +31,6 @@ ___
 • `Optional` **engravers**: `string`[]
 
 Name of the engraver(s)
-
-#### Defined in
-
-[src/types/schemas.ts:109](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L109)
 
 ___
 
@@ -48,10 +40,6 @@ ___
 
 Lettering visible on the side of the coin
 
-#### Defined in
-
-[src/types/schemas.ts:113](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L113)
-
 ___
 
 ### lettering\_translation
@@ -59,10 +47,6 @@ ___
 • `Optional` **lettering\_translation**: `string`
 
 Translation of the lettering visible on the side of the coin
-
-#### Defined in
-
-[src/types/schemas.ts:117](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L117)
 
 ___
 
@@ -72,10 +56,6 @@ ___
 
 URL to the picture of the side of the coin
 
-#### Defined in
-
-[src/types/schemas.ts:119](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L119)
-
 ___
 
 ### picture\_copyright
@@ -83,10 +63,6 @@ ___
 • `Optional` **picture\_copyright**: `string`
 
 Name of the owner of the picture. Pictures should not be used without consent from their owner
-
-#### Defined in
-
-[src/types/schemas.ts:123](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L123)
 
 ___
 
@@ -96,10 +72,6 @@ ___
 
 URL to the website of the owner of the picture. Pictures should not be used without consent from their owner
 
-#### Defined in
-
-[src/types/schemas.ts:125](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L125)
-
 ___
 
 ### thumbnail
@@ -108,10 +80,6 @@ ___
 
 URL to the thumbnail of the picture of the side of the coin
 
-#### Defined in
-
-[src/types/schemas.ts:121](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L121)
-
 ___
 
 ### unabridged\_legend
@@ -119,7 +87,3 @@ ___
 • `Optional` **unabridged\_legend**: `string`
 
 Legend visible on the side of the coin with abbreviations replaced by full words
-
-#### Defined in
-
-[src/types/schemas.ts:115](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L115)

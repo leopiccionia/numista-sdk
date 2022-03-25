@@ -17,10 +17,6 @@
 
 Label in the given language
 
-#### Defined in
-
-[src/types/schemas.ts:325](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L325)
-
 ___
 
 ### language
@@ -28,7 +24,3 @@ ___
 • **language**: [`Language`](../README.md#language)
 
 Language code
-
-#### Defined in
-
-[src/types/schemas.ts:323](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L323)

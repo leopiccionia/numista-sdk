@@ -17,10 +17,6 @@
 
 ID of the collection
 
-#### Defined in
-
-[src/types/schemas.ts:260](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L260)
-
 ___
 
 ### name
@@ -28,7 +24,3 @@ ___
 • **name**: `string`
 
 Name of the collection
-
-#### Defined in
-
-[src/types/schemas.ts:262](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L262)

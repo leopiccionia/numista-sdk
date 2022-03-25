@@ -21,10 +21,6 @@
 
 Count of coins owned by the user
 
-#### Defined in
-
-[src/types/responses.ts:42](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L42)
-
 ___
 
 ### coin\_for\_swap\_count
@@ -32,10 +28,6 @@ ___
 • **coin\_for\_swap\_count**: `number`
 
 Count of coins offered for swap by the user
-
-#### Defined in
-
-[src/types/responses.ts:44](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L44)
 
 ___
 
@@ -45,10 +37,6 @@ ___
 
 Count of different coin types owned by the user
 
-#### Defined in
-
-[src/types/responses.ts:46](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L46)
-
 ___
 
 ### coin\_type\_for\_swap\_count
@@ -56,10 +44,6 @@ ___
 • **coin\_type\_for\_swap\_count**: `number`
 
 Count of different coin types offered for swap by the user
-
-#### Defined in
-
-[src/types/responses.ts:48](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L48)
 
 ___
 
@@ -69,10 +53,6 @@ ___
 
 List of collected coins
 
-#### Defined in
-
-[src/types/responses.ts:50](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L50)
-
 ___
 
 ### warning
@@ -80,7 +60,3 @@ ___
 • `Optional` **warning**: `string`
 
 Warning message (e.g. in case of user not authenticated but some data can be retrieved since the collection is public)
-
-#### Defined in
-
-[src/types/responses.ts:40](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L40)

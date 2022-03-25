@@ -23,10 +23,6 @@
 
 Results per page
 
-#### Defined in
-
-[src/types/requests.ts:10](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L10)
-
 ___
 
 ### page
@@ -34,7 +30,3 @@ ___
 • **page**: `number`
 
 Page of results
-
-#### Defined in
-
-[src/types/requests.ts:12](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/requests.ts#L12)

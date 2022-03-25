@@ -17,10 +17,6 @@
 
 URL to the avatar picture of the user
 
-#### Defined in
-
-[src/types/responses.ts:110](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L110)
-
 ___
 
 ### username
@@ -28,7 +24,3 @@ ___
 • **username**: `string`
 
 User name
-
-#### Defined in
-
-[src/types/responses.ts:108](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L108)

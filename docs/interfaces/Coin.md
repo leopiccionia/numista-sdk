@@ -40,10 +40,6 @@
 
 For commemorated coins, short description of the commemorated topic (event, person, etc.)
 
-#### Defined in
-
-[src/types/schemas.ts:86](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L86)
-
 ___
 
 ### comments
@@ -51,10 +47,6 @@ ___
 • `Optional` **comments**: `string`
 
 General comments about the coin (HTML format)
-
-#### Defined in
-
-[src/types/schemas.ts:88](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L88)
 
 ___
 
@@ -70,19 +62,11 @@ Composition of coin (metallic content)
 | :------ | :------ | :------ |
 | `text?` | `string` | Description of the composition |
 
-#### Defined in
-
-[src/types/schemas.ts:61](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L61)
-
 ___
 
 ### edge
 
 • `Optional` **edge**: [`CoinSide`](CoinSide.md)
-
-#### Defined in
-
-[src/types/schemas.ts:75](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L75)
 
 ___
 
@@ -92,19 +76,11 @@ ___
 
 Unique ID of the coin on Numista
 
-#### Defined in
-
-[src/types/schemas.ts:19](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L19)
-
 ___
 
 ### issuer
 
 • `Optional` **issuer**: [`Issuer`](Issuer.md)
-
-#### Defined in
-
-[src/types/schemas.ts:24](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L24)
 
 ___
 
@@ -114,10 +90,6 @@ ___
 
 Last year the coin was minted (in the Gregorian calendar)
 
-#### Defined in
-
-[src/types/schemas.ts:28](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L28)
-
 ___
 
 ### min\_year
@@ -125,10 +97,6 @@ ___
 • `Optional` **min\_year**: `number`
 
 First year the coin was minted (in the Gregorian calendar)
-
-#### Defined in
-
-[src/types/schemas.ts:26](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L26)
 
 ___
 
@@ -138,19 +106,11 @@ ___
 
 Mints where the coin was minted
 
-#### Defined in
-
-[src/types/schemas.ts:77](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L77)
-
 ___
 
 ### obverse
 
 • `Optional` **obverse**: [`CoinSide`](CoinSide.md)
-
-#### Defined in
-
-[src/types/schemas.ts:73](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L73)
 
 ___
 
@@ -160,10 +120,6 @@ ___
 
 Orientation of the coin ("coin", "medal" or "variable")
 
-#### Defined in
-
-[src/types/schemas.ts:72](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L72)
-
 ___
 
 ### references
@@ -171,10 +127,6 @@ ___
 • `Optional` **references**: [`Reference`](Reference.md)[]
 
 References of the coin in other catalogues
-
-#### Defined in
-
-[src/types/schemas.ts:104](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L104)
 
 ___
 
@@ -184,29 +136,17 @@ ___
 
 List of related coins
 
-#### Defined in
-
-[src/types/schemas.ts:90](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L90)
-
 ___
 
 ### reverse
 
 • `Optional` **reverse**: [`CoinSide`](CoinSide.md)
 
-#### Defined in
-
-[src/types/schemas.ts:74](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L74)
-
 ___
 
 ### ruler
 
 • `Optional` **ruler**: { `group?`: { `id`: `number` ; `name`: `string`  } ; `id`: `number` ; `name`: `string` ; `wikidata_id?`: `string`  }[]
-
-#### Defined in
-
-[src/types/schemas.ts:43](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L43)
 
 ___
 
@@ -216,10 +156,6 @@ ___
 
 For coins which are part of a series, the name of the series
 
-#### Defined in
-
-[src/types/schemas.ts:84](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L84)
-
 ___
 
 ### shape
@@ -227,10 +163,6 @@ ___
 • `Optional` **shape**: `string`
 
 Shape of the coin
-
-#### Defined in
-
-[src/types/schemas.ts:59](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L59)
 
 ___
 
@@ -240,10 +172,6 @@ ___
 
 Size of coin (diameter) in millimeters
 
-#### Defined in
-
-[src/types/schemas.ts:68](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L68)
-
 ___
 
 ### tags
@@ -251,10 +179,6 @@ ___
 • `Optional` **tags**: `string`[]
 
 List of tags
-
-#### Defined in
-
-[src/types/schemas.ts:102](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L102)
 
 ___
 
@@ -264,10 +188,6 @@ ___
 
 Thickness of the coin in millimeters
 
-#### Defined in
-
-[src/types/schemas.ts:70](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L70)
-
 ___
 
 ### title
@@ -275,10 +195,6 @@ ___
 • **title**: `string`
 
 Title of the coin
-
-#### Defined in
-
-[src/types/schemas.ts:23](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L23)
 
 ___
 
@@ -288,10 +204,6 @@ ___
 
 Type of coin
 
-#### Defined in
-
-[src/types/schemas.ts:30](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L30)
-
 ___
 
 ### url
@@ -299,10 +211,6 @@ ___
 • `Optional` **url**: `string`
 
 URL to the coin on Numista
-
-#### Defined in
-
-[src/types/schemas.ts:21](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L21)
 
 ___
 
@@ -322,10 +230,6 @@ Face value of the coin
 | `numeric_value?` | `number` | Face value as a floating number |
 | `text?` | `string` | Face value in text format |
 
-#### Defined in
-
-[src/types/schemas.ts:32](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L32)
-
 ___
 
 ### weight
@@ -333,7 +237,3 @@ ___
 • `Optional` **weight**: `number`
 
 Weight of the coin in grams
-
-#### Defined in
-
-[src/types/schemas.ts:66](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L66)

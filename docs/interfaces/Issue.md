@@ -24,10 +24,6 @@
 
 Comment about the issue
 
-#### Defined in
-
-[src/types/schemas.ts:292](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L292)
-
 ___
 
 ### gregorian\_year
@@ -35,10 +31,6 @@ ___
 • `Optional` **gregorian\_year**: `number`
 
 Issuance year in Gregorian calendar, if the coin is dated
-
-#### Defined in
-
-[src/types/schemas.ts:282](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L282)
 
 ___
 
@@ -48,10 +40,6 @@ ___
 
 Unique ID of the issue on Numista
 
-#### Defined in
-
-[src/types/schemas.ts:276](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L276)
-
 ___
 
 ### is\_dated
@@ -59,10 +47,6 @@ ___
 • `Optional` **is\_dated**: `boolean`
 
 Informs whether the issuance year is present on the coin
-
-#### Defined in
-
-[src/types/schemas.ts:278](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L278)
 
 ___
 
@@ -72,10 +56,6 @@ ___
 
 Last year of issuance in Gregorian calendar, if the coin is non dated
 
-#### Defined in
-
-[src/types/schemas.ts:286](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L286)
-
 ___
 
 ### min\_year
@@ -83,10 +63,6 @@ ___
 • `Optional` **min\_year**: `number`
 
 First year of issuance in Gregorian calendar, if the coin is non dated
-
-#### Defined in
-
-[src/types/schemas.ts:284](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L284)
 
 ___
 
@@ -96,10 +72,6 @@ ___
 
 Mint letter
 
-#### Defined in
-
-[src/types/schemas.ts:288](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L288)
-
 ___
 
 ### mintage
@@ -108,10 +80,6 @@ ___
 
 Quantity of coins minted
 
-#### Defined in
-
-[src/types/schemas.ts:290](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L290)
-
 ___
 
 ### year
@@ -119,7 +87,3 @@ ___
 • `Optional` **year**: `number`
 
 Issuance year as written on the coin, if the coin is dated
-
-#### Defined in
-
-[src/types/schemas.ts:280](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/schemas.ts#L280)

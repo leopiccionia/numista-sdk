@@ -23,10 +23,6 @@
 
 List of matching coins on the given page
 
-#### Defined in
-
-[src/types/responses.ts:103](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L103)
-
 ___
 
 ### count
@@ -38,7 +34,3 @@ Total count of matching coins
 #### Overrides
 
 [PaginatedResponse](PaginatedResponse.md).[count](PaginatedResponse.md#count)
-
-#### Defined in
-
-[src/types/responses.ts:101](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L101)

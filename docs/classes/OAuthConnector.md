@@ -25,10 +25,6 @@ OAuth adapter using authorization code
 
 `string`
 
-#### Defined in
-
-[src/oauth.ts:29](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/oauth.ts#L29)
-
 ___
 
 ### url
@@ -38,10 +34,6 @@ ___
 #### Returns
 
 `string`
-
-#### Defined in
-
-[src/oauth.ts:33](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/oauth.ts#L33)
 
 ## Methods
 
@@ -62,7 +54,3 @@ Exchange the authorization code for an access token
 `Promise`<`number`\>
 
 ID of the user who authenticated
-
-#### Defined in
-
-[src/oauth.ts:48](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/oauth.ts#L48)

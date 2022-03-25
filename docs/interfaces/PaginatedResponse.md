@@ -19,7 +19,3 @@
 ### count
 
 • **count**: `number`
-
-#### Defined in
-
-[src/types/responses.ts:4](https://github.com/leopiccionia/numista-sdk/blob/0647f5f/src/types/responses.ts#L4)
