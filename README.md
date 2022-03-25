@@ -35,6 +35,8 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 
 ![Screen capture](./assets/capture.png)
 
-## Demos
+## Learn more
 
-- [OAuth authorization code with Vue](./demos/oauth)
+- [See full documentation](https://leopiccionia.github.io/numista-sdk/)
+- See demos:
+  - [OAuth authorization code with Vue](./demos/oauth)
