@@ -61,7 +61,7 @@ export class NumistaConnector {
    * @param config - Other params
    * @returns The coin issue that has been added to the catalogue
    */
-  addCoinIssue (coinId: number | string, data: IssueUpdate, config: Partial<BaseRequest> = {}): Promise<Issue> {
+  addCoinIssue (coinId: number, data: IssueUpdate, config: Partial<BaseRequest> = {}): Promise<Issue> {
     const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
       ...config,
@@ -80,7 +80,7 @@ export class NumistaConnector {
    * @param coinId - ID of the coin to fetch
    * @param config - Other params
    */
-  coin (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Coin> {
+  coin (coinId: number, config: Partial<BaseRequest> = {}): Promise<Coin> {
     const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
       ...config,
@@ -94,7 +94,7 @@ export class NumistaConnector {
    * @param coinId - ID of the coin to fetch the issues from
    * @param config - Other params
    */
-  coinIssues (coinId: number | string, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
+  coinIssues (coinId: number, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
     const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
       ...config,
@@ -109,7 +109,7 @@ export class NumistaConnector {
    * @param issueId - ID of the issue of the coin
    * @param config - Other params
    */
-  coinPrices (coinId: number | string, issueId: number | string, config: Partial<CoinPricesRequest> = {}): Promise<CoinPricesResponse> {
+  coinPrices (coinId: number, issueId: number, config: Partial<CoinPricesRequest> = {}): Promise<CoinPricesResponse> {
     const params: CoinPricesRequest = {
       currency: 'EUR',
       lang: this.#config.defaultLanguage,
@@ -180,7 +180,7 @@ export class NumistaConnector {
    * @param userId - ID of the user
    * @param config - Other params
    */
-  user (userId: number | string, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
+  user (userId: number, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
     const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
       ...config,
@@ -194,7 +194,7 @@ export class NumistaConnector {
    * @param userId - ID of the user
    * @param config - Other params
    */
-  userCoins (userId: number | string, config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
+  userCoins (userId: number, config: Partial<CollectedCoinsRequest> = {}): Promise<CollectedCoinsResponse> {
     const params: CollectedCoinsRequest = {
       lang: this.#config.defaultLanguage,
       ...config,

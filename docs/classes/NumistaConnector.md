@@ -78,7 +78,7 @@ It requires a specific permission associated to your API key
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `coinId` | `string` \| `number` | ID of the coin to which the issue is added |
+| `coinId` | `number` | ID of the coin to which the issue is added |
 | `data` | [`IssueUpdate`](../interfaces/IssueUpdate.md) | Data related to the coin issue to add to the catalogue |
 | `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
 
@@ -112,7 +112,7 @@ Find a coin by ID
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `coinId` | `string` \| `number` | ID of the coin to fetch |
+| `coinId` | `number` | ID of the coin to fetch |
 | `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
 
 #### Returns
@@ -131,7 +131,7 @@ Find the issues of a coin
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `coinId` | `string` \| `number` | ID of the coin to fetch the issues from |
+| `coinId` | `number` | ID of the coin to fetch the issues from |
 | `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
 
 #### Returns
@@ -150,8 +150,8 @@ Get estimates for the price of an issue of a coin
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `coinId` | `string` \| `number` | ID of the coin type |
-| `issueId` | `string` \| `number` | ID of the issue of the coin |
+| `coinId` | `number` | ID of the coin type |
+| `issueId` | `number` | ID of the issue of the coin |
 | `config` | `Partial`<[`CoinPricesRequest`](../interfaces/CoinPricesRequest.md)\> | Other params |
 
 #### Returns
@@ -286,7 +286,7 @@ Get information about a user
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `userId` | `string` \| `number` | ID of the user |
+| `userId` | `number` | ID of the user |
 | `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
 
 #### Returns
@@ -305,7 +305,7 @@ Get the coins owned by a user
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `userId` | `string` \| `number` | ID of the user |
+| `userId` | `number` | ID of the user |
 | `config` | `Partial`<[`CollectedCoinsRequest`](../interfaces/CollectedCoinsRequest.md)\> | Other params |
 
 #### Returns
