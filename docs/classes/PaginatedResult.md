@@ -106,11 +106,19 @@ ___
 
 ### stream
 
-▸ **stream**(): `ReadableStream`<`Omit`<`Res`, ``"count"``\>\>
+▸ **stream**(`constructor`): `ReadableStream`<`Omit`<`Res`, ``"count"``\>\>
 
 Fetch and stream all missing pages (experimental)
 
+**`params`** constructor - A ReadableStream constructor
+
 **`experimental`**
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `constructor` | <T\>(`source`: `UnderlyingSource`<`T`\>) => `ReadableStream`<`any`\> |
 
 #### Returns
 

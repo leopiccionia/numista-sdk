@@ -75,13 +75,14 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
 
   /**
    * Fetch and stream all missing pages (experimental)
+   * @params constructor - A ReadableStream constructor
    * @returns A WHATWG-compatible readable stream
    * @experimental
    */
-  stream (): ReadableStream<Omit<Res, 'count'>> {
+  stream (constructor: { new<T> (source: UnderlyingSource<T>): ReadableStream }): ReadableStream<Omit<Res, 'count'>> {
     let canceled = false
 
-    return new ReadableStream<Omit<Res, 'count'>>({
+    return new constructor<Omit<Res, 'count'>>({
       cancel: () => {
         canceled = true
       },
