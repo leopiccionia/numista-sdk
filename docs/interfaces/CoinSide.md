@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / CoinSide
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CoinSide
 
 # Interface: CoinSide
 

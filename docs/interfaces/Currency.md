@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / Currency
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / Currency
 
 # Interface: Currency
 

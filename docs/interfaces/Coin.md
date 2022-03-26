@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / Coin
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / Coin
 
 # Interface: Coin
 
@@ -116,7 +116,7 @@ ___
 
 ### orientation
 
-• `Optional` **orientation**: [`Orientation`](../README.md#orientation)
+• `Optional` **orientation**: [`Orientation`](../modules.md#orientation)
 
 Orientation of the coin ("coin", "medal" or "variable")
 
@@ -200,7 +200,7 @@ ___
 
 ### type
 
-• `Optional` **type**: [`CoinType`](../README.md#cointype)
+• `Optional` **type**: [`CoinType`](../modules.md#cointype)
 
 Type of coin
 

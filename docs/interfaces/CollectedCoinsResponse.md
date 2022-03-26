@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / CollectedCoinsResponse
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CollectedCoinsResponse
 
 # Interface: CollectedCoinsResponse
 
@@ -49,7 +49,7 @@ ___
 
 ### collected\_coins
 
-• **collected\_coins**: { `coin`: { `id`: `number` ; `issuer?`: [`Issuer`](Issuer.md) ; `title`: `string`  } ; `collection?`: [`Collection`](Collection.md) ; `for_swap`: `boolean` ; `grade?`: [`Grade`](../README.md#grade) ; `id`: `number` ; `issue?`: [`Issue`](Issue.md) ; `pictures?`: { `thumbnail_url`: `string` ; `url`: `string`  }[] ; `price?`: [`Price`](Price.md) ; `private_comment?`: `string` ; `public_comment?`: `string` ; `quantity`: `number`  }[]
+• **collected\_coins**: { `coin`: { `id`: `number` ; `issuer?`: [`Issuer`](Issuer.md) ; `title`: `string`  } ; `collection?`: [`Collection`](Collection.md) ; `for_swap`: `boolean` ; `grade?`: [`Grade`](../modules.md#grade) ; `id`: `number` ; `issue?`: [`Issue`](Issue.md) ; `pictures?`: { `thumbnail_url`: `string` ; `url`: `string`  }[] ; `price?`: [`Price`](Price.md) ; `private_comment?`: `string` ; `public_comment?`: `string` ; `quantity`: `number`  }[]
 
 List of collected coins
 

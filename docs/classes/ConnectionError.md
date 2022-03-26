@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / ConnectionError
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / ConnectionError
 
 # Class: ConnectionError
 

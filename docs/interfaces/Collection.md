@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / Collection
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / Collection
 
 # Interface: Collection
 

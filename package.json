@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "vite build && tsup src/index.ts --dts-only --clean",
-    "docs": "typedoc --disableSources --excludeExternals --excludePrivate --githubPages false --plugin typedoc-plugin-markdown --readme none",
+    "docs": "typedoc --disableSources --excludeExternals --excludePrivate --githubPages false --plugin typedoc-plugin-markdown",
     "test": "vitest"
   },
   "keywords": [

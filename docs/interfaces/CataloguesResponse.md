@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / CataloguesResponse
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CataloguesResponse
 
 # Interface: CataloguesResponse
 

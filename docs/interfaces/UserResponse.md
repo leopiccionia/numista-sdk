@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / UserResponse
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / UserResponse
 
 # Interface: UserResponse
 

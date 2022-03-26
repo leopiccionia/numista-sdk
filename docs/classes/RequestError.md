@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / RequestError
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / RequestError
 
 # Class: RequestError
 

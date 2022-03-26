@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / IssueUpdate
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / IssueUpdate
 
 # Interface: IssueUpdate
 

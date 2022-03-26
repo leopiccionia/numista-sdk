@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / Price
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / Price
 
 # Interface: Price
 

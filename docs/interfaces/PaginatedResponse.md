@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / PaginatedResponse
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / PaginatedResponse
 
 # Interface: PaginatedResponse
 

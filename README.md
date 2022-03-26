@@ -33,10 +33,8 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
   - Connector returns `ConnectionError` if connection failed
   - Connector returns `RequestError` if server returned an error message
 
-![Screen capture](./assets/capture.png)
-
 ## Learn more
 
-- [See full documentation](https://leopiccionia.github.io/numista-sdk/)
+- [See full documentation](https://leopiccionia.github.io/numista-sdk/modules.html)
 - See demos:
-  - [OAuth authorization code with Vue](./demos/oauth)
+  - [OAuth authorization code with Vue](https://github.com/leopiccionia/numista-sdk/tree/main/demos/oauth)

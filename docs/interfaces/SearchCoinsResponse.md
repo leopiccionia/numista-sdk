@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / SearchCoinsResponse
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / SearchCoinsResponse
 
 # Interface: SearchCoinsResponse
 

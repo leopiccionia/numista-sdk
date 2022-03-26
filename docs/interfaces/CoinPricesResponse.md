@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / CoinPricesResponse
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CoinPricesResponse
 
 # Interface: CoinPricesResponse
 
@@ -21,6 +21,6 @@ ___
 
 ### prices
 
-• **prices**: { `grade`: [`Grade`](../README.md#grade) ; `price`: `number`  }[]
+• **prices**: { `grade`: [`Grade`](../modules.md#grade) ; `price`: `number`  }[]
 
 List of zero or more prices for each grade

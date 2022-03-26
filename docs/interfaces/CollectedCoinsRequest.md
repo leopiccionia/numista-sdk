@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / CollectedCoinsRequest
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CollectedCoinsRequest
 
 # Interface: CollectedCoinsRequest
 
@@ -19,7 +19,7 @@
 
 ### lang
 
-• `Optional` **lang**: [`Language`](../README.md#language)
+• `Optional` **lang**: [`Language`](../modules.md#language)
 
 Language
 

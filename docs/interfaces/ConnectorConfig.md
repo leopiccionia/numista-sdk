@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / ConnectorConfig
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / ConnectorConfig
 
 # Interface: ConnectorConfig
 
@@ -12,6 +12,6 @@
 
 ### defaultLanguage
 
-• **defaultLanguage**: [`Language`](../README.md#language)
+• **defaultLanguage**: [`Language`](../modules.md#language)
 
 The default language for use in other methods

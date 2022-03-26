@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / BaseRequest
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / BaseRequest
 
 # Interface: BaseRequest
 
@@ -22,6 +22,6 @@
 
 ### lang
 
-• `Optional` **lang**: [`Language`](../README.md#language)
+• `Optional` **lang**: [`Language`](../modules.md#language)
 
 Language

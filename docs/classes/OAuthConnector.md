@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / OAuthConnector
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / OAuthConnector
 
 # Class: OAuthConnector
 

@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / PaginatedRequest
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / PaginatedRequest
 
 # Interface: PaginatedRequest
 

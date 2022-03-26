@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / PaginatedResult
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / PaginatedResult
 
 # Class: PaginatedResult<Req, Res\>
 

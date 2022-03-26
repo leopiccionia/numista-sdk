@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / LocalizedLabel
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / LocalizedLabel
 
 # Interface: LocalizedLabel
 
@@ -21,6 +21,6 @@ ___
 
 ### language
 
-• **language**: [`Language`](../README.md#language)
+• **language**: [`Language`](../modules.md#language)
 
 Language code

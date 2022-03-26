@@ -1,4 +1,4 @@
-[@leopiccionia/numista-sdk](../README.md) / Reference
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / Reference
 
 # Interface: Reference
 

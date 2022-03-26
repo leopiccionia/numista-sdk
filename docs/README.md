@@ -1,86 +1,42 @@
-@leopiccionia/numista-sdk
+@leopiccionia/numista-sdk / [Exports](modules.md)
 
 # @leopiccionia/numista-sdk
 
-## Table of contents
+This is an unofficial JavaScript/TypeScript SDK for [Numista](https://en.numista.com/). It can run in both browsers and servers.
 
-### Classes
+## Installing
 
-- [ConnectionError](classes/ConnectionError.md)
-- [NumistaConnector](classes/NumistaConnector.md)
-- [OAuthConnector](classes/OAuthConnector.md)
-- [PaginatedResult](classes/PaginatedResult.md)
-- [RequestError](classes/RequestError.md)
+```bash
+npm install @leopiccionia/numista-sdk
+```
 
-### Interfaces
+## Getting started
 
-- [BaseRequest](interfaces/BaseRequest.md)
-- [CataloguesResponse](interfaces/CataloguesResponse.md)
-- [Coin](interfaces/Coin.md)
-- [CoinPricesRequest](interfaces/CoinPricesRequest.md)
-- [CoinPricesResponse](interfaces/CoinPricesResponse.md)
-- [CoinSide](interfaces/CoinSide.md)
-- [CoinSideUpdate](interfaces/CoinSideUpdate.md)
-- [CoinUpdate](interfaces/CoinUpdate.md)
-- [CollectedCoinsRequest](interfaces/CollectedCoinsRequest.md)
-- [CollectedCoinsResponse](interfaces/CollectedCoinsResponse.md)
-- [Collection](interfaces/Collection.md)
-- [ConnectorConfig](interfaces/ConnectorConfig.md)
-- [Currency](interfaces/Currency.md)
-- [Issue](interfaces/Issue.md)
-- [IssueUpdate](interfaces/IssueUpdate.md)
-- [Issuer](interfaces/Issuer.md)
-- [IssuersResponse](interfaces/IssuersResponse.md)
-- [LocalizedLabel](interfaces/LocalizedLabel.md)
-- [PaginatedRequest](interfaces/PaginatedRequest.md)
-- [PaginatedResponse](interfaces/PaginatedResponse.md)
-- [Price](interfaces/Price.md)
-- [Reference](interfaces/Reference.md)
-- [SearchCoinsRequest](interfaces/SearchCoinsRequest.md)
-- [SearchCoinsResponse](interfaces/SearchCoinsResponse.md)
-- [UserResponse](interfaces/UserResponse.md)
+Before starting, you'll need a Numista API key ([get one here](https://en.numista.com/api/doc/index.php)).
 
-### Type aliases
+```ts
+import { NumistaConnector } from '@leopiccionia/numista-sdk'
 
-- [CoinType](README.md#cointype)
-- [CompositionType](README.md#compositiontype)
-- [Grade](README.md#grade)
-- [Language](README.md#language)
-- [Orientation](README.md#orientation)
-- [Scope](README.md#scope)
+const numista = new NumistaConnector(YOUR_API_KEY, YOUR_CLIENT_ID, { defaultLanguage: 'en' })
 
-## Type aliases
+// Get the Morgan Dollar
+const morganDollar = await numista.coin(1492)
 
-### CoinType
+// Get all American coins depicting a buffalo
+const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' })
+```
 
-Ƭ **CoinType**: ``"common_coin"`` \| ``"commemorative_coin"`` \| ``"non_circulating_coin"`` \| ``"token"`` \| ``"pattern"``
+## Features
 
-___
+- Good type-safety and IntelliSense support
+- `Promise`-based APIs, designed for `async`/`await`
+- Experimental [`ReadableStream`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)-based API for paginated requests
+- Proper error handling:
+  - Connector returns `ConnectionError` if connection failed
+  - Connector returns `RequestError` if server returned an error message
 
-### CompositionType
+## Learn more
 
-Ƭ **CompositionType**: ``"plain"``
-
-___
-
-### Grade
-
-Ƭ **Grade**: ``"g"`` \| ``"vg"`` \| ``"f"`` \| ``"vf"`` \| ``"xf"`` \| ``"au"`` \| ``"unc"``
-
-___
-
-### Language
-
-Ƭ **Language**: ``"en"`` \| ``"es"`` \| ``"fr"``
-
-___
-
-### Orientation
-
-Ƭ **Orientation**: ``"coin"`` \| ``"medal"`` \| ``"variable"``
-
-___
-
-### Scope
-
-Ƭ **Scope**: ``"view_collection"``
+- [See full documentation](https://leopiccionia.github.io/numista-sdk/modules.html)
+- See demos:
+  - [OAuth authorization code with Vue](https://github.com/leopiccionia/numista-sdk/tree/main/demos/oauth)
