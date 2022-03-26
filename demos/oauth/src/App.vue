@@ -1,7 +1,9 @@
 <script lang="ts">
   import { NumistaConnector } from '@leopiccionia/numista-sdk'
-  import { CollectedCoinsResponse, Language, OAuthConnector } from '@leopiccionia/numista-sdk'
+  import type { CollectedCoinsResponse, Language, OAuthConnector, Price } from '@leopiccionia/numista-sdk'
   import { defineComponent } from 'vue'
+
+  const currencyFormats = new Map<string, Intl.NumberFormat>()
 
   export default defineComponent({
     data () {
@@ -26,12 +28,22 @@
     watch: {
       async code () {
         const userId = await this.oauth.setCode(this.code)
-        this.collectedCoins = await this.numista.userCoins(userId)
+        this.collectedCoins = await this.numista.userCoins(userId, { lang: this.lang })
+      },
+      lang () {
+        currencyFormats.clear()
       },
     },
     methods: {
       clickedLink () {
         this.clicked = true
+      },
+      formatPrice ({ currency, value }: Price): string {
+        if (!currencyFormats.has(currency)) {
+          const format = new Intl.NumberFormat(this.lang, { style: 'currency', currency })
+          currencyFormats.set(currency, format)
+        }
+        return currencyFormats.get(currency)!.format(value)
       },
     },
   })
@@ -70,7 +82,28 @@
     </template>
   </form>
 
-  <pre v-if="collectedCoins">{{ collectedCoins }}</pre>
+  <table v-if="collectedCoins?.coin_count">
+    <thead>
+      <tr>
+        <th>Count</th>
+        <th>Country</th>
+        <th>Coin</th>
+        <th>Grade</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="coin of collectedCoins.collected_coins" :key="coin.id">
+        <td>{{ coin.quantity }} ×</td>
+        <td>{{ coin.coin.issuer?.name ?? '–' }}</td>
+        <td>
+          <a :href="`https://${lang}.numista.com/catalogue/pieces${coin.coin.id}.html`" rel="noreferrer noopener" target="_blank" v-html="coin.coin.title"/>
+        </td>
+        <td>{{ coin.grade?.toUpperCase() ?? '–' }}</td>
+        <td>{{ coin.price ? formatPrice(coin.price) : '–' }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <style>
@@ -78,7 +111,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 18px;
     text-align: center;
-    padding: 20px;
+    padding: 1ch;
   }
 
   form > * {
@@ -109,13 +142,20 @@
     text-decoration: none;
   }
 
-  pre {
+  table {
+    margin: 2rem auto;
+  }
+
+  table thead tr {
     background-color: #EEE;
-    border-radius: 10px;
-    font-size: 0.75rem;
-    margin: 1rem auto;
-    overflow-x: auto;
-    padding: 1rem;
+  }
+
+  table tbody tr:nth-child(even) {
+    background-color: #F7F7F7;
+  }
+
+  table th, table td {
+    padding: 5px 10px;
     text-align: left;
   }
 </style>
