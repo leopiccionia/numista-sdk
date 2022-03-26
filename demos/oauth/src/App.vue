@@ -93,14 +93,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="piece of collectedCoins.collected_coins" :key="piece.id">
-        <td>{{ piece.quantity }} ×</td>
-        <td>{{ piece.coin.issuer?.name ?? '–' }}</td>
+      <tr v-for="{ coin, grade, id: coinId, price, quantity } of collectedCoins.collected_coins" :key="coinId">
+        <td>{{ quantity }} ×</td>
+        <td>{{ coin.issuer?.name ?? '–' }}</td>
         <td>
-          <a :href="`https://${lang}.numista.com/catalogue/pieces${piece.coin.id}.html`" rel="noreferrer noopener" target="_blank" v-html="piece.coin.title"/>
+          <a :href="`https://${lang}.numista.com/catalogue/pieces${coin.id}.html`" rel="noreferrer noopener" target="_blank" v-html="coin.title"/>
         </td>
-        <td>{{ piece.grade?.toUpperCase() ?? '–' }}</td>
-        <td>{{ piece.price ? formatPrice(piece.price) : '–' }}</td>
+        <td>{{ grade?.toUpperCase() ?? '–' }}</td>
+        <td>{{ price ? formatPrice(price) : '–' }}</td>
       </tr>
     </tbody>
   </table>
