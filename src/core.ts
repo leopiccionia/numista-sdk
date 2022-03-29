@@ -39,7 +39,7 @@ export class NumistaConnector {
    * This endpoint allows to add a coin to the catalogue
    *
    * It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
-   * @deprecated Use `addType`
+   * @deprecated Use {@linkcode NumistaConnector.addType addType} (since 0.3.0)
    * @param data - Data related to the coin to add to the catalogue
    * @param config - Other params
    * @returns The coin that has been added to the catalogue
@@ -52,7 +52,7 @@ export class NumistaConnector {
    * Add a coin issue
    *
    * It requires a specific permission associated to your API key
-   * @deprecated Use `addIssue`
+   * @deprecated Use {@linkcode NumistaConnector.addIssue addIssue} (since 0.3.0)
    * @param coinId - ID of the coin to which the issue is added
    * @param data - Data related to the coin issue to add to the catalogue
    * @param config - Other params
@@ -104,7 +104,7 @@ export class NumistaConnector {
 
   /**
    * Find a coin by ID
-   * @deprecated Use `type`
+   * @deprecated Use {@linkcode NumistaConnector.type type} (since 0.3.0)
    * @param coinId - ID of the coin to fetch
    * @param config - Other params
    */
@@ -119,7 +119,7 @@ export class NumistaConnector {
 
   /**
    * Find the issues of a coin
-   * @deprecated Use `issues`
+   * @deprecated Use {@linkcode NumistaConnector.issues issues} (since 0.3.0)
    * @param coinId - ID of the coin to fetch the issues from
    * @param config - Other params
    */
@@ -129,7 +129,7 @@ export class NumistaConnector {
 
   /**
    * Get estimates for the price of an issue of a coin
-   * @deprecated Use `prices`
+   * @deprecated Use {@linkcode NumistaConnector.prices prices} (since 0.3.0)
    * @param coinId - ID of the coin type
    * @param issueId - ID of the issue of the coin
    * @param config - Other params

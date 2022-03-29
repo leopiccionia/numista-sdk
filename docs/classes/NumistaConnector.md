@@ -65,7 +65,7 @@ This endpoint allows to add a coin to the catalogue
 
 It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
 
-**`deprecated`** Use `addType`
+**`deprecated`** Use [`addType`](NumistaConnector.md#addtype) (since 0.3.0)
 
 #### Parameters
 
@@ -90,7 +90,7 @@ Add a coin issue
 
 It requires a specific permission associated to your API key
 
-**`deprecated`** Use `addIssue`
+**`deprecated`** Use [`addIssue`](NumistaConnector.md#addissue) (since 0.3.0)
 
 #### Parameters
 
@@ -173,7 +173,7 @@ ___
 
 Find a coin by ID
 
-**`deprecated`** Use `type`
+**`deprecated`** Use [`type`](NumistaConnector.md#type) (since 0.3.0)
 
 #### Parameters
 
@@ -194,7 +194,7 @@ ___
 
 Find the issues of a coin
 
-**`deprecated`** Use `issues`
+**`deprecated`** Use [`issues`](NumistaConnector.md#issues) (since 0.3.0)
 
 #### Parameters
 
@@ -215,7 +215,7 @@ ___
 
 Get estimates for the price of an issue of a coin
 
-**`deprecated`** Use `prices`
+**`deprecated`** Use [`prices`](NumistaConnector.md#prices) (since 0.3.0)
 
 #### Parameters
 
