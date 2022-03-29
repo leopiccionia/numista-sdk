@@ -3,11 +3,11 @@ import { describe, expect, it } from 'vitest'
 import { RequestError } from '#lib'
 import { createConnector } from '#tests'
 
-describe.concurrent('Finding a coin by ID', () => {
+describe.concurrent('Finding a type by ID', () => {
 
   it('works', async () => {
     const numista = createConnector()
-    const morganDollar = await numista.coin(1492)
+    const morganDollar = await numista.type(1492)
 
     expect(morganDollar.title.includes('Morgan')).toBeTruthy()
     expect(morganDollar.min_year).toBe(1878)
@@ -17,7 +17,7 @@ describe.concurrent('Finding a coin by ID', () => {
 
   it('can fail', async () => {
     const numista = createConnector()
-    const request = numista.coin(999_999_999)
+    const request = numista.type(999_999_999)
 
     await request.catch((error: RequestError) => {
       expect(error).toBeInstanceOf(RequestError)

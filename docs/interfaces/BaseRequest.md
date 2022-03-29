@@ -6,11 +6,11 @@
 
 - **`BaseRequest`**
 
-  ↳ [`CoinPricesRequest`](CoinPricesRequest.md)
+  ↳ [`CollectedItemsRequest`](CollectedItemsRequest.md)
 
-  ↳ [`CollectedCoinsRequest`](CollectedCoinsRequest.md)
+  ↳ [`PricesRequest`](PricesRequest.md)
 
-  ↳ [`SearchCoinsRequest`](SearchCoinsRequest.md)
+  ↳ [`SearchRequest`](SearchRequest.md)
 
 ## Table of contents
 

@@ -1,19 +1,19 @@
-[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CoinPricesRequest
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / PricesRequest
 
-# Interface: CoinPricesRequest
+# Interface: PricesRequest
 
 ## Hierarchy
 
 - [`BaseRequest`](BaseRequest.md)
 
-  ↳ **`CoinPricesRequest`**
+  ↳ **`PricesRequest`**
 
 ## Table of contents
 
 ### Properties
 
-- [currency](CoinPricesRequest.md#currency)
-- [lang](CoinPricesRequest.md#lang)
+- [currency](PricesRequest.md#currency)
+- [lang](PricesRequest.md#lang)
 
 ## Properties
 

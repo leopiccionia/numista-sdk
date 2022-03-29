@@ -30,4 +30,4 @@ ___
 
 • **number**: `string`
 
-Number of the coin in the catalogue
+Number of the type in the catalogue

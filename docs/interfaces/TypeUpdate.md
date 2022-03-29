@@ -1,34 +1,38 @@
-[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CoinUpdate
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / TypeUpdate
 
-# Interface: CoinUpdate
+# Interface: TypeUpdate
 
 ## Table of contents
 
 ### Properties
 
-- [calendar](CoinUpdate.md#calendar)
-- [commemorated\_topic](CoinUpdate.md#commemorated_topic)
-- [comments](CoinUpdate.md#comments)
-- [composition](CoinUpdate.md#composition)
-- [demonetization](CoinUpdate.md#demonetization)
-- [edge](CoinUpdate.md#edge)
-- [issuer](CoinUpdate.md#issuer)
-- [mints](CoinUpdate.md#mints)
-- [obverse](CoinUpdate.md#obverse)
-- [orientation](CoinUpdate.md#orientation)
-- [references](CoinUpdate.md#references)
-- [related\_coins](CoinUpdate.md#related_coins)
-- [reverse](CoinUpdate.md#reverse)
-- [ruling\_authority](CoinUpdate.md#ruling_authority)
-- [series](CoinUpdate.md#series)
-- [shape](CoinUpdate.md#shape)
-- [size](CoinUpdate.md#size)
-- [tags](CoinUpdate.md#tags)
-- [thickness](CoinUpdate.md#thickness)
-- [title](CoinUpdate.md#title)
-- [type](CoinUpdate.md#type)
-- [value](CoinUpdate.md#value)
-- [weight](CoinUpdate.md#weight)
+- [calendar](TypeUpdate.md#calendar)
+- [category](TypeUpdate.md#category)
+- [commemorated\_topic](TypeUpdate.md#commemorated_topic)
+- [comments](TypeUpdate.md#comments)
+- [composition](TypeUpdate.md#composition)
+- [demonetization](TypeUpdate.md#demonetization)
+- [edge](TypeUpdate.md#edge)
+- [issuer](TypeUpdate.md#issuer)
+- [mints](TypeUpdate.md#mints)
+- [obverse](TypeUpdate.md#obverse)
+- [orientation](TypeUpdate.md#orientation)
+- [printers](TypeUpdate.md#printers)
+- [references](TypeUpdate.md#references)
+- [related\_coins](TypeUpdate.md#related_coins)
+- [reverse](TypeUpdate.md#reverse)
+- [ruling\_authority](TypeUpdate.md#ruling_authority)
+- [series](TypeUpdate.md#series)
+- [shape](TypeUpdate.md#shape)
+- [size](TypeUpdate.md#size)
+- [tags](TypeUpdate.md#tags)
+- [technique](TypeUpdate.md#technique)
+- [thickness](TypeUpdate.md#thickness)
+- [title](TypeUpdate.md#title)
+- [type](TypeUpdate.md#type)
+- [value](TypeUpdate.md#value)
+- [watermark](TypeUpdate.md#watermark)
+- [weight](TypeUpdate.md#weight)
 
 ## Properties
 
@@ -36,7 +40,7 @@
 
 • `Optional` **calendar**: `Object`
 
-Calendar to which the year visible on the coin belongs
+Calendar to which the year visible on the type belongs
 
 #### Type declaration
 
@@ -46,11 +50,19 @@ Calendar to which the year visible on the coin belongs
 
 ___
 
+### category
+
+• **category**: [`Category`](../modules.md#category)
+
+Category
+
+___
+
 ### commemorated\_topic
 
 • `Optional` **commemorated\_topic**: [`LocalizedLabel`](LocalizedLabel.md)[]
 
-For commemorated coins, short description of the commemorated topic (event, person, etc.)
+For commemorated types, short description of the commemorated topic (event, person, etc.)
 
 ___
 
@@ -58,7 +70,7 @@ ___
 
 • `Optional` **comments**: [`LocalizedLabel`](LocalizedLabel.md)[]
 
-General comments about the coin (HTML format)
+General comments about the type (HTML format)
 
 ___
 
@@ -66,17 +78,17 @@ ___
 
 • `Optional` **composition**: `Object`
 
-Composition of coin (metallic content)
+Composition (metallic content)
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `additional_details` | [`LocalizedLabel`](LocalizedLabel.md)[] | - |
-| `composition_type` | ``"plain"`` | Type of composition (only "plain" is currently supported) |
-| `core?` | { `material`: { `fineness`: `number` ; `id`: `number`  }  } | Composition of the core |
-| `core.material` | { `fineness`: `number` ; `id`: `number`  } | - |
-| `core.material.fineness` | `number` | Fineness of the material (e.g. 999.9) |
+| `additional_details?` | [`LocalizedLabel`](LocalizedLabel.md)[] | - |
+| `composition_type` | ``"plain"`` | Type of composition |
+| `core?` | { `fineness?`: `number` ; `material`: { `id`: `number`  }  } | COmposition of the core |
+| `core.fineness?` | `number` | Fineness of the material (e.g. 999.9) |
+| `core.material` | { `id`: `number`  } | - |
 | `core.material.id` | `number` | Unique ID of the material on Numista |
 
 ___
@@ -85,14 +97,14 @@ ___
 
 • `Optional` **demonetization**: `Object`
 
-Inform whether the coin is demonetized
+Inform whether the coin or banknote is demonetized
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `demonetization_date?` | `string` | Demonetization date, with format "YYYY-MM-DD" |
-| `is_demonetized` | `boolean` | true for demonetized coins and false for coins which are still legal tender |
+| `is_demonetized` | `boolean` | true for demonetized, and false if still legal tender |
 
 ___
 
@@ -118,7 +130,7 @@ ___
 
 ### mints
 
-• `Optional` **mints**: { `id`: `number` ; `letter`: `string`  }[]
+• `Optional` **mints**: { `id`: `number` ; `letter?`: `string`  }[]
 
 Mints where the coin was minted
 
@@ -138,6 +150,14 @@ Orientation of the coin ("coin", "medal" or "variable")
 
 ___
 
+### printers
+
+• `Optional` **printers**: { `id`: `number`  }[]
+
+Printers where the banknote was printed
+
+___
+
 ### references
 
 • `Optional` **references**: { `catalogue`: { `id`: `number`  } ; `number`: `string`  }[]
@@ -148,7 +168,7 @@ ___
 
 • `Optional` **related\_coins**: { `id`: `number`  }[]
 
-List of related coins
+List of related types
 
 ___
 
@@ -170,7 +190,7 @@ ___
 
 • `Optional` **series**: [`LocalizedLabel`](LocalizedLabel.md)[]
 
-For coins which are part of a series, the name of the series
+For types which are part of a series, the name of the series
 
 ___
 
@@ -178,7 +198,7 @@ ___
 
 • `Optional` **shape**: `Object`
 
-Shape of the coin
+Shape
 
 #### Type declaration
 
@@ -193,7 +213,7 @@ ___
 
 • `Optional` **size**: `number`
 
-Size of coin (diameter) in millimeters
+Size (diameter) in millimeters
 
 ___
 
@@ -202,6 +222,21 @@ ___
 • `Optional` **tags**: { `id`: `number`  }[]
 
 List of tags
+
+___
+
+### technique
+
+• `Optional` **technique**: `Object`
+
+Manufacturing technique
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `additional_details?` | [`LocalizedLabel`](LocalizedLabel.md)[] |
+| `list?` | { `id`: `number`  }[] |
 
 ___
 
@@ -217,15 +252,15 @@ ___
 
 • **title**: [`LocalizedLabel`](LocalizedLabel.md)[]
 
-Title of the coin
+Title of the type
 
 ___
 
 ### type
 
-• `Optional` **type**: [`CoinType`](../modules.md#cointype)
+• `Optional` **type**: `string`
 
-Type of coin
+Type
 
 ___
 
@@ -233,13 +268,13 @@ ___
 
 • `Optional` **value**: `Object`
 
-Face value of the coin
+Face value
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `currency?` | { `id`: `number`  } | Currency of the coin |
+| `currency?` | { `id`: `number`  } | Currency |
 | `currency.id` | `number` | Unique ID of the currency on Numista |
 | `denominator?` | `number` | If the value is better described as a fraction, this is the denominator of the fraction |
 | `numerator?` | `number` | If the value is better described as a fraction, this is the numerator of the fraction |
@@ -248,8 +283,14 @@ Face value of the coin
 
 ___
 
+### watermark
+
+• `Optional` **watermark**: [`CoinSideUpdate`](CoinSideUpdate.md)
+
+___
+
 ### weight
 
 • `Optional` **weight**: `number`
 
-Weight of the coin in grams
+Weight in grams

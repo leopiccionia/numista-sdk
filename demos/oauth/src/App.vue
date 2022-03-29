@@ -1,6 +1,6 @@
 <script lang="ts">
   import { NumistaConnector } from '@leopiccionia/numista-sdk'
-  import type { CollectedCoinsResponse, Language, OAuthConnector, Price } from '@leopiccionia/numista-sdk'
+  import type { CollectedItemsResponse, Language, OAuthConnector, Price } from '@leopiccionia/numista-sdk'
   import { defineComponent } from 'vue'
 
   const currencyFormats = new Map<string, Intl.NumberFormat>()
@@ -12,7 +12,7 @@
         clicked: false,
         clientId: '',
         code: '',
-        collectedCoins: null as CollectedCoinsResponse | null,
+        collectedCoins: null as CollectedItemsResponse | null,
         lang: 'en' as Language,
         redirectUri: 'https://postman-echo.com/get',
       }
@@ -82,7 +82,7 @@
     </template>
   </form>
 
-  <table v-if="collectedCoins?.coin_count">
+  <table v-if="collectedCoins?.item_count">
     <thead>
       <tr>
         <th>Count</th>
@@ -93,7 +93,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="{ coin, grade, id: coinId, price, quantity } of collectedCoins.collected_coins" :key="coinId">
+      <tr v-for="{ coin, grade, id: coinId, price, quantity } of collectedCoins.items" :key="coinId">
         <td>{{ quantity }} ×</td>
         <td>{{ coin.issuer?.name ?? '–' }}</td>
         <td>

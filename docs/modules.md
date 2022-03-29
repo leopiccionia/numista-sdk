@@ -15,15 +15,12 @@
 ### Interfaces
 
 - [BaseRequest](interfaces/BaseRequest.md)
+- [BaseType](interfaces/BaseType.md)
 - [CataloguesResponse](interfaces/CataloguesResponse.md)
-- [Coin](interfaces/Coin.md)
-- [CoinPricesRequest](interfaces/CoinPricesRequest.md)
-- [CoinPricesResponse](interfaces/CoinPricesResponse.md)
 - [CoinSide](interfaces/CoinSide.md)
 - [CoinSideUpdate](interfaces/CoinSideUpdate.md)
-- [CoinUpdate](interfaces/CoinUpdate.md)
-- [CollectedCoinsRequest](interfaces/CollectedCoinsRequest.md)
-- [CollectedCoinsResponse](interfaces/CollectedCoinsResponse.md)
+- [CollectedItemsRequest](interfaces/CollectedItemsRequest.md)
+- [CollectedItemsResponse](interfaces/CollectedItemsResponse.md)
 - [Collection](interfaces/Collection.md)
 - [ConnectorConfig](interfaces/ConnectorConfig.md)
 - [Currency](interfaces/Currency.md)
@@ -35,21 +32,37 @@
 - [PaginatedRequest](interfaces/PaginatedRequest.md)
 - [PaginatedResponse](interfaces/PaginatedResponse.md)
 - [Price](interfaces/Price.md)
+- [PricesRequest](interfaces/PricesRequest.md)
+- [PricesResponse](interfaces/PricesResponse.md)
 - [Reference](interfaces/Reference.md)
-- [SearchCoinsRequest](interfaces/SearchCoinsRequest.md)
-- [SearchCoinsResponse](interfaces/SearchCoinsResponse.md)
+- [SearchRequest](interfaces/SearchRequest.md)
+- [SearchResponse](interfaces/SearchResponse.md)
+- [SearchedType](interfaces/SearchedType.md)
+- [Type](interfaces/Type.md)
+- [TypeSideUpdate](interfaces/TypeSideUpdate.md)
+- [TypeUpdate](interfaces/TypeUpdate.md)
 - [UserResponse](interfaces/UserResponse.md)
 
 ### Type aliases
 
+- [Category](modules.md#category)
 - [CoinType](modules.md#cointype)
 - [CompositionType](modules.md#compositiontype)
+- [CopyrightType](modules.md#copyrighttype)
 - [Grade](modules.md#grade)
 - [Language](modules.md#language)
 - [Orientation](modules.md#orientation)
 - [Scope](modules.md#scope)
 
 ## Type aliases
+
+### Category
+
+Ƭ **Category**: ``"coin"`` \| ``"banknote"`` \| ``"exonumia"``
+
+Catalogue category
+
+___
 
 ### CoinType
 
@@ -60,6 +73,12 @@ ___
 ### CompositionType
 
 Ƭ **CompositionType**: ``"plain"``
+
+___
+
+### CopyrightType
+
+Ƭ **CopyrightType**: ``"personnel"`` \| ``"site_autorise"`` \| ``"autre"``
 
 ___
 

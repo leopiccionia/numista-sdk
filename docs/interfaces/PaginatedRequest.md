@@ -6,7 +6,7 @@
 
 - **`PaginatedRequest`**
 
-  ↳ [`SearchCoinsRequest`](SearchCoinsRequest.md)
+  ↳ [`SearchRequest`](SearchRequest.md)
 
 ## Table of contents
 

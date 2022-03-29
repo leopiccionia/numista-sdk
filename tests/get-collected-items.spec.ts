@@ -9,7 +9,7 @@ describe.concurrent('Getting the coins owned by a user', () => {
 
     const myCoins = await numista.myCoins()
 
-    expect(myCoins.coin_count).toBeGreaterThanOrEqual(0)
+    expect(myCoins.item_count).toBeGreaterThanOrEqual(0)
     expect(myCoins.warning).toBeUndefined()
   })
 

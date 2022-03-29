@@ -1,13 +1,13 @@
-[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CoinPricesResponse
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / PricesResponse
 
-# Interface: CoinPricesResponse
+# Interface: PricesResponse
 
 ## Table of contents
 
 ### Properties
 
-- [currency](CoinPricesResponse.md#currency)
-- [prices](CoinPricesResponse.md#prices)
+- [currency](PricesResponse.md#currency)
+- [prices](PricesResponse.md#prices)
 
 ## Properties
 

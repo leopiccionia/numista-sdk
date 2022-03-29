@@ -1,4 +1,11 @@
-import type { Coin, Collection, Grade, Issue, Issuer, Price } from './schemas'
+import type { BaseType, Category, Collection, Grade, Issue, Issuer, Price } from './schemas'
+
+export interface SearchedType extends BaseType {
+  /** URL to a thumbnail of the picture of the obverse */
+  obverse_thumbnail?: string
+  /** URL to a thumbnail of the picture of the reverse */
+  reverse_thumbnail?: string
+}
 
 export interface PaginatedResponse {
   count: number
@@ -23,47 +30,37 @@ export interface CataloguesResponse {
   }>
 }
 
-export interface CoinPricesResponse {
-  /** 3-letter ISO 4217 code of the currency in which the prices are provided */
-  currency: string
-  /** List of zero or more prices for each grade */
-  prices: Array<{
-    /** Grade of the coin ("g", "vg", "f", "vf", "xf", "au" or "unc") */
-    grade: Grade
-    /** Estimate of the price determined by Numista */
-    price: number
-  }>
-}
-
-export interface CollectedCoinsResponse {
+export interface CollectedItemsResponse {
   /** Warning message (e.g. in case of user not authenticated but some data can be retrieved since the collection is public) */
   warning?: string
-  /** Count of coins owned by the user */
-  coin_count: number
-  /** Count of coins offered for swap by the user */
-  coin_for_swap_count: number
-  /** Count of different coin types owned by the user */
-  coin_type_count: number
-  /** Count of different coin types offered for swap by the user */
-  coin_type_for_swap_count: number
-  /** List of collected coins */
-  collected_coins: Array<{
+  /** Count of items owned by the user */
+  item_count: number
+  /** Count of items offered for swap by the user */
+  item_for_swap_count: number
+  /** Count of different types owned by the user */
+  item_type_count: number
+  /** Count of different types offered for swap by the user */
+  item_type_for_swap_count: number
+  /** List of items in the collection */
+  items: Array<{
     /** Unique ID of the coin in collection */
     id: number
     /** Quantity of coins */
     quantity: number
-    /** Describe the type of coin */
+    /** Describe the type of item */
     coin: {
-      /** ID of the type of coin */
+      /** ID of the type */
       id: number
-      /** Title of the type of coin */
+      /** Title of the type */
       title: string
+      /** Category */
+      category: Category
       issuer?: Issuer
     }
     issue?: Issue
     /** Indicate whether the coin is available for swap */
     for_swap: boolean
-    /** Grade of the coin ("g", "vg", "f", "vf", "xf", "au" or "unc") */
+    /** Grade of the item */
     grade?: Grade
     /** Private comment (not available if the user is not authenticated) */
     private_comment?: string
@@ -96,11 +93,23 @@ export interface IssuersResponse {
   }>
 }
 
-export interface SearchCoinsResponse extends PaginatedResponse {
-  /** Total count of matching coins */
+export interface PricesResponse {
+  /** 3-letter ISO 4217 code of the currency in which the prices are provided */
+  currency: string
+  /** List of zero or more prices for each grade */
+  prices: Array<{
+    /** Grade of the coin ("g", "vg", "f", "vf", "xf", "au" or "unc") */
+    grade: Grade
+    /** Estimate of the price determined by Numista */
+    price: number
+  }>
+}
+
+export interface SearchResponse extends PaginatedResponse {
+  /** Total count of results */
   count: number
-  /** List of matching coins on the given page */
-  coins: Array<Pick<Coin, 'id' | 'issuer' | 'max_year' | 'min_year' |  'title'>>,
+  /** List of results on the given page */
+  types: Array<SearchedType>
 }
 
 export interface UserResponse {

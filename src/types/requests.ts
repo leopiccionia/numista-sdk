@@ -1,4 +1,4 @@
-import type { Language } from './schemas'
+import type { Category, Language } from './schemas'
 
 export interface BaseRequest {
   /** Language */
@@ -12,17 +12,14 @@ export interface PaginatedRequest {
   page: number
 }
 
-export interface CoinPricesRequest extends BaseRequest {
+export interface CollectedItemsRequest extends BaseRequest {
+  /** Category. If this parameter is provided, only items of the given category are returned */
+  category?: Category
+  /** Collection ID. If this parameter is provided, only items in the given collection are returned */
+  collection?: number
   /** Language */
   lang?: Language
-  /** 3-letter ISO 4217 currency code */
-  currency?: string
-}
-
-export interface CollectedCoinsRequest extends BaseRequest {
-  /** Language */
-  lang?: Language
-  /** Coin type ID. If this parameter is provided, only coins of the given coin type are returned. */
+  /** Coin type ID. If this parameter is provided, only coins of the given coin type are returned */
   type?: number
 }
 
@@ -38,6 +35,8 @@ export interface OAuthAuthorizationCodeRequest {
   client_secret: string
   /** For grant type "authorization_code", repeat the redirect URI used to get the authorization code */
   redirect_uri: string
+  /** A comma-separated list of permissions you are requesting (e.g. 'view_collection') */
+  scope: string
 }
 
 /** @internal */
@@ -48,13 +47,22 @@ export interface OAuthClientCredentialsRequest {
   scope: string
 }
 
-export interface SearchCoinsRequest extends BaseRequest, PaginatedRequest {
+export interface PricesRequest extends BaseRequest {
+  /** Language */
+  lang?: Language
+  /** 3-letter ISO 4217 currency code */
+  currency?: string
+}
+
+export interface SearchRequest extends BaseRequest, PaginatedRequest {
   /** Language */
   lang?: Language
   /** Search query */
   q: string
   /** Issuer code. If provided, only the coins from the given issuer are returned */
   issuer?: string
+  /** Catalogue category */
+  category?: Category
   /** Page of results */
   page: number
   /** Results per page */

@@ -6,7 +6,7 @@ import type { APIError } from './types/schemas'
 
 type HttpMethod = 'GET' | 'POST'
 
-const BASE_URL = 'https://api.numista.com/api/v2'
+const BASE_URL = 'https://api.numista.com/api/v3'
 
 function searchParams (obj: Record<string, any>): URLSearchParams {
   const entries = Object.keys(obj).map((key) => [key, String(obj[key])])

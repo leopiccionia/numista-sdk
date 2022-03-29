@@ -52,6 +52,7 @@ export class OAuthConnector {
       client_id: this.#credentials.clientId,
       client_secret: this.#credentials.apiKey,
       redirect_uri: this.#redirectUri,
+      scope: this.#scope,
     }
 
     const token = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)

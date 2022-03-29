@@ -14,18 +14,32 @@ The main entrypoint for Numista SDK
 
 - [addCoin](NumistaConnector.md#addcoin)
 - [addCoinIssue](NumistaConnector.md#addcoinissue)
+- [addIssue](NumistaConnector.md#addissue)
+- [addType](NumistaConnector.md#addtype)
 - [catalogues](NumistaConnector.md#catalogues)
 - [coin](NumistaConnector.md#coin)
 - [coinIssues](NumistaConnector.md#coinissues)
 - [coinPrices](NumistaConnector.md#coinprices)
 - [issuers](NumistaConnector.md#issuers)
+- [issues](NumistaConnector.md#issues)
+- [myBanknotes](NumistaConnector.md#mybanknotes)
 - [myCoins](NumistaConnector.md#mycoins)
+- [myExonumia](NumistaConnector.md#myexonumia)
+- [myItems](NumistaConnector.md#myitems)
+- [paginatedSearch](NumistaConnector.md#paginatedsearch)
+- [prices](NumistaConnector.md#prices)
+- [search](NumistaConnector.md#search)
+- [searchBanknotes](NumistaConnector.md#searchbanknotes)
 - [searchCoins](NumistaConnector.md#searchcoins)
-- [searchCoinsPaginated](NumistaConnector.md#searchcoinspaginated)
+- [searchExonumia](NumistaConnector.md#searchexonumia)
+- [type](NumistaConnector.md#type)
 - [useAuthorizationCode](NumistaConnector.md#useauthorizationcode)
 - [useUserCredentials](NumistaConnector.md#useusercredentials)
 - [user](NumistaConnector.md#user)
+- [userBanknotes](NumistaConnector.md#userbanknotes)
 - [userCoins](NumistaConnector.md#usercoins)
+- [userExonumia](NumistaConnector.md#userexonumia)
+- [userItems](NumistaConnector.md#useritems)
 
 ## Constructors
 
@@ -45,22 +59,24 @@ The main entrypoint for Numista SDK
 
 ### addCoin
 
-▸ **addCoin**(`data`, `config?`): `Promise`<[`Coin`](../interfaces/Coin.md)\>
+▸ **addCoin**(`data`, `config?`): `Promise`<[`Type`](../interfaces/Type.md)\>
 
 This endpoint allows to add a coin to the catalogue
 
 It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
 
+**`deprecated`** Use `addType`
+
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | [`CoinUpdate`](../interfaces/CoinUpdate.md) | Data related to the coin to add to the catalogue |
+| `data` | [`TypeUpdate`](../interfaces/TypeUpdate.md) | Data related to the coin to add to the catalogue |
 | `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
 
 #### Returns
 
-`Promise`<[`Coin`](../interfaces/Coin.md)\>
+`Promise`<[`Type`](../interfaces/Type.md)\>
 
 The coin that has been added to the catalogue
 
@@ -73,6 +89,8 @@ ___
 Add a coin issue
 
 It requires a specific permission associated to your API key
+
+**`deprecated`** Use `addIssue`
 
 #### Parameters
 
@@ -90,6 +108,53 @@ The coin issue that has been added to the catalogue
 
 ___
 
+### addIssue
+
+▸ **addIssue**(`typeId`, `data`, `config?`): `Promise`<[`Issue`](../interfaces/Issue.md)\>
+
+Add a issue
+
+It requires a specific permission associated to your API key
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `typeId` | `number` | ID of the coin to which the issue is added |
+| `data` | [`IssueUpdate`](../interfaces/IssueUpdate.md) | Data related to the coin issue to add to the catalogue |
+| `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
+
+#### Returns
+
+`Promise`<[`Issue`](../interfaces/Issue.md)\>
+
+The coin issue that has been added to the catalogue
+
+___
+
+### addType
+
+▸ **addType**(`data`, `config?`): `Promise`<[`Type`](../interfaces/Type.md)\>
+
+This endpoint allows to add a type to the catalogue
+
+It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | [`TypeUpdate`](../interfaces/TypeUpdate.md) | Data related to the coin to add to the catalogue |
+| `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
+
+#### Returns
+
+`Promise`<[`Type`](../interfaces/Type.md)\>
+
+The coin that has been added to the catalogue
+
+___
+
 ### catalogues
 
 ▸ **catalogues**(): `Promise`<[`CataloguesResponse`](../interfaces/CataloguesResponse.md)\>
@@ -104,9 +169,11 @@ ___
 
 ### coin
 
-▸ **coin**(`coinId`, `config?`): `Promise`<[`Coin`](../interfaces/Coin.md)\>
+▸ **coin**(`coinId`, `config?`): `Promise`<[`Type`](../interfaces/Type.md)\>
 
 Find a coin by ID
+
+**`deprecated`** Use `type`
 
 #### Parameters
 
@@ -117,7 +184,7 @@ Find a coin by ID
 
 #### Returns
 
-`Promise`<[`Coin`](../interfaces/Coin.md)\>
+`Promise`<[`Type`](../interfaces/Type.md)\>
 
 ___
 
@@ -126,6 +193,8 @@ ___
 ▸ **coinIssues**(`coinId`, `config?`): `Promise`<[`Issue`](../interfaces/Issue.md)[]\>
 
 Find the issues of a coin
+
+**`deprecated`** Use `issues`
 
 #### Parameters
 
@@ -142,9 +211,11 @@ ___
 
 ### coinPrices
 
-▸ **coinPrices**(`coinId`, `issueId`, `config?`): `Promise`<[`CoinPricesResponse`](../interfaces/CoinPricesResponse.md)\>
+▸ **coinPrices**(`coinId`, `issueId`, `config?`): `Promise`<[`PricesResponse`](../interfaces/PricesResponse.md)\>
 
 Get estimates for the price of an issue of a coin
+
+**`deprecated`** Use `prices`
 
 #### Parameters
 
@@ -152,11 +223,11 @@ Get estimates for the price of an issue of a coin
 | :------ | :------ | :------ |
 | `coinId` | `number` | ID of the coin type |
 | `issueId` | `number` | ID of the issue of the coin |
-| `config` | `Partial`<[`CoinPricesRequest`](../interfaces/CoinPricesRequest.md)\> | Other params |
+| `config` | `Partial`<[`PricesRequest`](../interfaces/PricesRequest.md)\> | Other params |
 
 #### Returns
 
-`Promise`<[`CoinPricesResponse`](../interfaces/CoinPricesResponse.md)\>
+`Promise`<[`PricesResponse`](../interfaces/PricesResponse.md)\>
 
 ___
 
@@ -178,9 +249,46 @@ Retrieve the list of issuing countries and territories
 
 ___
 
+### issues
+
+▸ **issues**(`typeId`, `config?`): `Promise`<[`Issue`](../interfaces/Issue.md)[]\>
+
+Find the issues of a type
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `typeId` | `number` | ID of the type to fetch the issues from |
+| `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
+
+#### Returns
+
+`Promise`<[`Issue`](../interfaces/Issue.md)[]\>
+
+___
+
+### myBanknotes
+
+▸ **myBanknotes**(`config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+Get the banknotes owned by the user
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `config` | `Partial`<`Omit`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md), ``"category"``\>\> | Params |
+
+#### Returns
+
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+___
+
 ### myCoins
 
-▸ **myCoins**(`config?`): `Promise`<[`CollectedCoinsResponse`](../interfaces/CollectedCoinsResponse.md)\>
+▸ **myCoins**(`config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
 
 Get the coins owned by the user
 
@@ -188,49 +296,181 @@ Get the coins owned by the user
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `config` | `Partial`<[`CollectedCoinsRequest`](../interfaces/CollectedCoinsRequest.md)\> | Params |
+| `config` | `Partial`<`Omit`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md), ``"category"``\>\> | Params |
 
 #### Returns
 
-`Promise`<[`CollectedCoinsResponse`](../interfaces/CollectedCoinsResponse.md)\>
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+___
+
+### myExonumia
+
+▸ **myExonumia**(`config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+Get the exonumia pieces owned by the user
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `config` | `Partial`<`Omit`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md), ``"category"``\>\> | Params |
+
+#### Returns
+
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+___
+
+### myItems
+
+▸ **myItems**(`config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+Get the items (coins, banknotes, pieces of exonumia) owned by the user
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `config` | `Partial`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md)\> | Params |
+
+#### Returns
+
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+___
+
+### paginatedSearch
+
+▸ **paginatedSearch**(`query`, `config?`): `Promise`<[`PaginatedResult`](PaginatedResult.md)<[`SearchRequest`](../interfaces/SearchRequest.md), [`SearchResponse`](../interfaces/SearchResponse.md)\>\>
+
+Search the catalogue for coin, banknote and exonumia types (with pagination)
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `query` | `string` | Search query |
+| `config` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"page"`` \| ``"q"``\>\> | Other params |
+
+#### Returns
+
+`Promise`<[`PaginatedResult`](PaginatedResult.md)<[`SearchRequest`](../interfaces/SearchRequest.md), [`SearchResponse`](../interfaces/SearchResponse.md)\>\>
+
+___
+
+### prices
+
+▸ **prices**(`typeId`, `issueId`, `config?`): `Promise`<[`PricesResponse`](../interfaces/PricesResponse.md)\>
+
+Get estimates for the price of an issue of a coin
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `typeId` | `number` | ID of the type |
+| `issueId` | `number` | ID of the issue |
+| `config` | `Partial`<[`PricesRequest`](../interfaces/PricesRequest.md)\> | Other params |
+
+#### Returns
+
+`Promise`<[`PricesResponse`](../interfaces/PricesResponse.md)\>
+
+___
+
+### search
+
+▸ **search**(`query`, `config?`): `Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
+
+Search the catalogue for coin, banknote and exonumia types
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `query` | `string` | Search query |
+| `config` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"q"``\>\> | Other params |
+
+#### Returns
+
+`Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
+
+___
+
+### searchBanknotes
+
+▸ **searchBanknotes**(`query`, `config?`): `Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
+
+Search the catalogue for banknotes
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `query` | `string` | Search query |
+| `config` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"category"`` \| ``"q"``\>\> | Other params |
+
+#### Returns
+
+`Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
 
 ___
 
 ### searchCoins
 
-▸ **searchCoins**(`query`, `config?`): `Promise`<[`SearchCoinsResponse`](../interfaces/SearchCoinsResponse.md)\>
+▸ **searchCoins**(`query`, `config?`): `Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
 
-Search for coins
+Search the catalogue for coins
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `query` | `string` | Search query |
-| `config` | `Partial`<`Omit`<[`SearchCoinsRequest`](../interfaces/SearchCoinsRequest.md), ``"q"``\>\> | Other params |
+| `config` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"category"`` \| ``"q"``\>\> | Other params |
 
 #### Returns
 
-`Promise`<[`SearchCoinsResponse`](../interfaces/SearchCoinsResponse.md)\>
+`Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
 
 ___
 
-### searchCoinsPaginated
+### searchExonumia
 
-▸ **searchCoinsPaginated**(`query`, `config?`): `Promise`<[`PaginatedResult`](PaginatedResult.md)<[`SearchCoinsRequest`](../interfaces/SearchCoinsRequest.md), [`SearchCoinsResponse`](../interfaces/SearchCoinsResponse.md)\>\>
+▸ **searchExonumia**(`query`, `config?`): `Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
 
-Paginated search for coins
+Search the catalogue for exonumia pieces
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `query` | `string` | Search query |
-| `config` | `Partial`<`Omit`<[`SearchCoinsRequest`](../interfaces/SearchCoinsRequest.md), ``"q"`` \| ``"page"``\>\> | Other params |
+| `config` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"category"`` \| ``"q"``\>\> | Other params |
 
 #### Returns
 
-`Promise`<[`PaginatedResult`](PaginatedResult.md)<[`SearchCoinsRequest`](../interfaces/SearchCoinsRequest.md), [`SearchCoinsResponse`](../interfaces/SearchCoinsResponse.md)\>\>
+`Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
+
+___
+
+### type
+
+▸ **type**(`typeId`, `config?`): `Promise`<[`Type`](../interfaces/Type.md)\>
+
+Find a type by ID
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `typeId` | `number` | ID of the type to fetch |
+| `config` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Other params |
+
+#### Returns
+
+`Promise`<[`Type`](../interfaces/Type.md)\>
 
 ___
 
@@ -295,9 +535,28 @@ Get information about a user
 
 ___
 
+### userBanknotes
+
+▸ **userBanknotes**(`userId`, `config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+Get the banknotes owned by a user
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `userId` | `number` | ID of the user |
+| `config` | `Partial`<`Omit`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md), ``"category"``\>\> | Other params |
+
+#### Returns
+
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+___
+
 ### userCoins
 
-▸ **userCoins**(`userId`, `config?`): `Promise`<[`CollectedCoinsResponse`](../interfaces/CollectedCoinsResponse.md)\>
+▸ **userCoins**(`userId`, `config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
 
 Get the coins owned by a user
 
@@ -306,8 +565,46 @@ Get the coins owned by a user
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `userId` | `number` | ID of the user |
-| `config` | `Partial`<[`CollectedCoinsRequest`](../interfaces/CollectedCoinsRequest.md)\> | Other params |
+| `config` | `Partial`<`Omit`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md), ``"category"``\>\> | Other params |
 
 #### Returns
 
-`Promise`<[`CollectedCoinsResponse`](../interfaces/CollectedCoinsResponse.md)\>
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+___
+
+### userExonumia
+
+▸ **userExonumia**(`userId`, `config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+Get the exonumia pieces owned by a user
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `userId` | `number` | ID of the user |
+| `config` | `Partial`<`Omit`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md), ``"category"``\>\> | Other params |
+
+#### Returns
+
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+___
+
+### userItems
+
+▸ **userItems**(`userId`, `config?`): `Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>
+
+Get the items (coin, banknotes, pieces of exonumia) owned by a user
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `userId` | `number` | ID of the user |
+| `config` | `Partial`<[`CollectedItemsRequest`](../interfaces/CollectedItemsRequest.md)\> | Other params |
+
+#### Returns
+
+`Promise`<[`CollectedItemsResponse`](../interfaces/CollectedItemsResponse.md)\>

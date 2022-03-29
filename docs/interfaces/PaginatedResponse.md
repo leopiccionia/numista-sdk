@@ -6,7 +6,7 @@
 
 - **`PaginatedResponse`**
 
-  ↳ [`SearchCoinsResponse`](SearchCoinsResponse.md)
+  ↳ [`SearchResponse`](SearchResponse.md)
 
 ## Table of contents
 

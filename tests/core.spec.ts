@@ -6,7 +6,7 @@ describe('NumistaConnector', () => {
 
   it('requires API key', async () => {
     const numista = new NumistaConnector('INVALID_KEY', 'INVALID_CLIENT_ID')
-    const request = numista.searchCoins('dollar')
+    const request = numista.search('dollar')
 
     await request.catch((error: RequestError) => {
       expect(error).toBeInstanceOf(RequestError)

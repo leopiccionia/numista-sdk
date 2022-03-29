@@ -1,6 +1,6 @@
-[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / SearchCoinsRequest
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / SearchRequest
 
-# Interface: SearchCoinsRequest
+# Interface: SearchRequest
 
 ## Hierarchy
 
@@ -8,19 +8,28 @@
 
 - [`PaginatedRequest`](PaginatedRequest.md)
 
-  ↳ **`SearchCoinsRequest`**
+  ↳ **`SearchRequest`**
 
 ## Table of contents
 
 ### Properties
 
-- [count](SearchCoinsRequest.md#count)
-- [issuer](SearchCoinsRequest.md#issuer)
-- [lang](SearchCoinsRequest.md#lang)
-- [page](SearchCoinsRequest.md#page)
-- [q](SearchCoinsRequest.md#q)
+- [category](SearchRequest.md#category)
+- [count](SearchRequest.md#count)
+- [issuer](SearchRequest.md#issuer)
+- [lang](SearchRequest.md#lang)
+- [page](SearchRequest.md#page)
+- [q](SearchRequest.md#q)
 
 ## Properties
+
+### category
+
+• `Optional` **category**: [`Category`](../modules.md#category)
+
+Catalogue category
+
+___
 
 ### count
 
