@@ -2,10 +2,10 @@ import { Credentials } from './credentials'
 import { OAuthConnector } from './oauth'
 import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
-import type { Issue, IssueUpdate, Language, Type, TypeUpdate } from './types/schemas'
+import type { CollectedItem, Issue, IssueUpdate, Language, Type, TypeUpdate } from './types/schemas'
 import type { OAuthToken, Scope } from './types/oauth'
-import type { BaseRequest, CollectedItemsRequest, OAuthClientCredentialsRequest, PricesRequest, SearchRequest } from './types/requests'
-import type { CataloguesResponse, CollectedItemsResponse, IssuersResponse, PricesResponse, SearchResponse, UserResponse } from './types/responses'
+import type { AddItemRequest, BaseRequest, CollectedItemsRequest, CollectionsRequest, EditItemRequest, OAuthClientCredentialsRequest, PricesRequest, SearchRequest } from './types/requests'
+import type { CataloguesResponse, CollectedItemsResponse, CollectionsResponse, IssuersResponse, PricesResponse, SearchResponse, UserResponse } from './types/responses'
 
 export interface ConnectorConfig {
   /** The default language for use in other methods */
@@ -81,6 +81,18 @@ export class NumistaConnector {
   }
 
   /**
+   * Add an item in the user collection
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"edit_collection"`
+   * @param userId - ID of the user
+   * @param data - Data related to the item to be added to the collection
+   * @returns The item
+   */
+  addItem (userId: number, data: AddItemRequest): Promise<CollectedItem> {
+    return this.#rest.request<CollectedItem>('POST', `/users/${userId}/collected_items`, {}, data, true)
+  }
+
+  /**
    * This endpoint allows to add a type to the catalogue
    *
    * It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
@@ -138,7 +150,23 @@ export class NumistaConnector {
     return this.prices(coinId, issueId, config)
   }
 
-  /** Retrieve the list of issuing countries and territories */
+  /**
+   * Edit an item in a user's collection
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"edit_collection"`
+   * @param userId - ID of the user
+   * @param itemId - ID of the collected item
+   * @param data - Item data which need to be edited. All fields are optional. Only the fields which are present will be updated
+   * @returns The updated item
+   */
+  editItem (userId: number, itemId: number, data: EditItemRequest): Promise<CollectedItem> {
+    return this.#rest.request<CollectedItem>('PATCH', `/users/${userId}/collected_items/${itemId}`, {}, data, true)
+  }
+
+  /**
+   * Retrieve the list of issuing countries and territories
+   * @param config - Other params
+   */
   issuers (config: Partial<BaseRequest> = {}): Promise<IssuersResponse> {
     const params: BaseRequest = {
       lang: this.#config.defaultLanguage,
@@ -163,8 +191,19 @@ export class NumistaConnector {
   }
 
   /**
+   * Get an item in a user's collection
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
+   * @param userId - ID of the user
+   * @param itemId - ID of the collected item
+   */
+  item (userId: number, itemId: number): Promise<CollectedItem> {
+    return this.#rest.request<CollectedItem>('GET', `/users/${userId}/collected_items/${itemId}`, {}, null, true)
+  }
+
+  /**
    * Get the banknotes owned by the user
-   * @param config - Params
+   * @param config - Other params
    */
   async myBanknotes (config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
     return this.myItems({ ...config, category: 'banknote' })
@@ -172,15 +211,25 @@ export class NumistaConnector {
 
   /**
    * Get the coins owned by the user
-   * @param config - Params
+   * @param config - Other params
    */
   async myCoins (config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
     return this.myItems({ ...config, category: 'coin' })
   }
 
   /**
+   * Get the list of collections of a user
+   * @param config - Other params
+   */
+  async myCollections (config: Partial<CollectionsRequest> = {}): Promise<CollectionsResponse> {
+    const userId: number = await this.useUserCredentials(['view_collection'])
+
+    return this.userCollections(userId, config)
+  }
+
+  /**
    * Get the exonumia pieces owned by the user
-   * @param config - Params
+   * @param config - Other params
    */
   async myExonumia (config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
     return this.myItems({ ...config, category: 'exonumia' })
@@ -188,7 +237,7 @@ export class NumistaConnector {
 
   /**
    * Get the items (coins, banknotes, pieces of exonumia) owned by the user
-   * @param config - Params
+   * @param config - Other params
    */
    async myItems (config: Partial<CollectedItemsRequest> = {}): Promise<CollectedItemsResponse> {
     const userId: number = await this.useUserCredentials(['view_collection'])
@@ -229,6 +278,17 @@ export class NumistaConnector {
     }
 
     return this.#rest.request<PricesResponse>('GET', `/types/${typeId}/issues/${issueId}/prices`, params)
+  }
+
+  /**
+   * Delete an item from a user's collection
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"edit_collection"`
+   * @param userId - ID of the user
+   * @param itemId - ID of the collected item
+   */
+  removeItem (userId: number, itemId: number): Promise<void> {
+    return this.#rest.request<void>('DELETE', `/users/${userId}/collected_items/${itemId}`, {}, null, true)
   }
 
   /**
@@ -305,6 +365,8 @@ export class NumistaConnector {
 
   /**
    * Get the banknotes owned by a user
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
    * @param config - Other params
    */
@@ -314,6 +376,8 @@ export class NumistaConnector {
 
   /**
    * Get the coins owned by a user
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
    * @param config - Other params
    */
@@ -322,7 +386,20 @@ export class NumistaConnector {
   }
 
   /**
+   * Get the list of collections of a user
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
+   * @param userId - ID of the user
+   * @param config - Other params
+   */
+  userCollections (userId: number, config: Partial<CollectionsRequest> = {}): Promise<CollectionsResponse> {
+    return this.#rest.request<CollectionsResponse>('GET', `/users/${userId}/collections`, config, null, true)
+  }
+
+  /**
    * Get the exonumia pieces owned by a user
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
    * @param config - Other params
    */
@@ -332,6 +409,8 @@ export class NumistaConnector {
 
   /**
    * Get the items (coin, banknotes, pieces of exonumia) owned by a user
+   *
+   * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
    * @param config - Other params
    */

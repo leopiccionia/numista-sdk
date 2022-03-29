@@ -1,4 +1,4 @@
-export type Scope = 'view_collection'
+export type Scope = 'edit_collection' | 'view_collection'
 
 /** @internal */
 export interface OAuthToken {

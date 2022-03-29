@@ -1,4 +1,4 @@
-import type { BaseType, Category, Collection, Grade, Issue, Issuer, Price } from './schemas'
+import type { BaseType, CollectedItem, Collection, Grade, Issuer } from './schemas'
 
 export interface SearchedType extends BaseType {
   /** URL to a thumbnail of the picture of the obverse */
@@ -40,40 +40,14 @@ export interface CollectedItemsResponse {
   /** Count of different types offered for swap by the user */
   item_type_for_swap_count: number
   /** List of items in the collection */
-  items: Array<{
-    /** Unique ID of the coin in collection */
-    id: number
-    /** Quantity of coins */
-    quantity: number
-    /** Describe the type of item */
-    coin: {
-      /** ID of the type */
-      id: number
-      /** Title of the type */
-      title: string
-      /** Category */
-      category: Category
-      issuer?: Issuer
-    }
-    issue?: Issue
-    /** Indicate whether the coin is available for swap */
-    for_swap: boolean
-    /** Grade of the item */
-    grade?: Grade
-    /** Private comment (not available if the user is not authenticated) */
-    private_comment?: string
-    /** Public comment */
-    public_comment?: string
-    price?: Price
-    collection?: Collection
-    /** List of pictures or PDF documents. PDF documents are available only if the user is not authenticated. */
-    pictures?: Array<{
-      /** URL to the picture or the document in original size */
-      url: string
-      /** URL to the thumbnail of the picture or document */
-      thumbnail_url: string
-    }>
-  }>
+  items: Array<CollectedItem>
+}
+
+export interface CollectionsResponse {
+  /** Number of collections */
+  count: number
+  /** List of collections */
+  collections: Collection[]
 }
 
 export interface IssuersResponse {

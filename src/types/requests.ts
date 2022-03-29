@@ -1,4 +1,4 @@
-import type { Category, Language } from './schemas'
+import type { Category, Grade, Language, Price } from './schemas'
 
 export interface BaseRequest {
   /** Language */
@@ -12,6 +12,33 @@ export interface PaginatedRequest {
   page: number
 }
 
+export interface AddItemRequest {
+  /** ID of the type of the item */
+  type: number
+  /** ID of the issue of the item */
+  issue?: number
+  /**
+   * Quantity of items
+   * @defaultValue 1
+   */
+  quantity?: number
+  /** Grade of the item */
+  grade?: Grade
+  /**
+   * Indicate whether the item is available for swap
+   * @defaultValue false
+   */
+  for_swap?: boolean
+  /** Private comment */
+  private_comment?: string
+  /** Public comment */
+  public_comment?: string
+  /** Buying price */
+  price?: Price
+  /** ID of the collection */
+  collection?: number
+}
+
 export interface CollectedItemsRequest extends BaseRequest {
   /** Category. If this parameter is provided, only items of the given category are returned */
   category?: Category
@@ -21,6 +48,38 @@ export interface CollectedItemsRequest extends BaseRequest {
   lang?: Language
   /** Coin type ID. If this parameter is provided, only coins of the given coin type are returned */
   type?: number
+}
+
+export interface CollectionsRequest {
+  /** Category. If this parameter is provided, only collections containing items of the given category are returned */
+  category?: Category
+}
+
+export interface EditItemRequest {
+  /** ID of the type of the item */
+  type?: number
+  /** ID of the issue of the item, or null for undetermined issue */
+  issue?: number | null
+  /**
+   * Quantity of items
+   * @defaultValue 1
+   */
+  quantity?: number
+  /** Grade of the item, or null for undetermined grade */
+  grade?: number | null
+  /**
+   * Indicate whether the item is available for swap
+   * @defaultValue false
+   */
+  for_swap?: boolean
+  /** Private comment */
+  private_comment?: string
+  /** Public comment */
+  public_comment?: string
+  /** Buying price */
+  price?: Price | null
+  /** ID of the collection */
+  collection?: number
 }
 
 /** @internal */

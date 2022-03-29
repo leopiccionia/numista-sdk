@@ -4,7 +4,7 @@ import { Credentials } from './credentials'
 import { ConnectionError, RequestError } from './errors'
 import type { APIError } from './types/schemas'
 
-type HttpMethod = 'GET' | 'POST'
+type HttpMethod = 'DELETE' | 'GET' | 'PATCH' | 'POST' | 'PUT'
 
 const BASE_URL = 'https://api.numista.com/api/v3'
 
@@ -39,10 +39,14 @@ export class RestConnector {
         headers,
         method,
       })
-      const data = await res.json()
       if (res.ok) {
-        return data as Promise<T>
+        if (res.body) {
+          return res.json() as Promise<T>
+        } else {
+          return Promise.resolve() as unknown as Promise<T>
+        }
       } else {
+        const data = await res.json()
         return Promise.reject(new RequestError(res.status, res.statusText, (data as APIError).error_message))
       }
     } catch (err: unknown) {

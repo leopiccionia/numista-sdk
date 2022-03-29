@@ -75,6 +75,41 @@ export interface CoinSideUpdate {
   picture_copyright_url?: string
 }
 
+export interface CollectedItem {
+  /** Unique ID of the item */
+  id: number
+  /** Quantity of items */
+  quantity: number
+  /** Describe the type of the item */
+  type: {
+    /** ID of the type */
+    id: number
+    /** Title of the type */
+    title: string
+    /** Category */
+    category: Category
+    issuer?: Issuer
+  }
+  issue?: Issue
+  /** Indicate whether the item is available for swap */
+  for_swap: boolean
+  /** Grade of the item */
+  grade?: Grade
+  /** Private comment (not available if the user is not authenticated) */
+  private_comment?: string
+  /** Public comment */
+  public_comment?: string
+  price?: Price
+  collection?: Collection
+  /** List of pictures or PDF documents. PDF documents are available only if the user is not authenticated. */
+  pictures?: Array<{
+    /** URL to the picture or the document in original size */
+    url: string
+    /** URL to the thumbnail of the picture or document */
+    thumbnail_url: string
+  }>
+}
+
 export interface Collection {
   /** ID of the collection */
   id: number
