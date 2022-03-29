@@ -31,8 +31,6 @@ export interface CataloguesResponse {
 }
 
 export interface CollectedItemsResponse {
-  /** Warning message (e.g. in case of user not authenticated but some data can be retrieved since the collection is public) */
-  warning?: string
   /** Count of items owned by the user */
   item_count: number
   /** Count of items offered for swap by the user */

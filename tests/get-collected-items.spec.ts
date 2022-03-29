@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
+import { RequestError } from '#lib'
 import { createConnector } from '#tests'
 
-describe.concurrent('Getting the coins owned by a user', () => {
+describe.concurrent('Get the items (coins, banknotes, pieces of exonumia) owned by a user', () => {
 
   it('works with own coins', async () => {
     const numista = createConnector()
@@ -10,14 +11,16 @@ describe.concurrent('Getting the coins owned by a user', () => {
     const myCoins = await numista.myCoins()
 
     expect(myCoins.item_count).toBeGreaterThanOrEqual(0)
-    expect(myCoins.warning).toBeUndefined()
   })
 
   it('requires authentication', async () => {
     const numista = createConnector()
 
-    const userCoins = await numista.userCoins(2)
+    const request = numista.userCoins(2)
 
-    expect(userCoins.warning).toBeDefined()
+    await request.catch((error: RequestError) => {
+      expect(error).toBeInstanceOf(RequestError)
+      expect(error.status).toBe(401)
+    })
   })
 })
