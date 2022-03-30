@@ -14,16 +14,21 @@
 
 ### Interfaces
 
+- [AddItemRequest](interfaces/AddItemRequest.md)
 - [BaseRequest](interfaces/BaseRequest.md)
 - [BaseType](interfaces/BaseType.md)
 - [CataloguesResponse](interfaces/CataloguesResponse.md)
 - [CoinSide](interfaces/CoinSide.md)
 - [CoinSideUpdate](interfaces/CoinSideUpdate.md)
+- [CollectedItem](interfaces/CollectedItem.md)
 - [CollectedItemsRequest](interfaces/CollectedItemsRequest.md)
 - [CollectedItemsResponse](interfaces/CollectedItemsResponse.md)
 - [Collection](interfaces/Collection.md)
+- [CollectionsRequest](interfaces/CollectionsRequest.md)
+- [CollectionsResponse](interfaces/CollectionsResponse.md)
 - [ConnectorConfig](interfaces/ConnectorConfig.md)
 - [Currency](interfaces/Currency.md)
+- [EditItemRequest](interfaces/EditItemRequest.md)
 - [Issue](interfaces/Issue.md)
 - [IssueUpdate](interfaces/IssueUpdate.md)
 - [Issuer](interfaces/Issuer.md)
@@ -102,4 +107,4 @@ ___
 
 ### Scope
 
-Ƭ **Scope**: ``"view_collection"``
+Ƭ **Scope**: ``"edit_collection"`` \| ``"view_collection"``

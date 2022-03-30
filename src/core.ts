@@ -22,16 +22,16 @@ export class NumistaConnector {
   /**
    * @param apiKey - API key
    * @param clientId - Client ID
-   * @param config - Other params
+   * @param config - Miscellaneous configuration
    */
   constructor (apiKey: string, clientId: string, config: Partial<ConnectorConfig> = {}) {
-    const mergedConfig: ConnectorConfig = {
+    const _config: ConnectorConfig = {
       defaultLanguage: 'en',
       ...config,
     }
 
     this.#credentials = new Credentials(apiKey, clientId)
-    this.#config = mergedConfig
+    this.#config = _config
     this.#rest = new RestConnector(this.#credentials)
   }
 
@@ -41,11 +41,11 @@ export class NumistaConnector {
    * It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
    * @deprecated Use {@linkcode NumistaConnector.addType addType} (since 0.3.0)
    * @param data - Data related to the coin to add to the catalogue
-   * @param config - Other params
+   * @param params - Miscellaneous params
    * @returns The coin that has been added to the catalogue
    */
-  addCoin (data: TypeUpdate, config: Partial<BaseRequest> = {}): Promise<Type> {
-    return this.addType(data, config)
+  addCoin (data: TypeUpdate, params: Partial<BaseRequest> = {}): Promise<Type> {
+    return this.addType(data, params)
   }
 
   /**
@@ -55,11 +55,11 @@ export class NumistaConnector {
    * @deprecated Use {@linkcode NumistaConnector.addIssue addIssue} (since 0.3.0)
    * @param coinId - ID of the coin to which the issue is added
    * @param data - Data related to the coin issue to add to the catalogue
-   * @param config - Other params
+   * @param params - Miscellaneous params
    * @returns The coin issue that has been added to the catalogue
    */
-  addCoinIssue (coinId: number, data: IssueUpdate, config: Partial<BaseRequest> = {}): Promise<Issue> {
-    return this.addIssue(coinId, data, config)
+  addCoinIssue (coinId: number, data: IssueUpdate, params: Partial<BaseRequest> = {}): Promise<Issue> {
+    return this.addIssue(coinId, data, params)
   }
 
   /**
@@ -68,16 +68,16 @@ export class NumistaConnector {
    * It requires a specific permission associated to your API key
    * @param typeId - ID of the coin to which the issue is added
    * @param data - Data related to the coin issue to add to the catalogue
-   * @param config - Other params
+   * @param params - Miscellaneous params
    * @returns The coin issue that has been added to the catalogue
    */
-  addIssue (typeId: number, data: IssueUpdate, config: Partial<BaseRequest> = {}): Promise<Issue> {
-    const params: BaseRequest = {
+  addIssue (typeId: number, data: IssueUpdate, params: Partial<BaseRequest> = {}): Promise<Issue> {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<Issue>('POST', `/types/${typeId}/issues`, params, data)
+    return this.#rest.request<Issue>('POST', `/types/${typeId}/issues`, _params, data)
   }
 
   /**
@@ -97,16 +97,16 @@ export class NumistaConnector {
    *
    * It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
    * @param data - Data related to the coin to add to the catalogue
-   * @param config - Other params
+   * @param params - Miscellaneous params
    * @returns The coin that has been added to the catalogue
    */
-  addType (data: TypeUpdate, config: Partial<BaseRequest> = {}): Promise<Type> {
-    const params: BaseRequest = {
+  addType (data: TypeUpdate, params: Partial<BaseRequest> = {}): Promise<Type> {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<Type>('POST', '/types', params, data)
+    return this.#rest.request<Type>('POST', '/types', _params, data)
   }
 
   /** Retrieve the list of catalogues used for coin references */
@@ -118,25 +118,25 @@ export class NumistaConnector {
    * Find a coin by ID
    * @deprecated Use {@linkcode NumistaConnector.type type} (since 0.3.0)
    * @param coinId - ID of the coin to fetch
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  coin (coinId: number, config: Partial<BaseRequest> = {}): Promise<Type> {
-    const params: BaseRequest = {
+  coin (coinId: number, params: Partial<BaseRequest> = {}): Promise<Type> {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<Type>('GET', `/coins/${coinId}`, params)
+    return this.#rest.request<Type>('GET', `/coins/${coinId}`, _params)
   }
 
   /**
    * Find the issues of a coin
    * @deprecated Use {@linkcode NumistaConnector.issues issues} (since 0.3.0)
    * @param coinId - ID of the coin to fetch the issues from
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  coinIssues (coinId: number, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
-    return this.issues(coinId, config)
+  coinIssues (coinId: number, params: Partial<BaseRequest> = {}): Promise<Issue[]> {
+    return this.issues(coinId, params)
   }
 
   /**
@@ -144,10 +144,10 @@ export class NumistaConnector {
    * @deprecated Use {@linkcode NumistaConnector.prices prices} (since 0.3.0)
    * @param coinId - ID of the coin type
    * @param issueId - ID of the issue of the coin
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  coinPrices (coinId: number, issueId: number, config: Partial<PricesRequest> = {}): Promise<PricesResponse> {
-    return this.prices(coinId, issueId, config)
+  coinPrices (coinId: number, issueId: number, params: Partial<PricesRequest> = {}): Promise<PricesResponse> {
+    return this.prices(coinId, issueId, params)
   }
 
   /**
@@ -165,29 +165,29 @@ export class NumistaConnector {
 
   /**
    * Retrieve the list of issuing countries and territories
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  issuers (config: Partial<BaseRequest> = {}): Promise<IssuersResponse> {
-    const params: BaseRequest = {
+  issuers (params: Partial<BaseRequest> = {}): Promise<IssuersResponse> {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<IssuersResponse>('GET', '/issuers', params)
+    return this.#rest.request<IssuersResponse>('GET', '/issuers', _params)
   }
 
   /**
    * Find the issues of a type
    * @param typeId - ID of the type to fetch the issues from
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  issues (typeId: number, config: Partial<BaseRequest> = {}): Promise<Issue[]> {
-    const params: BaseRequest = {
+  issues (typeId: number, params: Partial<BaseRequest> = {}): Promise<Issue[]> {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<Issue[]>('GET', `/types/${typeId}/issues`, params)
+    return this.#rest.request<Issue[]>('GET', `/types/${typeId}/issues`, _params)
   }
 
   /**
@@ -203,81 +203,81 @@ export class NumistaConnector {
 
   /**
    * Get the banknotes owned by the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  async myBanknotes (config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
-    return this.myItems({ ...config, category: 'banknote' })
+  async myBanknotes (params: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
+    return this.myItems({ ...params, category: 'banknote' })
   }
 
   /**
    * Get the coins owned by the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  async myCoins (config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
-    return this.myItems({ ...config, category: 'coin' })
+  async myCoins (params: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
+    return this.myItems({ ...params, category: 'coin' })
   }
 
   /**
    * Get the list of collections of a user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  async myCollections (config: Partial<CollectionsRequest> = {}): Promise<CollectionsResponse> {
+  async myCollections (params: Partial<CollectionsRequest> = {}): Promise<CollectionsResponse> {
     const userId: number = await this.useUserCredentials(['view_collection'])
 
-    return this.userCollections(userId, config)
+    return this.userCollections(userId, params)
   }
 
   /**
    * Get the exonumia pieces owned by the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  async myExonumia (config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
-    return this.myItems({ ...config, category: 'exonumia' })
+  async myExonumia (params: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
+    return this.myItems({ ...params, category: 'exonumia' })
   }
 
   /**
    * Get the items (coins, banknotes, pieces of exonumia) owned by the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-   async myItems (config: Partial<CollectedItemsRequest> = {}): Promise<CollectedItemsResponse> {
+   async myItems (params: Partial<CollectedItemsRequest> = {}): Promise<CollectedItemsResponse> {
     const userId: number = await this.useUserCredentials(['view_collection'])
 
-    return this.userCoins(userId, config)
+    return this.userCoins(userId, params)
   }
 
   /**
    * Search the catalogue for coin, banknote and exonumia types (with pagination)
    * @param query - Search query
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  async paginatedSearch (query: string, config: Partial<Omit<SearchRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchRequest, SearchResponse>> {
-    const params: SearchRequest = {
+  async paginatedSearch (query: string, params: Partial<Omit<SearchRequest, 'page' | 'q'>> = {}): Promise<PaginatedResult<SearchRequest, SearchResponse>> {
+    const _params: SearchRequest = {
       count: 50,
       lang: this.#config.defaultLanguage,
       page: 1,
-      ...config,
+      ...params,
       q: query,
     }
 
-    const initialData = await this.#rest.request<SearchResponse>('GET', '/types', params)
+    const initialData = await this.#rest.request<SearchResponse>('GET', '/types', _params)
 
-    return new PaginatedResult<SearchRequest, SearchResponse>(this.#rest, initialData, '/types', params)
+    return new PaginatedResult<SearchRequest, SearchResponse>(this.#rest, initialData, '/types', _params)
   }
 
   /**
    * Get estimates for the price of an issue of a coin
    * @param typeId - ID of the type
    * @param issueId - ID of the issue
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  prices (typeId: number, issueId: number, config: Partial<PricesRequest> = {}): Promise<PricesResponse> {
-    const params: PricesRequest = {
+  prices (typeId: number, issueId: number, params: Partial<PricesRequest> = {}): Promise<PricesResponse> {
+    const _params: PricesRequest = {
       currency: 'EUR',
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<PricesResponse>('GET', `/types/${typeId}/issues/${issueId}/prices`, params)
+    return this.#rest.request<PricesResponse>('GET', `/types/${typeId}/issues/${issueId}/prices`, _params)
   }
 
   /**
@@ -294,73 +294,73 @@ export class NumistaConnector {
   /**
    * Search the catalogue for coin, banknote and exonumia types
    * @param query - Search query
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  search (query: string, config: Partial<Omit<SearchRequest, 'q'>> = {}): Promise<SearchResponse> {
-    const params: SearchRequest = {
+  search (query: string, params: Partial<Omit<SearchRequest, 'q'>> = {}): Promise<SearchResponse> {
+    const _params: SearchRequest = {
       count: 50,
       lang: this.#config.defaultLanguage,
       page: 1,
-      ...config,
+      ...params,
       q: query,
     }
 
-    return this.#rest.request<SearchResponse>('GET', '/types', params)
+    return this.#rest.request<SearchResponse>('GET', '/types', _params)
   }
 
   /**
    * Search the catalogue for banknotes
    * @param query - Search query
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  searchBanknotes (query: string, config: Partial<Omit<SearchRequest, 'category' | 'q'>> = {}): Promise<SearchResponse> {
-    return this.search(query, { ...config, category: 'banknote' })
+  searchBanknotes (query: string, params: Partial<Omit<SearchRequest, 'category' | 'q'>> = {}): Promise<SearchResponse> {
+    return this.search(query, { ...params, category: 'banknote' })
   }
 
   /**
    * Search the catalogue for coins
    * @param query - Search query
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  searchCoins (query: string, config: Partial<Omit<SearchRequest, 'category' | 'q'>> = {}): Promise<SearchResponse> {
-    return this.search(query, { ...config, category: 'coin' })
+  searchCoins (query: string, params: Partial<Omit<SearchRequest, 'category' | 'q'>> = {}): Promise<SearchResponse> {
+    return this.search(query, { ...params, category: 'coin' })
   }
 
   /**
    * Search the catalogue for exonumia pieces
    * @param query - Search query
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  searchExonumia (query: string, config: Partial<Omit<SearchRequest, 'category' | 'q'>> = {}): Promise<SearchResponse> {
-    return this.search(query, { ...config, category: 'exonumia' })
+  searchExonumia (query: string, params: Partial<Omit<SearchRequest, 'category' | 'q'>> = {}): Promise<SearchResponse> {
+    return this.search(query, { ...params, category: 'exonumia' })
   }
 
   /**
    * Find a type by ID
    * @param typeId - ID of the type to fetch
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  type (typeId: number, config: Partial<BaseRequest> = {}): Promise<Type> {
-    const params: BaseRequest = {
+  type (typeId: number, params: Partial<BaseRequest> = {}): Promise<Type> {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<Type>('GET', `/types/${typeId}`, params)
+    return this.#rest.request<Type>('GET', `/types/${typeId}`, _params)
   }
 
   /**
    * Get information about a user
    * @param userId - ID of the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  user (userId: number, config: Partial<BaseRequest> = {}): Promise<UserResponse> {
-    const params: BaseRequest = {
+  user (userId: number, params: Partial<BaseRequest> = {}): Promise<UserResponse> {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<UserResponse>('GET', `/users/${userId}`, params)
+    return this.#rest.request<UserResponse>('GET', `/users/${userId}`, _params)
   }
 
   /**
@@ -368,10 +368,10 @@ export class NumistaConnector {
    *
    * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  userBanknotes (userId: number, config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
-    return this.userItems(userId, { ...config, category: 'banknote' })
+  userBanknotes (userId: number, params: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
+    return this.userItems(userId, { ...params, category: 'banknote' })
   }
 
   /**
@@ -379,10 +379,10 @@ export class NumistaConnector {
    *
    * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  userCoins (userId: number, config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
-    return this.userItems(userId, { ...config, category: 'coin' })
+  userCoins (userId: number, params: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
+    return this.userItems(userId, { ...params, category: 'coin' })
   }
 
   /**
@@ -390,10 +390,10 @@ export class NumistaConnector {
    *
    * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  userCollections (userId: number, config: Partial<CollectionsRequest> = {}): Promise<CollectionsResponse> {
-    return this.#rest.request<CollectionsResponse>('GET', `/users/${userId}/collections`, config, null, true)
+  userCollections (userId: number, params: Partial<CollectionsRequest> = {}): Promise<CollectionsResponse> {
+    return this.#rest.request<CollectionsResponse>('GET', `/users/${userId}/collections`, params, null, true)
   }
 
   /**
@@ -401,10 +401,10 @@ export class NumistaConnector {
    *
    * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  userExonumia (userId: number, config: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
-    return this.userItems(userId, { ...config, category: 'exonumia' })
+  userExonumia (userId: number, params: Partial<Omit<CollectedItemsRequest, 'category'>> = {}): Promise<CollectedItemsResponse> {
+    return this.userItems(userId, { ...params, category: 'exonumia' })
   }
 
   /**
@@ -412,31 +412,31 @@ export class NumistaConnector {
    *
    * This functionality requires the OAuth 2.0 authentication with the scope `"view_collection"`
    * @param userId - ID of the user
-   * @param config - Other params
+   * @param params - Miscellaneous params
    */
-  userItems (userId: number, config: Partial<CollectedItemsRequest> = {}): Promise<CollectedItemsResponse> {
-    const params: CollectedItemsRequest = {
+  userItems (userId: number, params: Partial<CollectedItemsRequest> = {}): Promise<CollectedItemsResponse> {
+    const _params: CollectedItemsRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return this.#rest.request<CollectedItemsResponse>('GET', `/users/${userId}/collected_items`, params, null, true)
+    return this.#rest.request<CollectedItemsResponse>('GET', `/users/${userId}/collected_items`, _params, null, true)
   }
 
   /**
    * Get OAuth access token via user credentials
    * @param redirectUri - URI to redirect back the user to your application after they authenticate
    * @param scope - List of permissions you are requesting (e.g. 'view_collection')
-   * @param config - Other params
+   * @param params - Miscellaneous params
    * @returns OAuth adapter using authorization code
    */
-  useAuthorizationCode (redirectUri: string, scope: Scope[], config: Partial<BaseRequest> = {}): OAuthConnector {
-    const params: BaseRequest = {
+  useAuthorizationCode (redirectUri: string, scope: Scope[], params: Partial<BaseRequest> = {}): OAuthConnector {
+    const _params: BaseRequest = {
       lang: this.#config.defaultLanguage,
-      ...config,
+      ...params,
     }
 
-    return new OAuthConnector(this.#rest, this.#credentials, redirectUri, scope, params)
+    return new OAuthConnector(this.#rest, this.#credentials, redirectUri, scope, _params)
   }
 
   /**

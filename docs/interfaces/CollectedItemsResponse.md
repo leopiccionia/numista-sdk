@@ -11,7 +11,6 @@
 - [item\_type\_count](CollectedItemsResponse.md#item_type_count)
 - [item\_type\_for\_swap\_count](CollectedItemsResponse.md#item_type_for_swap_count)
 - [items](CollectedItemsResponse.md#items)
-- [warning](CollectedItemsResponse.md#warning)
 
 ## Properties
 
@@ -49,14 +48,6 @@ ___
 
 ### items
 
-• **items**: { `coin`: { `category`: [`Category`](../modules.md#category) ; `id`: `number` ; `issuer?`: [`Issuer`](Issuer.md) ; `title`: `string`  } ; `collection?`: [`Collection`](Collection.md) ; `for_swap`: `boolean` ; `grade?`: [`Grade`](../modules.md#grade) ; `id`: `number` ; `issue?`: [`Issue`](Issue.md) ; `pictures?`: { `thumbnail_url`: `string` ; `url`: `string`  }[] ; `price?`: [`Price`](Price.md) ; `private_comment?`: `string` ; `public_comment?`: `string` ; `quantity`: `number`  }[]
+• **items**: [`CollectedItem`](CollectedItem.md)[]
 
 List of items in the collection
-
-___
-
-### warning
-
-• `Optional` **warning**: `string`
-
-Warning message (e.g. in case of user not authenticated but some data can be retrieved since the collection is public)
