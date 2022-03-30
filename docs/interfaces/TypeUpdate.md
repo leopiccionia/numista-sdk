@@ -110,7 +110,7 @@ ___
 
 ### edge
 
-• `Optional` **edge**: [`CoinSideUpdate`](CoinSideUpdate.md)
+• `Optional` **edge**: [`TypeSideUpdate`](TypeSideUpdate.md)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 ### obverse
 
-• `Optional` **obverse**: [`CoinSideUpdate`](CoinSideUpdate.md)
+• `Optional` **obverse**: [`TypeSideUpdate`](TypeSideUpdate.md)
 
 ___
 
@@ -174,7 +174,7 @@ ___
 
 ### reverse
 
-• `Optional` **reverse**: [`CoinSideUpdate`](CoinSideUpdate.md)
+• `Optional` **reverse**: [`TypeSideUpdate`](TypeSideUpdate.md)
 
 ___
 
@@ -285,7 +285,7 @@ ___
 
 ### watermark
 
-• `Optional` **watermark**: [`CoinSideUpdate`](CoinSideUpdate.md)
+• `Optional` **watermark**: [`TypeSideUpdate`](TypeSideUpdate.md)
 
 ___
 

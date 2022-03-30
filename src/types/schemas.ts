@@ -33,48 +33,6 @@ export interface BaseType {
   max_year?: number
 }
 
-export interface CoinSide {
-  /** Name of the engraver(s) */
-  engravers?: string[]
-  /** Description of the side of the coin */
-  description?: string
-  /** Lettering visible on the side of the coin */
-  lettering?: string
-  /** Legend visible on the side of the coin with abbreviations replaced by full words */
-  unabridged_legend?: string
-  /** Translation of the lettering visible on the side of the coin */
-  lettering_translation?: string
-  /** URL to the picture of the side of the coin */
-  picture?: string
-  /** URL to the thumbnail of the picture of the side of the coin */
-  thumbnail?: string
-  /** Name of the owner of the picture. Pictures should not be used without consent from their owner */
-  picture_copyright?: string
-  /** URL to the website of the owner of the picture. Pictures should not be used without consent from their owner */
-  picture_copyright_url?: string
-}
-
-export interface CoinSideUpdate {
-  /** Name of the engraver(s). Note that this field is not applicable for the edge */
-  engravers?: string[]
-  /** Description of the side of the coin */
-  description?: LocalizedLabel[]
-  /** Lettering visible on the side of the coin */
-  lettering?: string
-  /** Legend visible on the side of the coin with abbreviations replaced by full words */
-  unabridged_legend?: string
-  /** Translation of the lettering visible on the side of the coin */
-  lettering_translation?: string
-  /** URL to the picture of the side of the coin */
-  picture?: string
-  /** URL to the thumbnail of the picture of the side of the coin */
-  thumbnail?: string
-  /** Name of the owner of the picture. Pictures should not be used without consent from their owner */
-  picture_copyright?: string
-  /** URL to the website of the owner of the picture. Pictures should not be used without consent from their owner */
-  picture_copyright_url?: string
-}
-
 export interface CollectedItem {
   /** Unique ID of the item */
   id: number
@@ -246,10 +204,10 @@ export interface Type extends BaseType {
   thickness?: number
   /** Orientation of the coin ("coin", "medal" or "variable") */
   orientation?: Orientation
-  obverse?: CoinSide
-  reverse?: CoinSide
-  edge?: CoinSide
-  watermark?: CoinSide
+  obverse?: TypeSide
+  reverse?: TypeSide
+  edge?: TypeSide
+  watermark?: TypeSide
   /** Mints where the coin was minted */
   mints?: Array<{
     /** Unique ID of the mint on Numista */
@@ -288,6 +246,27 @@ export interface Type extends BaseType {
   tags?: string[]
   /** References of the type in other catalogues */
   references?: Reference[]
+}
+
+export interface TypeSide {
+  /** Name of the engraver(s) */
+  engravers?: string[]
+  /** Description of the side of the type */
+  description?: string
+  /** Lettering visible on the side of the type */
+  lettering?: string
+  /** Legend visible on the side of the type with abbreviations replaced by full words */
+  unabridged_legend?: string
+  /** Translation of the lettering visible on the side of the type */
+  lettering_translation?: string
+  /** URL to the picture of the side of the type */
+  picture?: string
+  /** URL to the thumbnail of the picture of the side of the type */
+  thumbnail?: string
+  /** Name of the owner of the picture. Pictures should not be used without consent from their owner */
+  picture_copyright?: string
+  /** URL to the website of the owner of the picture. Pictures should not be used without consent from their owner */
+  picture_copyright_url?: string
 }
 
 export interface TypeSideUpdate {
@@ -393,10 +372,10 @@ export interface TypeUpdate {
     /** Unique ID of the calendar on Numista */
     code: string
   }
-  obverse?: CoinSideUpdate
-  reverse?: CoinSideUpdate
-  edge?: CoinSideUpdate
-  watermark?: CoinSideUpdate
+  obverse?: TypeSideUpdate
+  reverse?: TypeSideUpdate
+  edge?: TypeSideUpdate
+  watermark?: TypeSideUpdate
   /** Mints where the coin was minted */
   mints?: Array<{
     /** Unique ID of the mint on Numista */

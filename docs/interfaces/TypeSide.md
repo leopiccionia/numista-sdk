@@ -1,20 +1,20 @@
-[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / CoinSide
+[@leopiccionia/numista-sdk](../README.md) / [Exports](../modules.md) / TypeSide
 
-# Interface: CoinSide
+# Interface: TypeSide
 
 ## Table of contents
 
 ### Properties
 
-- [description](CoinSide.md#description)
-- [engravers](CoinSide.md#engravers)
-- [lettering](CoinSide.md#lettering)
-- [lettering\_translation](CoinSide.md#lettering_translation)
-- [picture](CoinSide.md#picture)
-- [picture\_copyright](CoinSide.md#picture_copyright)
-- [picture\_copyright\_url](CoinSide.md#picture_copyright_url)
-- [thumbnail](CoinSide.md#thumbnail)
-- [unabridged\_legend](CoinSide.md#unabridged_legend)
+- [description](TypeSide.md#description)
+- [engravers](TypeSide.md#engravers)
+- [lettering](TypeSide.md#lettering)
+- [lettering\_translation](TypeSide.md#lettering_translation)
+- [picture](TypeSide.md#picture)
+- [picture\_copyright](TypeSide.md#picture_copyright)
+- [picture\_copyright\_url](TypeSide.md#picture_copyright_url)
+- [thumbnail](TypeSide.md#thumbnail)
+- [unabridged\_legend](TypeSide.md#unabridged_legend)
 
 ## Properties
 
@@ -22,7 +22,7 @@
 
 • `Optional` **description**: `string`
 
-Description of the side of the coin
+Description of the side of the type
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 • `Optional` **lettering**: `string`
 
-Lettering visible on the side of the coin
+Lettering visible on the side of the type
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 • `Optional` **lettering\_translation**: `string`
 
-Translation of the lettering visible on the side of the coin
+Translation of the lettering visible on the side of the type
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 • `Optional` **picture**: `string`
 
-URL to the picture of the side of the coin
+URL to the picture of the side of the type
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 • `Optional` **thumbnail**: `string`
 
-URL to the thumbnail of the picture of the side of the coin
+URL to the thumbnail of the picture of the side of the type
 
 ___
 
@@ -86,4 +86,4 @@ ___
 
 • `Optional` **unabridged\_legend**: `string`
 
-Legend visible on the side of the coin with abbreviations replaced by full words
+Legend visible on the side of the type with abbreviations replaced by full words
