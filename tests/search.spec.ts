@@ -2,7 +2,7 @@ import { ReadableStream } from 'node:stream/web'
 
 import { describe, expect, it } from 'vitest'
 
-import type { SearchResponse } from '#lib'
+import type { SearchedType } from '#lib'
 import { createConnector } from '#tests'
 
 describe.concurrent('Search the catalogue for coin, banknote and exonumia types', () => {
@@ -66,7 +66,7 @@ describe.concurrent('Search the catalogue for coin, banknote and exonumia types 
 
     expect(res.count).toBeGreaterThan(25)
 
-    let centavos: SearchResponse['types'] = []
+    let centavos: SearchedType[] = []
     const reader = res.stream(ReadableStream).getReader()
 
     const push = async (): Promise<void> => {
