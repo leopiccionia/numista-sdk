@@ -12,7 +12,7 @@
         clicked: false,
         clientId: '',
         code: '',
-        collectedCoins: null as CollectedItemsResponse | null,
+        collection: null as CollectedItemsResponse | null,
         lang: 'en' as Language,
         redirectUri: 'https://postman-echo.com/get',
       }
@@ -28,7 +28,7 @@
     watch: {
       async code () {
         const userId = await this.oauth.setCode(this.code)
-        this.collectedCoins = await this.numista.userCoins(userId, { lang: this.lang })
+        this.collection = await this.numista.userCoins(userId, { lang: this.lang })
       },
       lang () {
         currencyFormats.clear()
@@ -82,7 +82,7 @@
     </template>
   </form>
 
-  <table v-if="collectedCoins?.item_count">
+  <table v-if="collection?.item_count">
     <thead>
       <tr>
         <th>Count</th>
@@ -93,11 +93,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="{ coin, grade, id: coinId, price, quantity } of collectedCoins.items" :key="coinId">
+      <tr v-for="{ grade, id: typeId, price, quantity, type } of collection.items" :key="typeId">
         <td>{{ quantity }} ×</td>
-        <td>{{ coin.issuer?.name ?? '–' }}</td>
+        <td>{{ type.issuer?.name ?? '–' }}</td>
         <td>
-          <a :href="`https://${lang}.numista.com/catalogue/pieces${coin.id}.html`" rel="noreferrer noopener" target="_blank" v-html="coin.title"/>
+          <a :href="`https://${lang}.numista.com/catalogue/pieces${type.id}.html`" rel="noreferrer noopener" target="_blank" v-html="type.title"/>
         </td>
         <td>{{ grade?.toUpperCase() ?? '–' }}</td>
         <td>{{ price ? formatPrice(price) : '–' }}</td>
