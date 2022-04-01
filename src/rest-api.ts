@@ -40,10 +40,10 @@ export class RestConnector {
         method,
       })
       if (res.ok) {
-        if (res.body) {
-          return res.json() as Promise<T>
-        } else {
+        if (method === 'DELETE') {
           return Promise.resolve() as unknown as Promise<T>
+        } else {
+          return res.json() as Promise<T>
         }
       } else {
         const data = await res.json()
