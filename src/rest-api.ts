@@ -9,8 +9,7 @@ type HttpMethod = 'DELETE' | 'GET' | 'PATCH' | 'POST' | 'PUT'
 const BASE_URL = 'https://api.numista.com/api/v3'
 
 function searchParams (obj: Record<string, any>): URLSearchParams {
-  const entries = Object.keys(obj).map((key) => [key, String(obj[key])])
-  return new URLSearchParams(entries)
+  return new URLSearchParams(Object.entries(obj))
 }
 
 /** @internal */
@@ -34,7 +33,7 @@ export class RestConnector {
     }
 
     try {
-      const res = await fetch(`${BASE_URL}${url}?${searchParams(params).toString()}`, {
+      const res = await fetch(`${BASE_URL}${url}?${searchParams(params)}`, {
         body: body ? JSON.stringify(body) : undefined,
         headers,
         method,
