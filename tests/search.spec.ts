@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import type { SearchedType } from '#lib'
 import { createConnector } from '#tests'
 
-describe.concurrent('Search the catalogue for coin, banknote and exonumia types', () => {
+describe.concurrent('Searching the catalogue for coin, banknote and exonumia types', () => {
 
   it('works', async () => {
     const numista = createConnector()
@@ -24,7 +24,7 @@ describe.concurrent('Search the catalogue for coin, banknote and exonumia types'
   })
 })
 
-describe.concurrent('Search the catalogue for coin, banknote and exonumia types (with pagination)', () => {
+describe.concurrent('Searching the catalogue for coin, banknote and exonumia types (with pagination)', () => {
 
   it('works', async () => {
     const numista = createConnector()

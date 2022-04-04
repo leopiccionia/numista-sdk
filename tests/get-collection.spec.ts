@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { RequestError } from '#lib'
 import { createConnector } from '#tests'
 
-describe.concurrent('Get the list of collections of a user', () => {
+describe.concurrent('Getting the list of collections of a user', () => {
 
   it('works with own collections', async () => {
     const numista = createConnector()
