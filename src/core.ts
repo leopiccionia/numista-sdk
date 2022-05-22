@@ -77,7 +77,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<Issue>('POST', `/types/${typeId}/issues`, _params, data)
+    return this.#rest.post<Issue>(`/types/${typeId}/issues`, _params, data)
   }
 
   /**
@@ -89,7 +89,7 @@ export class NumistaConnector {
    * @returns The item
    */
   addItem (userId: number, data: AddItemRequest): Promise<CollectedItem> {
-    return this.#rest.request<CollectedItem>('POST', `/users/${userId}/collected_items`, {}, data, true)
+    return this.#rest.post<CollectedItem>(`/users/${userId}/collected_items`, {}, data, true)
   }
 
   /**
@@ -106,12 +106,12 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<Type>('POST', '/types', _params, data)
+    return this.#rest.post<Type>('/types', _params, data)
   }
 
   /** Retrieve the list of catalogues used for coin references */
   catalogues (): Promise<CataloguesResponse> {
-    return this.#rest.request<CataloguesResponse>('GET', '/catalogues', {})
+    return this.#rest.get<CataloguesResponse>('/catalogues')
   }
 
   /**
@@ -126,7 +126,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<Type>('GET', `/coins/${coinId}`, _params)
+    return this.#rest.get<Type>(`/coins/${coinId}`, _params)
   }
 
   /**
@@ -160,7 +160,7 @@ export class NumistaConnector {
    * @returns The updated item
    */
   editItem (userId: number, itemId: number, data: EditItemRequest): Promise<CollectedItem> {
-    return this.#rest.request<CollectedItem>('PATCH', `/users/${userId}/collected_items/${itemId}`, {}, data, true)
+    return this.#rest.patch<CollectedItem>(`/users/${userId}/collected_items/${itemId}`, {}, data, true)
   }
 
   /**
@@ -173,7 +173,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<IssuersResponse>('GET', '/issuers', _params)
+    return this.#rest.get<IssuersResponse>('/issuers', _params)
   }
 
   /**
@@ -187,7 +187,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<Issue[]>('GET', `/types/${typeId}/issues`, _params)
+    return this.#rest.get<Issue[]>(`/types/${typeId}/issues`, _params)
   }
 
   /**
@@ -198,7 +198,7 @@ export class NumistaConnector {
    * @param itemId - ID of the collected item
    */
   item (userId: number, itemId: number): Promise<CollectedItem> {
-    return this.#rest.request<CollectedItem>('GET', `/users/${userId}/collected_items/${itemId}`, {}, null, true)
+    return this.#rest.get<CollectedItem>(`/users/${userId}/collected_items/${itemId}`, {}, true)
   }
 
   /**
@@ -259,7 +259,7 @@ export class NumistaConnector {
       q: query,
     }
 
-    const initialData = await this.#rest.request<SearchResponse>('GET', '/types', _params)
+    const initialData = await this.#rest.get<SearchResponse>('/types', _params)
 
     return new PaginatedResult<SearchRequest, SearchResponse>(this.#rest, initialData, '/types', _params)
   }
@@ -277,7 +277,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<PricesResponse>('GET', `/types/${typeId}/issues/${issueId}/prices`, _params)
+    return this.#rest.get<PricesResponse>(`/types/${typeId}/issues/${issueId}/prices`, _params)
   }
 
   /**
@@ -288,7 +288,7 @@ export class NumistaConnector {
    * @param itemId - ID of the collected item
    */
   removeItem (userId: number, itemId: number): Promise<void> {
-    return this.#rest.request<void>('DELETE', `/users/${userId}/collected_items/${itemId}`, {}, null, true)
+    return this.#rest.delete(`/users/${userId}/collected_items/${itemId}`, {}, true)
   }
 
   /**
@@ -305,7 +305,7 @@ export class NumistaConnector {
       q: query,
     }
 
-    return this.#rest.request<SearchResponse>('GET', '/types', _params)
+    return this.#rest.get<SearchResponse>('/types', _params)
   }
 
   /**
@@ -346,7 +346,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<Type>('GET', `/types/${typeId}`, _params)
+    return this.#rest.get<Type>(`/types/${typeId}`, _params)
   }
 
   /**
@@ -360,7 +360,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<UserResponse>('GET', `/users/${userId}`, _params)
+    return this.#rest.get<UserResponse>(`/users/${userId}`, _params)
   }
 
   /**
@@ -393,7 +393,7 @@ export class NumistaConnector {
    * @param params - Miscellaneous params
    */
   userCollections (userId: number, params: Partial<CollectionsRequest> = {}): Promise<CollectionsResponse> {
-    return this.#rest.request<CollectionsResponse>('GET', `/users/${userId}/collections`, params, null, true)
+    return this.#rest.get<CollectionsResponse>(`/users/${userId}/collections`, params, true)
   }
 
   /**
@@ -420,7 +420,7 @@ export class NumistaConnector {
       ...params,
     }
 
-    return this.#rest.request<CollectedItemsResponse>('GET', `/users/${userId}/collected_items`, _params, null, true)
+    return this.#rest.get<CollectedItemsResponse>(`/users/${userId}/collected_items`, _params, true)
   }
 
   /**
@@ -450,7 +450,7 @@ export class NumistaConnector {
       scope: scope.join(','),
     }
 
-    const token = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)
+    const token = await this.#rest.get<OAuthToken>('/oauth_token', params)
     this.#credentials.oauthToken = token
     return token.user_id
   }

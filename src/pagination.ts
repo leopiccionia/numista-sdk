@@ -8,22 +8,22 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
 
   #count: number
   #data: Omit<Res, 'count'>
-  #isAuthenticated: boolean
   #page: number
   #params: Req
   #rest: RestConnector
   #url: string
+  #useAuth: boolean
 
   /** @internal */
-  constructor (rest: RestConnector, res: Res, url: string, params: Req, isAuthenticated = false) {
+  constructor (rest: RestConnector, res: Res, url: string, params: Req, useAuth = false) {
     const { count, ...data } = res
     this.#count = count
     this.#data = data
-    this.#isAuthenticated = isAuthenticated
     this.#page = 1
     this.#params = deepClone(params)
     this.#rest = rest
     this.#url = url
+    this.#useAuth = useAuth
   }
 
   /**
@@ -60,7 +60,7 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
     const nextPage = this.#page + 1
     const params: Req = { ...this.#params, page: nextPage }
 
-    const res = await this.#rest.request<Res>('GET', this.#url, params, null, this.#isAuthenticated)
+    const res = await this.#rest.get<Res>(this.#url, params, this.#useAuth)
     const { count, ...data } = res
     this.#count = count
     this.#data = mergeObjects(this.#data, data)

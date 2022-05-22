@@ -55,7 +55,7 @@ export class OAuthConnector {
       scope: this.#scope,
     }
 
-    const token = await this.#rest.request<OAuthToken>('GET', '/oauth_token', params)
+    const token = await this.#rest.get<OAuthToken>('/oauth_token', params)
     this.#credentials.oauthToken = token
     return token.user_id
   }

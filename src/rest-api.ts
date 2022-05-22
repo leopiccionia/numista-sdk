@@ -1,59 +1,55 @@
-import fetch, { Headers } from 'cross-fetch'
+import { $fetch } from 'ohmyfetch'
+import type { $Fetch, FetchError } from 'ohmyfetch'
 
 import { Credentials } from './credentials'
 import { ConnectionError, RequestError } from './errors'
 import type { APIError } from './types/schemas'
 
-type HttpMethod = 'DELETE' | 'GET' | 'PATCH' | 'POST' | 'PUT'
-
 const BASE_URL = 'https://api.numista.com/api/v3'
 
-function searchParams (obj: Record<string, any>): URLSearchParams {
-  return new URLSearchParams(Object.entries(obj))
+function handleError (error: FetchError<APIError>): never {
+  const { data, response } = error
+  if (response && data) {
+    throw new RequestError(response.status, response.statusText, data.error_message)
+  } else {
+    throw new ConnectionError(error)
+  }
 }
 
 /** @internal */
 export class RestConnector {
 
   #credentials: Credentials
+  #fetch: $Fetch
 
   constructor (credentials: Credentials) {
     this.#credentials = credentials
+    this.#fetch = $fetch.create({ baseURL: BASE_URL })
   }
 
-  async request<T> (method: HttpMethod, url: string, params: object, body: object | null = null, useAuth = false): Promise<T> {
-    const headers = new Headers({
+  #headers (useAuth: boolean): HeadersInit {
+    const headers: HeadersInit = {
       'Numista-API-Key': this.#credentials.apiKey,
-    })
-    if (body) {
-      headers.append('Content-Type', 'application/json')
     }
     if (useAuth && this.#credentials.oauthToken) {
-      headers.append('Authorization', `Bearer ${this.#credentials.oauthToken.access_token}`)
+      headers['Authorization'] = `Bearer ${this.#credentials.oauthToken.access_token}`
     }
+    return headers
+  }
 
-    try {
-      const res = await fetch(`${BASE_URL}${url}?${searchParams(params)}`, {
-        body: body ? JSON.stringify(body) : undefined,
-        headers,
-        method,
-      })
-      if (res.ok) {
-        if (method === 'DELETE') {
-          return Promise.resolve() as unknown as Promise<T>
-        } else {
-          return res.json() as Promise<T>
-        }
-      } else {
-        const data = await res.json()
-        return Promise.reject(new RequestError(res.status, res.statusText, (data as APIError).error_message))
-      }
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        return Promise.reject(new ConnectionError(err))
-      } else {
-        return Promise.reject(new ConnectionError(new Error('Unknown error')))
-      }
-    }
+  async delete (url: string, params: object = {}, useAuth = false): Promise<void> {
+    return this.#fetch(url, { method: 'DELETE', headers: this.#headers(useAuth), params }).catch(handleError)
+  }
+
+  async get<T> (url: string, params: object = {}, useAuth = false): Promise<T> {
+    return this.#fetch<T>(url, { method: 'GET', headers: this.#headers(useAuth), params }).catch(handleError)
+  }
+
+  async patch<T> (url: string, params: object, body: object, useAuth = false): Promise<T> {
+    return this.#fetch<T>(url, { method: 'PATCH', body, headers: this.#headers(useAuth), params }).catch(handleError)
+  }
+
+  async post<T> (url: string, params: object, body: object, useAuth = false): Promise<T> {
+    return this.#fetch<T>(url, { method: 'POST', body, headers: this.#headers(useAuth), params }).catch(handleError)
   }
 }
