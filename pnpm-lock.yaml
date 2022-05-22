@@ -4,7 +4,6 @@ importers:
 
   .:
     specifiers:
-      '@types/node': ^17.0.35
       '@types/uuid': ^8.3.4
       ohmyfetch: ^0.4.18
       tsup: ^5.12.8
@@ -18,7 +17,6 @@ importers:
       ohmyfetch: 0.4.18
       uuid: 8.3.2
     devDependencies:
-      '@types/node': 17.0.35
       '@types/uuid': 8.3.4
       tsup: 5.12.8_typescript@4.6.4
       typedoc: 0.22.15_typescript@4.6.4
@@ -80,10 +78,6 @@ packages:
 
   /@types/chai/4.3.1:
     resolution: {integrity: sha512-/zPMqDkzSZ8t3VtxOa4KPq7uzzW978M9Tvh+j7GHKuo6k6GTLxPJ4J5gE5cjfJ26pnXst0N5Hax8Sr0T2Mi9zQ==}
-    dev: true
-
-  /@types/node/17.0.35:
-    resolution: {integrity: sha512-vu1SrqBjbbZ3J6vwY17jBs8Sr/BKA+/a/WtjRG+whKg1iuLFOosq872EXS0eXWILdO36DHQQeku/ZcL6hz2fpg==}
     dev: true
 
   /@types/uuid/8.3.4:
