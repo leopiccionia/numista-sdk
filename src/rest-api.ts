@@ -9,8 +9,8 @@ const BASE_URL = 'https://api.numista.com/api/v3'
 
 function handleError (error: FetchError<APIError>): never {
   const { data, response } = error
-  if (response && data) {
-    throw new RequestError(response.status, response.statusText, data.error_message)
+  if (response) {
+    throw new RequestError(response.status, response.statusText, data?.error_message || error.message)
   } else {
     throw new ConnectionError(error)
   }
