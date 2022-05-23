@@ -30,6 +30,6 @@ describe.concurrent('Managing collections', () => {
     expect(editedItem.quantity).toBe(3)
 
     const deleted = await numista.removeItem(userId, item.id)
-    expect(deleted).toBeUndefined()
+    expect(deleted).toBeFalsy()
   })
 })
