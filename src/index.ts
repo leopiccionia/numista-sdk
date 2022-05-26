@@ -1,6 +1,6 @@
 export { NumistaConnector } from './core'
 export type { ConnectorConfig } from './core'
-export { ConnectionError, RequestError } from './errors'
+export { RequestError, ResponseError } from './errors'
 export type { OAuthConnector } from './oauth'
 export type { PaginatedResult } from './pagination'
 export * from './types/oauth'

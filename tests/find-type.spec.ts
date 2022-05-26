@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { RequestError } from '#lib'
+import { ResponseError } from '#lib'
 import { createConnector } from '#tests'
 
 describe.concurrent('Finding a type by ID', () => {
@@ -19,8 +19,8 @@ describe.concurrent('Finding a type by ID', () => {
     const numista = createConnector()
     const request = numista.type(999_999_999)
 
-    await request.catch((error: RequestError) => {
-      expect(error).toBeInstanceOf(RequestError)
+    await request.catch((error: ResponseError) => {
+      expect(error).toBeInstanceOf(ResponseError)
       expect(error.status).toBe(404)
     })
   })

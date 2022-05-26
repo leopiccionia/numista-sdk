@@ -1,20 +1,10 @@
 import { $fetch } from 'ohmyfetch'
-import type { $Fetch, FetchError } from 'ohmyfetch'
+import type { $Fetch } from 'ohmyfetch'
 
 import { Credentials } from './credentials'
-import { ConnectionError, RequestError } from './errors'
-import type { APIError } from './types/schemas'
+import { handleFetchError } from './errors'
 
 const BASE_URL = 'https://api.numista.com/api/v3'
-
-function handleError (error: FetchError<APIError>): never {
-  const { data, response } = error
-  if (response) {
-    throw new RequestError(response.status, response.statusText, data?.error_message || error.message)
-  } else {
-    throw new ConnectionError(error)
-  }
-}
 
 /** @internal */
 export class RestConnector {
@@ -38,18 +28,18 @@ export class RestConnector {
   }
 
   async delete (url: string, params: object = {}, useAuth = false): Promise<void> {
-    return this.#fetch(url, { method: 'DELETE', headers: this.#headers(useAuth), params }).catch(handleError)
+    return this.#fetch(url, { method: 'DELETE', headers: this.#headers(useAuth), params }).catch(handleFetchError)
   }
 
   async get<T> (url: string, params: object = {}, useAuth = false): Promise<T> {
-    return this.#fetch<T>(url, { method: 'GET', headers: this.#headers(useAuth), params }).catch(handleError)
+    return this.#fetch<T>(url, { method: 'GET', headers: this.#headers(useAuth), params }).catch(handleFetchError)
   }
 
   async patch<T> (url: string, params: object, body: object, useAuth = false): Promise<T> {
-    return this.#fetch<T>(url, { method: 'PATCH', body, headers: this.#headers(useAuth), params }).catch(handleError)
+    return this.#fetch<T>(url, { method: 'PATCH', body, headers: this.#headers(useAuth), params }).catch(handleFetchError)
   }
 
   async post<T> (url: string, params: object, body: object, useAuth = false): Promise<T> {
-    return this.#fetch<T>(url, { method: 'POST', body, headers: this.#headers(useAuth), params }).catch(handleError)
+    return this.#fetch<T>(url, { method: 'POST', body, headers: this.#headers(useAuth), params }).catch(handleFetchError)
   }
 }

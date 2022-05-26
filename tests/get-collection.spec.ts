@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { RequestError } from '#lib'
+import { ResponseError } from '#lib'
 import { createConnector } from '#tests'
 
 describe.concurrent('Getting the list of collections of a user', () => {
@@ -18,8 +18,8 @@ describe.concurrent('Getting the list of collections of a user', () => {
 
     const request = numista.userCollections(2)
 
-    await request.catch((error: RequestError) => {
-      expect(error).toBeInstanceOf(RequestError)
+    await request.catch((error: ResponseError) => {
+      expect(error).toBeInstanceOf(ResponseError)
       expect(error.status).toBe(401)
     })
   })

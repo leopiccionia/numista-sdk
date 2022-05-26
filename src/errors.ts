@@ -1,20 +1,38 @@
+import type { FetchError } from 'ohmyfetch'
+
+import type { APIError } from './types/schemas'
+
+/**
+ * @internal
+ * Normalize a REST failure into either a `RequestError` or a `ResponseError`
+ * @param error Error returned by `$fetch`
+ */
+export function handleFetchError (error: FetchError<APIError>): never {
+  const { data, response } = error
+  if (response) {
+    throw new ResponseError(response.status, response.statusText, data, error)
+  } else {
+    throw new RequestError(error)
+  }
+}
+
 /**
  * Error returned because server and client could not connect
  */
-export class ConnectionError extends Error {
+export class RequestError extends Error {
 
   /** @internal */
   constructor (error: Error) {
     super(error.message)
-    this.name = 'ConnectionError'
     this.cause = error
+    this.name = 'RequestError'
   }
 }
 
 /**
  * Error returned if server returned an error status
  */
-export class RequestError extends Error {
+export class ResponseError extends Error {
 
   /** HTTP status code */
   status: number
@@ -22,9 +40,10 @@ export class RequestError extends Error {
   statusText: string
 
   /** @internal */
-  constructor (status: number, statusText: string, message: string) {
-    super(message)
-    this.name = 'RequestError'
+  constructor (status: number, statusText: string, response: APIError | undefined, error: Error) {
+    super(response?.error_message || error.message)
+    this.cause = error
+    this.name = 'ResponseError'
     this.status = status
     this.statusText = statusText
   }
