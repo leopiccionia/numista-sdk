@@ -2,33 +2,10 @@
 
 # Class: RequestError
 
-Error returned if server returned an error status
+Error returned because server and client could not connect
 
 ## Hierarchy
 
 - `Error`
 
   ↳ **`RequestError`**
-
-## Table of contents
-
-### Properties
-
-- [status](RequestError.md#status)
-- [statusText](RequestError.md#statustext)
-
-## Properties
-
-### status
-
-• **status**: `number`
-
-HTTP status code
-
-___
-
-### statusText
-
-• **statusText**: `string`
-
-HTTP status text

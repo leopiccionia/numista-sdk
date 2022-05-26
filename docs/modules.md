@@ -6,11 +6,11 @@
 
 ### Classes
 
-- [ConnectionError](classes/ConnectionError.md)
 - [NumistaConnector](classes/NumistaConnector.md)
 - [OAuthConnector](classes/OAuthConnector.md)
 - [PaginatedResult](classes/PaginatedResult.md)
 - [RequestError](classes/RequestError.md)
+- [ResponseError](classes/ResponseError.md)
 
 ### Interfaces
 

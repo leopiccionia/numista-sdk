@@ -30,8 +30,8 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 - `Promise`-based APIs, designed for `async`/`await`
 - Experimental [`ReadableStream`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)-based API for paginated requests
 - Proper error handling:
-  - Connector returns `ConnectionError` if connection failed
-  - Connector returns `RequestError` if server returned an error message
+  - Connector returns `RequestError` if the connection with the server failed
+  - Connector returns `ResponseError` if the server responded with an error message
 
 ## Learn more
 
