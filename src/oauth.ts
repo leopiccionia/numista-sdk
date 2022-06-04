@@ -3,8 +3,7 @@ import { v4 as uuid } from 'uuid'
 import type { Credentials } from './credentials'
 import type { RestConnector } from './rest-api'
 import type { OAuthToken, Scope } from './types/oauth'
-import type { OAuthAuthorizationCodeRequest } from './types/requests'
-import type { BaseRequest } from './types/requests'
+import type { BaseRequest, OAuthAuthorizationCodeRequest } from './types/requests'
 
 /** OAuth adapter using authorization code */
 export class OAuthConnector {
