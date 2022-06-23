@@ -1,9 +1,9 @@
 /** Catalogue category */
 export type Category = 'coin' | 'banknote' | 'exonumia'
 
-export type CompositionType = 'plain'
-
 export type CoinType = 'common_coin' | 'commemorative_coin' | 'non_circulating_coin' | 'token' | 'pattern'
+
+export type CompositionType = 'plain'
 
 export type CopyrightType = 'personnel' | 'site_autorise' | 'autre'
 
