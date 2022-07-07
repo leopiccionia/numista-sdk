@@ -23,8 +23,7 @@ export class RequestError extends Error {
 
   /** @internal */
   constructor (error: Error) {
-    super(error.message)
-    this.cause = error
+    super(error.message, { cause: error })
     this.name = 'RequestError'
   }
 }
@@ -41,8 +40,7 @@ export class ResponseError extends Error {
 
   /** @internal */
   constructor (status: number, statusText: string, response: APIError | undefined, error: Error) {
-    super(response?.error_message || error.message)
-    this.cause = error
+    super(response?.error_message || error.message, { cause: error })
     this.name = 'ResponseError'
     this.status = status
     this.statusText = statusText
