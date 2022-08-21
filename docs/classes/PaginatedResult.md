@@ -110,9 +110,9 @@ ___
 
 Fetch and stream all missing pages (experimental)
 
-**`params`** constructor - A ReadableStream constructor
+**`Params`**
 
-**`experimental`**
+constructor - A ReadableStream constructor
 
 #### Parameters
 

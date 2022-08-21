@@ -47,7 +47,7 @@
 - [TypeUpdate](interfaces/TypeUpdate.md)
 - [UserResponse](interfaces/UserResponse.md)
 
-### Type aliases
+### Type Aliases
 
 - [Category](modules.md#category)
 - [CoinType](modules.md#cointype)
@@ -58,7 +58,7 @@
 - [Orientation](modules.md#orientation)
 - [Scope](modules.md#scope)
 
-## Type aliases
+## Type Aliases
 
 ### Category
 

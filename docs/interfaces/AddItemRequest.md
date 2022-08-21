@@ -32,7 +32,9 @@ ___
 
 Indicate whether the item is available for swap
 
-**`defaultvalue`** false
+**`Default Value`**
+
+false
 
 ___
 
@@ -82,7 +84,9 @@ ___
 
 Quantity of items
 
-**`defaultvalue`** 1
+**`Default Value`**
+
+1
 
 ___
 
