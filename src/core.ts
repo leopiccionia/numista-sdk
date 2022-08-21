@@ -36,33 +36,6 @@ export class NumistaConnector {
   }
 
   /**
-   * This endpoint allows to add a coin to the catalogue
-   *
-   * It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
-   * @deprecated Use {@linkcode NumistaConnector.addType addType} (since 0.3.0)
-   * @param data - Data related to the coin to add to the catalogue
-   * @param params - Miscellaneous params
-   * @returns The coin that has been added to the catalogue
-   */
-  addCoin (data: TypeUpdate, params: Partial<BaseRequest> = {}): Promise<Type> {
-    return this.addType(data, params)
-  }
-
-  /**
-   * Add a coin issue
-   *
-   * It requires a specific permission associated to your API key
-   * @deprecated Use {@linkcode NumistaConnector.addIssue addIssue} (since 0.3.0)
-   * @param coinId - ID of the coin to which the issue is added
-   * @param data - Data related to the coin issue to add to the catalogue
-   * @param params - Miscellaneous params
-   * @returns The coin issue that has been added to the catalogue
-   */
-  addCoinIssue (coinId: number, data: IssueUpdate, params: Partial<BaseRequest> = {}): Promise<Issue> {
-    return this.addIssue(coinId, data, params)
-  }
-
-  /**
    * Add a issue
    *
    * It requires a specific permission associated to your API key
@@ -112,42 +85,6 @@ export class NumistaConnector {
   /** Retrieve the list of catalogues used for coin references */
   catalogues (): Promise<CataloguesResponse> {
     return this.#rest.get<CataloguesResponse>('/catalogues')
-  }
-
-  /**
-   * Find a coin by ID
-   * @deprecated Use {@linkcode NumistaConnector.type type} (since 0.3.0)
-   * @param coinId - ID of the coin to fetch
-   * @param params - Miscellaneous params
-   */
-  coin (coinId: number, params: Partial<BaseRequest> = {}): Promise<Type> {
-    const _params: BaseRequest = {
-      lang: this.#config.defaultLanguage,
-      ...params,
-    }
-
-    return this.#rest.get<Type>(`/coins/${coinId}`, _params)
-  }
-
-  /**
-   * Find the issues of a coin
-   * @deprecated Use {@linkcode NumistaConnector.issues issues} (since 0.3.0)
-   * @param coinId - ID of the coin to fetch the issues from
-   * @param params - Miscellaneous params
-   */
-  coinIssues (coinId: number, params: Partial<BaseRequest> = {}): Promise<Issue[]> {
-    return this.issues(coinId, params)
-  }
-
-  /**
-   * Get estimates for the price of an issue of a coin
-   * @deprecated Use {@linkcode NumistaConnector.prices prices} (since 0.3.0)
-   * @param coinId - ID of the coin type
-   * @param issueId - ID of the issue of the coin
-   * @param params - Miscellaneous params
-   */
-  coinPrices (coinId: number, issueId: number, params: Partial<PricesRequest> = {}): Promise<PricesResponse> {
-    return this.prices(coinId, issueId, params)
   }
 
   /**

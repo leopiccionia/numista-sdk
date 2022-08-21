@@ -12,15 +12,10 @@ The main entrypoint for Numista SDK
 
 ### Methods
 
-- [addCoin](NumistaConnector.md#addcoin)
-- [addCoinIssue](NumistaConnector.md#addcoinissue)
 - [addIssue](NumistaConnector.md#addissue)
 - [addItem](NumistaConnector.md#additem)
 - [addType](NumistaConnector.md#addtype)
 - [catalogues](NumistaConnector.md#catalogues)
-- [coin](NumistaConnector.md#coin)
-- [coinIssues](NumistaConnector.md#coinissues)
-- [coinPrices](NumistaConnector.md#coinprices)
 - [editItem](NumistaConnector.md#edititem)
 - [issuers](NumistaConnector.md#issuers)
 - [issues](NumistaConnector.md#issues)
@@ -62,61 +57,6 @@ The main entrypoint for Numista SDK
 | `config` | `Partial`<[`ConnectorConfig`](../interfaces/ConnectorConfig.md)\> | Miscellaneous configuration |
 
 ## Methods
-
-### addCoin
-
-▸ **addCoin**(`data`, `params?`): `Promise`<[`Type`](../interfaces/Type.md)\>
-
-This endpoint allows to add a coin to the catalogue
-
-It requires a specific permission associated to your API key. After adding a coin, you are required to add at least one issue
-
-**`Deprecated`**
-
-Use [`addType`](NumistaConnector.md#addtype) (since 0.3.0)
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `data` | [`TypeUpdate`](../interfaces/TypeUpdate.md) | Data related to the coin to add to the catalogue |
-| `params` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Miscellaneous params |
-
-#### Returns
-
-`Promise`<[`Type`](../interfaces/Type.md)\>
-
-The coin that has been added to the catalogue
-
-___
-
-### addCoinIssue
-
-▸ **addCoinIssue**(`coinId`, `data`, `params?`): `Promise`<[`Issue`](../interfaces/Issue.md)\>
-
-Add a coin issue
-
-It requires a specific permission associated to your API key
-
-**`Deprecated`**
-
-Use [`addIssue`](NumistaConnector.md#addissue) (since 0.3.0)
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `coinId` | `number` | ID of the coin to which the issue is added |
-| `data` | [`IssueUpdate`](../interfaces/IssueUpdate.md) | Data related to the coin issue to add to the catalogue |
-| `params` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Miscellaneous params |
-
-#### Returns
-
-`Promise`<[`Issue`](../interfaces/Issue.md)\>
-
-The coin issue that has been added to the catalogue
-
-___
 
 ### addIssue
 
@@ -197,76 +137,6 @@ Retrieve the list of catalogues used for coin references
 #### Returns
 
 `Promise`<[`CataloguesResponse`](../interfaces/CataloguesResponse.md)\>
-
-___
-
-### coin
-
-▸ **coin**(`coinId`, `params?`): `Promise`<[`Type`](../interfaces/Type.md)\>
-
-Find a coin by ID
-
-**`Deprecated`**
-
-Use [`type`](NumistaConnector.md#type) (since 0.3.0)
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `coinId` | `number` | ID of the coin to fetch |
-| `params` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Miscellaneous params |
-
-#### Returns
-
-`Promise`<[`Type`](../interfaces/Type.md)\>
-
-___
-
-### coinIssues
-
-▸ **coinIssues**(`coinId`, `params?`): `Promise`<[`Issue`](../interfaces/Issue.md)[]\>
-
-Find the issues of a coin
-
-**`Deprecated`**
-
-Use [`issues`](NumistaConnector.md#issues) (since 0.3.0)
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `coinId` | `number` | ID of the coin to fetch the issues from |
-| `params` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Miscellaneous params |
-
-#### Returns
-
-`Promise`<[`Issue`](../interfaces/Issue.md)[]\>
-
-___
-
-### coinPrices
-
-▸ **coinPrices**(`coinId`, `issueId`, `params?`): `Promise`<[`PricesResponse`](../interfaces/PricesResponse.md)\>
-
-Get estimates for the price of an issue of a coin
-
-**`Deprecated`**
-
-Use [`prices`](NumistaConnector.md#prices) (since 0.3.0)
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `coinId` | `number` | ID of the coin type |
-| `issueId` | `number` | ID of the issue of the coin |
-| `params` | `Partial`<[`PricesRequest`](../interfaces/PricesRequest.md)\> | Miscellaneous params |
-
-#### Returns
-
-`Promise`<[`PricesResponse`](../interfaces/PricesResponse.md)\>
 
 ___
 
