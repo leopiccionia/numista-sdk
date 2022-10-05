@@ -2,7 +2,7 @@ export function deepClone<T> (original: T): Readonly<T> {
   return JSON.parse(JSON.stringify(original))
 }
 
-export function mergeObjects<T> (acc: T, curr: T): Readonly<T> {
+export function mergeObjects<T extends object> (acc: T, curr: T): Readonly<T> {
   const merge: Record<string, any> = { ...acc }
 
   for (const key of Object.keys(curr)) {
