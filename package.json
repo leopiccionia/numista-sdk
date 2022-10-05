@@ -36,13 +36,12 @@
     "url": "https://github.com/leopiccionia/numista-sdk/issues"
   },
   "dependencies": {
-    "ohmyfetch": "^0.4.19",
-    "uuid": "^8.3.2"
+    "@lukeed/uuid": "^2.0.0",
+    "ohmyfetch": "^0.4.19"
   },
   "devDependencies": {
     "@babel/types": "^7.19.3",
     "@types/node": "^18.8.2",
-    "@types/uuid": "^8.3.4",
     "tsup": "^6.2.3",
     "typedoc": "^0.23.15",
     "typedoc-plugin-markdown": "^3.13.6",

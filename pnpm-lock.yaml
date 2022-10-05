@@ -5,23 +5,21 @@ importers:
   .:
     specifiers:
       '@babel/types': ^7.19.3
+      '@lukeed/uuid': ^2.0.0
       '@types/node': ^18.8.2
-      '@types/uuid': ^8.3.4
       ohmyfetch: ^0.4.19
       tsup: ^6.2.3
       typedoc: ^0.23.15
       typedoc-plugin-markdown: ^3.13.6
       typescript: ^4.8.4
-      uuid: ^8.3.2
       vite: ^3.1.4
       vitest: ~0.23.4
     dependencies:
+      '@lukeed/uuid': 2.0.0
       ohmyfetch: 0.4.19
-      uuid: 8.3.2
     devDependencies:
       '@babel/types': 7.19.3
       '@types/node': 18.8.2
-      '@types/uuid': 8.3.4
       tsup: 6.2.3_typescript@4.8.4
       typedoc: 0.23.15_typescript@4.8.4
       typedoc-plugin-markdown: 3.13.6_typedoc@0.23.15
@@ -89,6 +87,18 @@ packages:
     dev: true
     optional: true
 
+  /@lukeed/csprng/1.0.1:
+    resolution: {integrity: sha512-uSvJdwQU5nK+Vdf6zxcWAY2A8r7uqe+gePwLWzJ+fsQehq18pc0I2hJKwypZ2aLM90+Er9u1xn4iLJPZ+xlL4g==}
+    engines: {node: '>=8'}
+    dev: false
+
+  /@lukeed/uuid/2.0.0:
+    resolution: {integrity: sha512-dUz8OmYvlY5A9wXaroHIMSPASpSYRLCqbPvxGSyHguhtTQIy24lC+EGxQlwv71AhRCO55WOtgwhzQLpw27JaJQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@lukeed/csprng': 1.0.1
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -122,10 +132,6 @@ packages:
 
   /@types/node/18.8.2:
     resolution: {integrity: sha512-cRMwIgdDN43GO4xMWAfJAecYn8wV4JbsOGHNfNUIDiuYkUYAR5ec4Rj7IO2SAhFPEfpPtLtUTbbny/TCT7aDwA==}
-    dev: true
-
-  /@types/uuid/8.3.4:
-    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: true
 
   /@vitejs/plugin-vue/3.1.2_vite@3.1.4+vue@3.2.40:
@@ -1317,11 +1323,6 @@ packages:
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0
-    dev: false
-
-  /uuid/8.3.2:
-    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
-    hasBin: true
     dev: false
 
   /vite/3.1.4:

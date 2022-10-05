@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from '@lukeed/uuid'
 
 import type { Credentials } from './credentials'
 import type { RestConnector } from './rest-api'
