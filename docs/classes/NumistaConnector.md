@@ -16,6 +16,7 @@ The main entrypoint for Numista SDK
 - [addItem](NumistaConnector.md#additem)
 - [addType](NumistaConnector.md#addtype)
 - [catalogues](NumistaConnector.md#catalogues)
+- [code](NumistaConnector.md#code)
 - [editItem](NumistaConnector.md#edititem)
 - [issuers](NumistaConnector.md#issuers)
 - [issues](NumistaConnector.md#issues)
@@ -137,6 +138,26 @@ Retrieve the list of catalogues used for coin references
 #### Returns
 
 `Promise`<[`CataloguesResponse`](../interfaces/CataloguesResponse.md)\>
+
+___
+
+### code
+
+▸ **code**(`catalogue`, `number`, `params`): `Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
+
+Search the catalogue for types by catalogue code
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `catalogue` | `number` \| [`CatalogueCode`](../modules.md#cataloguecode) | ID of a reference catalogue |
+| `number` | `string` | Number of the searched typed in a reference catalogue |
+| `params` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"number"`` \| ``"catalogue"``\>\> | Miscellaneous params |
+
+#### Returns
+
+`Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
 
 ___
 

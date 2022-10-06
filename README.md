@@ -20,6 +20,9 @@ const numista = new NumistaConnector(YOUR_API_KEY, YOUR_CLIENT_ID, { defaultLang
 // Get the Morgan Dollar
 const morganDollar = await numista.type(1492)
 
+// Get the Peace Dollar
+const peaceDollar = await numista.code('KM', '150', { issuer: 'united-states' })
+
 // Get all American coins depicting a buffalo
 const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' })
 ```

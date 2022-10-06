@@ -113,15 +113,22 @@ export interface PricesRequest extends BaseRequest {
   currency?: string
 }
 
+/**
+ * At least one of the following parameters should be provided: `q`, `issuer`, `catalogue`
+ */
 export interface SearchRequest extends BaseRequest, PaginatedRequest {
   /** Language */
   lang?: Language
-  /** Search query */
-  q: string
-  /** Issuer code. If provided, only the coins from the given issuer are returned */
-  issuer?: string
   /** Catalogue category */
   category?: Category
+  /** Search query */
+  q?: string
+  /** Issuer code. If provided, only the coins from the given issuer are returned */
+  issuer?: string
+  /** ID of a reference catalogue. If provided, only the types referenced in the given catalogue are returned */
+  catalogue?: number
+  /** Number of the searched typed in a reference catalogue. This parameter works only with the other parameter `catalogue` */
+  number?: string
   /** Page of results */
   page: number
   /** Results per page */

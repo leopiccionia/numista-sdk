@@ -1,3 +1,4 @@
+import { getCatalogueByCode } from './catalogues'
 import { Credentials } from './credentials'
 import { OAuthConnector } from './oauth'
 import { PaginatedResult } from './pagination'
@@ -6,6 +7,7 @@ import type { CollectedItem, Issue, IssueUpdate, Language, Type, TypeUpdate } fr
 import type { OAuthToken, Scope } from './types/oauth'
 import type { AddItemRequest, BaseRequest, CollectedItemsRequest, CollectionsRequest, EditItemRequest, OAuthClientCredentialsRequest, PricesRequest, SearchRequest } from './types/requests'
 import type { CataloguesResponse, CollectedItemsResponse, CollectionsResponse, IssuersResponse, PricesResponse, SearchResponse, UserResponse } from './types/responses'
+import type { CatalogueCode } from './types/sugar'
 
 export interface ConnectorConfig {
   /** The default language for use in other methods */
@@ -85,6 +87,18 @@ export class NumistaConnector {
   /** Retrieve the list of catalogues used for coin references */
   catalogues (): Promise<CataloguesResponse> {
     return this.#rest.get<CataloguesResponse>('/catalogues')
+  }
+
+  /**
+   * Search the catalogue for types by catalogue code
+   * @param catalogue - ID of a reference catalogue
+   * @param number - Number of the searched typed in a reference catalogue
+   * @param params - Miscellaneous params
+   */
+  code (catalogue: number | CatalogueCode, number: string, params: Partial<Omit<SearchRequest, 'catalogue' | 'number'>>): Promise<SearchResponse> {
+    const _catalogue: number = (typeof catalogue === 'string') ? getCatalogueByCode(catalogue) : catalogue
+
+    return this.search('', { catalogue: _catalogue, number, ...params })
   }
 
   /**

@@ -49,6 +49,7 @@
 
 ### Type Aliases
 
+- [CatalogueCode](modules.md#cataloguecode)
 - [Category](modules.md#category)
 - [CoinType](modules.md#cointype)
 - [CompositionType](modules.md#compositiontype)
@@ -59,6 +60,12 @@
 - [Scope](modules.md#scope)
 
 ## Type Aliases
+
+### CatalogueCode
+
+Ƭ **CatalogueCode**: ``"KM"`` \| ``"N"`` \| ``"P"`` \| ``"X"`` \| ``"Y"``
+
+___
 
 ### Category
 

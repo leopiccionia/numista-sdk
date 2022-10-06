@@ -2,6 +2,8 @@
 
 # Interface: SearchRequest
 
+At least one of the following parameters should be provided: `q`, `issuer`, `catalogue`
+
 ## Hierarchy
 
 - [`BaseRequest`](BaseRequest.md)
@@ -14,14 +16,24 @@
 
 ### Properties
 
+- [catalogue](SearchRequest.md#catalogue)
 - [category](SearchRequest.md#category)
 - [count](SearchRequest.md#count)
 - [issuer](SearchRequest.md#issuer)
 - [lang](SearchRequest.md#lang)
+- [number](SearchRequest.md#number)
 - [page](SearchRequest.md#page)
 - [q](SearchRequest.md#q)
 
 ## Properties
+
+### catalogue
+
+• `Optional` **catalogue**: `number`
+
+ID of a reference catalogue. If provided, only the types referenced in the given catalogue are returned
+
+___
 
 ### category
 
@@ -63,6 +75,14 @@ Language
 
 ___
 
+### number
+
+• `Optional` **number**: `string`
+
+Number of the searched typed in a reference catalogue. This parameter works only with the other parameter `catalogue`
+
+___
+
 ### page
 
 • **page**: `number`
@@ -77,6 +97,6 @@ ___
 
 ### q
 
-• **q**: `string`
+• `Optional` **q**: `string`
 
 Search query
