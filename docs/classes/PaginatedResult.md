@@ -21,10 +21,10 @@ A paginated response
 
 ### Methods
 
+- [[asyncIterator]](PaginatedResult.md#[asynciterator])
 - [collect](PaginatedResult.md#collect)
 - [hasNext](PaginatedResult.md#hasnext)
 - [next](PaginatedResult.md#next)
-- [stream](PaginatedResult.md#stream)
 
 ## Accessors
 
@@ -64,6 +64,20 @@ Last fetched page
 
 ## Methods
 
+### [asyncIterator]
+
+▸ **[asyncIterator]**(): `AsyncGenerator`<`Omit`<`Res`, ``"count"``\>, `any`, `unknown`\>
+
+Fetch and iterate through all missing pages
+
+#### Returns
+
+`AsyncGenerator`<`Omit`<`Res`, ``"count"``\>, `any`, `unknown`\>
+
+The async iterator
+
+___
+
 ### collect
 
 ▸ **collect**(): `Promise`<`Omit`<`Res`, ``"count"``\>\>
@@ -101,27 +115,3 @@ Fetch next page
 `Promise`<`Res`\>
 
 The next page
-
-___
-
-### stream
-
-▸ **stream**(`constructor`): `ReadableStream`<`Omit`<`Res`, ``"count"``\>\>
-
-Fetch and stream all missing pages (experimental)
-
-**`Params`**
-
-constructor - A ReadableStream constructor
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `constructor` | <T\>(`source`: `UnderlyingSource`<`T`\>) => `ReadableStream`<`any`\> |
-
-#### Returns
-
-`ReadableStream`<`Omit`<`Res`, ``"count"``\>\>
-
-A WHATWG-compatible readable stream

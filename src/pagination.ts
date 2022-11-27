@@ -74,28 +74,15 @@ export class PaginatedResult<Req extends PaginatedRequest, Res extends Paginated
   }
 
   /**
-   * Fetch and stream all missing pages (experimental)
-   * @params constructor - A ReadableStream constructor
-   * @returns A WHATWG-compatible readable stream
-   * @experimental
+   * Fetch and iterate through all missing pages
+   * @return The async iterator
    */
-  stream (constructor: { new<T> (source: UnderlyingSource<T>): ReadableStream }): ReadableStream<Omit<Res, 'count'>> {
-    let canceled = false
+  async* [Symbol.asyncIterator] (): AsyncGenerator<Omit<Res, 'count'>> {
+    yield this.#data
 
-    return new constructor<Omit<Res, 'count'>>({
-      cancel: () => {
-        canceled = true
-      },
-      start: async (controller) => {
-        controller.enqueue(this.#data)
-
-        while (this.hasNext() && !canceled) {
-          const { count, ...data } = await this.next()
-          controller.enqueue(deepClone(data))
-        }
-
-        controller.close()
-      },
-    })
+    while (this.hasNext()) {
+      const { count, ...data } = await this.next()
+      yield deepClone(data)
+    }
   }
 }

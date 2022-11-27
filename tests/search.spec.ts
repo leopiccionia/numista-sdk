@@ -1,5 +1,3 @@
-import { ReadableStream } from 'node:stream/web'
-
 import { describe, expect, it } from 'vitest'
 
 import type { SearchedType } from '#lib'
@@ -60,24 +58,17 @@ describe.concurrent('Searching the catalogue for coin, banknote and exonumia typ
     expect(res.data.types.length).toBe(res.count)
   })
 
-  it('can be streamed', async () => {
+  it ('can be iterated', async () => {
     const numista = createConnector()
     const res = await numista.paginatedSearch('centavos', { category: 'coin', count: 25, issuer: 'bresil' })
 
     expect(res.count).toBeGreaterThan(25)
 
     let centavos: SearchedType[] = []
-    const reader = res.stream(ReadableStream).getReader()
 
-    const push = async (): Promise<void> => {
-      const { done, value } = await reader.read()
-      if (!done) {
-        centavos = [...centavos, ...value.types]
-        return push()
-      }
+    for await (const page of res) {
+      centavos = [...centavos, ...page.types]
     }
-
-    await push()
 
     expect(centavos.length).toBe(res.count)
     expect(res.data.types.length).toBe(res.count)
