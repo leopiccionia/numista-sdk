@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@lukeed/uuid": "^2.0.0",
-    "ohmyfetch": "^0.4.21"
+    "ofetch": "^1.0.0"
   },
   "devDependencies": {
     "@babel/types": "^7.20.2",

@@ -1,5 +1,5 @@
-import { $fetch } from 'ohmyfetch'
-import type { $Fetch } from 'ohmyfetch'
+import { ofetch } from 'ofetch'
+import type { $Fetch } from 'ofetch'
 
 import { Credentials } from './credentials'
 import { handleFetchError } from './errors'
@@ -14,7 +14,7 @@ export class RestConnector {
 
   constructor (credentials: Credentials) {
     this.#credentials = credentials
-    this.#fetch = $fetch.create({ baseURL: BASE_URL })
+    this.#fetch = ofetch.create({ baseURL: BASE_URL })
   }
 
   #headers (useAuth: boolean): HeadersInit {

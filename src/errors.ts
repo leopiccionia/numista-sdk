@@ -1,4 +1,4 @@
-import type { FetchError } from 'ohmyfetch'
+import type { FetchError } from 'ofetch'
 
 import type { APIError } from './types/schemas'
 
