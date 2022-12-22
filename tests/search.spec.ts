@@ -58,7 +58,7 @@ describe.concurrent('Searching the catalogue for coin, banknote and exonumia typ
     expect(res.data.types.length).toBe(res.count)
   })
 
-  it ('can be iterated', async () => {
+  it('can be iterated', async () => {
     const numista = createConnector()
     const res = await numista.paginatedSearch('centavos', { category: 'coin', count: 25, issuer: 'bresil' })
 
