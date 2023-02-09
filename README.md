@@ -29,9 +29,8 @@ const buffalos = await numista.searchCoins('buffalo', { issuer: 'united-states' 
 
 ## Features
 
-- Good type-safety and IntelliSense support
+- Great type-safety and IntelliSense support
 - `Promise`-based APIs, designed for `async`/`await`
-- Experimental [`ReadableStream`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)-based API for paginated requests
 - Proper error handling:
   - The connector returns `RequestError` if the connection with the server failed
   - The connector returns `ResponseError` if the server responded with an error message
