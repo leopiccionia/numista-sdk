@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Unofficial SDK for Numista",
   "license": "MIT",
-  "main": "dist/index.umd.js",
+  "type": "module",
   "module": "dist/index.es.js",
   "typings": "dist/index.d.ts",
   "exports": {
