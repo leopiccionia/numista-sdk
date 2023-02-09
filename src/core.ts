@@ -210,7 +210,7 @@ export class NumistaConnector {
       q: query,
     }
 
-    const initialData = await this.#rest.get<SearchResponse>('/types', _params)
+    const initialData = await this.search(query, _params)
 
     return new PaginatedResult<SearchRequest, SearchResponse>(this.#rest, initialData, '/types', _params)
   }
