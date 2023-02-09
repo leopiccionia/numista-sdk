@@ -21,7 +21,7 @@ A paginated response
 
 ### Methods
 
-- [[asyncIterator]](PaginatedResult.md#[asynciterator])
+- [[Symbol.asyncIterator]](PaginatedResult.md#[asynciterator])
 - [collect](PaginatedResult.md#collect)
 - [hasNext](PaginatedResult.md#hasnext)
 - [next](PaginatedResult.md#next)
@@ -64,7 +64,7 @@ Last fetched page
 
 ## Methods
 
-### [asyncIterator]
+### [Symbol.asyncIterator]
 
 ▸ **[asyncIterator]**(): `AsyncGenerator`<`Omit`<`Res`, ``"count"``\>, `any`, `unknown`\>
 
