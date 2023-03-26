@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.3](https://github.com/leopiccionia/numista-sdk/compare/v0.4.0...v0.4.3) (2023-03-26)
+
+Update types to align to current Numista schemas.
+
 ## [0.4.0](https://github.com/leopiccionia/numista-sdk/compare/v0.3.0...v0.4.0) (2023-02-08)
 
 This release contain many breaking changes. While breaking stuff is not desirable, this releases puts the SDK a lot closer to stability.
