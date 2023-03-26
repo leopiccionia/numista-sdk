@@ -1,1 +1,1 @@
-export type CatalogueCode = 'KM' | 'N' | 'P' | 'X' | 'Y'
+export type CatalogueCode = 'KM' | 'C' | 'N' | 'P' | 'X' | 'Y'
