@@ -63,7 +63,7 @@
 
 ### CatalogueCode
 
-Ƭ **CatalogueCode**: ``"KM"`` \| ``"N"`` \| ``"P"`` \| ``"X"`` \| ``"Y"``
+Ƭ **CatalogueCode**: ``"KM"`` \| ``"C"`` \| ``"N"`` \| ``"P"`` \| ``"X"`` \| ``"Y"``
 
 ___
 

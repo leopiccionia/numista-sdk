@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.4](https://github.com/leopiccionia/numista-sdk/compare/v0.4.3...v0.4.4) (2023-03-26)
+
+Add `C` (Craig's _Coins of the World, 1750-1850_) to the well-known catalogues.
+
 ## [0.4.3](https://github.com/leopiccionia/numista-sdk/compare/v0.4.0...v0.4.3) (2023-03-26)
 
 Update types to align to current Numista schemas.
