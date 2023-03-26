@@ -16,6 +16,7 @@
 - [commemorated\_topic](Type.md#commemorated_topic)
 - [comments](Type.md#comments)
 - [composition](Type.md#composition)
+- [demonetization](Type.md#demonetization)
 - [edge](Type.md#edge)
 - [id](Type.md#id)
 - [issuer](Type.md#issuer)
@@ -33,6 +34,7 @@
 - [shape](Type.md#shape)
 - [size](Type.md#size)
 - [tags](Type.md#tags)
+- [technique](Type.md#technique)
 - [thickness](Type.md#thickness)
 - [title](Type.md#title)
 - [type](Type.md#type)
@@ -75,13 +77,28 @@ ___
 
 • `Optional` **composition**: `Object`
 
-Composition of coin (metallic content)
+Composition (metallic content)
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `text?` | `string` | Description of the composition |
+
+___
+
+### demonetization
+
+• `Optional` **demonetization**: `Object`
+
+Information about the demonetization of the coin or banknote
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `demonetization_date?` | `string` | Date of demonetisation (YYYY-MM-DD) |
+| `is_demonetized` | `number` | True if the type is demonetized, false if it is not demonetized |
 
 ___
 
@@ -193,6 +210,8 @@ ___
 
 • `Optional` **ruler**: { `group?`: { `id`: `number` ; `name`: `string`  } ; `id`: `number` ; `name`: `string` ; `wikidata_id?`: `string`  }[]
 
+Ruling authorities (emperor, queen, period, etc.)
+
 ___
 
 ### series
@@ -207,7 +226,7 @@ ___
 
 • `Optional` **shape**: `string`
 
-Shape of the coin
+Shape
 
 ___
 
@@ -215,7 +234,7 @@ ___
 
 • `Optional` **size**: `number`
 
-Size of coin (diameter) in millimeters
+Size (diameter) in millimeters
 
 ___
 
@@ -224,6 +243,20 @@ ___
 • `Optional` **tags**: `string`[]
 
 List of tags
+
+___
+
+### technique
+
+• `Optional` **technique**: `Object`
+
+Manufacturing technique
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `text` | `string` | Description of the technique |
 
 ___
 
@@ -267,7 +300,7 @@ ___
 
 • `Optional` **value**: `Object`
 
-Face value of the coin
+Face value
 
 #### Type declaration
 
@@ -291,4 +324,4 @@ ___
 
 • `Optional` **weight**: `number`
 
-Weight of the coin in grams
+Weight in grams

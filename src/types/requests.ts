@@ -123,7 +123,7 @@ export interface SearchRequest extends BaseRequest, PaginatedRequest {
   category?: Category
   /** Search query */
   q?: string
-  /** Issuer code. If provided, only the coins from the given issuer are returned */
+  /** Issuer code. If provided, only the types from the given issuer are returned */
   issuer?: string
   /** ID of a reference catalogue. If provided, only the types referenced in the given catalogue are returned */
   catalogue?: number

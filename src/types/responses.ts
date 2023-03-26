@@ -40,7 +40,7 @@ export interface CollectedItemsResponse {
   /** Count of different types offered for swap by the user */
   item_type_for_swap_count: number
   /** List of items in the collection */
-  items: Array<CollectedItem>
+  items: CollectedItem[]
 }
 
 export interface CollectionsResponse {
@@ -61,7 +61,7 @@ export interface IssuersResponse {
     name: string
     /** Identifier of the issuer at Wikidata, starting with a "Q" */
     wikidata_id?: string
-    parent: Issuer
+    parent?: Issuer
   }>
 }
 
@@ -81,7 +81,7 @@ export interface SearchResponse extends PaginatedResponse {
   /** Total count of results */
   count: number
   /** List of results on the given page */
-  types: Array<SearchedType>
+  types: SearchedType[]
 }
 
 export interface UserResponse {

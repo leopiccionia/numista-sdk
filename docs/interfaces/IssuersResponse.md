@@ -21,6 +21,6 @@ ___
 
 ### issuers
 
-• **issuers**: { `code`: `string` ; `name`: `string` ; `parent`: [`Issuer`](Issuer.md) ; `wikidata_id?`: `string`  }[]
+• **issuers**: { `code`: `string` ; `name`: `string` ; `parent?`: [`Issuer`](Issuer.md) ; `wikidata_id?`: `string`  }[]
 
 List of issuers

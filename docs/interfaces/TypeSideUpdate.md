@@ -10,6 +10,7 @@
 - [designers](TypeSideUpdate.md#designers)
 - [engravers](TypeSideUpdate.md#engravers)
 - [lettering](TypeSideUpdate.md#lettering)
+- [lettering\_scripts](TypeSideUpdate.md#lettering_scripts)
 - [lettering\_translation](TypeSideUpdate.md#lettering_translation)
 - [picture](TypeSideUpdate.md#picture)
 - [picture\_copyright](TypeSideUpdate.md#picture_copyright)
@@ -47,6 +48,14 @@ ___
 • `Optional` **lettering**: `string`
 
 Lettering visible on the side of the type
+
+___
+
+### lettering\_scripts
+
+• `Optional` **lettering\_scripts**: { `id`: `number`  }[]
+
+Scripts used to write the lettering on the side of the coins
 
 ___
 

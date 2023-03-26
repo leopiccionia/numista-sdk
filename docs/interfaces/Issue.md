@@ -10,10 +10,12 @@
 - [gregorian\_year](Issue.md#gregorian_year)
 - [id](Issue.md#id)
 - [is\_dated](Issue.md#is_dated)
+- [marks](Issue.md#marks)
 - [max\_year](Issue.md#max_year)
 - [min\_year](Issue.md#min_year)
 - [mint\_letter](Issue.md#mint_letter)
 - [mintage](Issue.md#mintage)
+- [signatures](Issue.md#signatures)
 - [year](Issue.md#year)
 
 ## Properties
@@ -30,7 +32,7 @@ ___
 
 • `Optional` **gregorian\_year**: `number`
 
-Issuance year in Gregorian calendar, if the coin is dated
+Issuance year in Gregorian calendar, if the issue is dated
 
 ___
 
@@ -46,7 +48,15 @@ ___
 
 • `Optional` **is\_dated**: `boolean`
 
-Informs whether the issuance year is present on the coin
+Informs whether the issuance year is present on the issue
+
+___
+
+### marks
+
+• `Optional` **marks**: { `id`: `number` ; `letters?`: `string` ; `picture?`: `string`  }[]
+
+List of marks (mint master mark, privy mark, die mark, etc.)
 
 ___
 
@@ -54,7 +64,7 @@ ___
 
 • `Optional` **max\_year**: `number`
 
-Last year of issuance in Gregorian calendar, if the coin is non dated
+Last year of issuance in Gregorian calendar, if the issue is non dated
 
 ___
 
@@ -62,7 +72,7 @@ ___
 
 • `Optional` **min\_year**: `number`
 
-First year of issuance in Gregorian calendar, if the coin is non dated
+First year of issuance in Gregorian calendar, if the issue is non dated
 
 ___
 
@@ -78,7 +88,15 @@ ___
 
 • `Optional` **mintage**: `number`
 
-Quantity of coins minted
+Quantity minted
+
+___
+
+### signatures
+
+• `Optional` **signatures**: { `signer_name`: `string` ; `signer_title?`: `string`  }[]
+
+List of signatures on the banknote
 
 ___
 
@@ -86,4 +104,4 @@ ___
 
 • `Optional` **year**: `number`
 
-Issuance year as written on the coin, if the coin is dated
+Issuance year as written on the coin, if the issue is dated

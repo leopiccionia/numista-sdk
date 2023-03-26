@@ -87,19 +87,35 @@ export interface Currency {
 export interface Issue {
   /** Unique ID of the issue on Numista */
   id: string
-  /** Informs whether the issuance year is present on the coin */
+  /** Informs whether the issuance year is present on the issue */
   is_dated?: boolean
-  /** Issuance year as written on the coin, if the coin is dated */
+  /** Issuance year as written on the coin, if the issue is dated */
   year?: number
-  /** Issuance year in Gregorian calendar, if the coin is dated */
+  /** Issuance year in Gregorian calendar, if the issue is dated */
   gregorian_year?: number
-  /** First year of issuance in Gregorian calendar, if the coin is non dated */
+  /** First year of issuance in Gregorian calendar, if the issue is non dated */
   min_year?: number
-  /** Last year of issuance in Gregorian calendar, if the coin is non dated */
+  /** Last year of issuance in Gregorian calendar, if the issue is non dated */
   max_year?: number
   /** Mint letter */
   mint_letter?: string
-  /** Quantity of coins minted */
+  /** List of marks (mint master mark, privy mark, die mark, etc.) */
+  marks?: Array<{
+    /** ID of the mark */
+    id: number
+    /** URL to the picture of the mark. Marks either have a picture or letters */
+    picture?: string
+    /** Letters of the mark. Marks either have a picture or letters */
+    letters?: string
+  }>
+  /** List of signatures on the banknote */
+  signatures?: Array<{
+    /** Name of the person who signed */
+    signer_name: string
+    /** Job title of the person who signed */
+    signer_title?: string
+  }>
+  /** Quantity minted */
   mintage?: number
   /** Comment about the issue */
   comment?: string
@@ -125,6 +141,16 @@ export interface IssueUpdate {
   max_year?: number
   /** Mint letter */
   mint_letter?: string
+  /** List of marks (mint master mark, privy mark, die mark, etc.) */
+  marks?: Array<{
+    /** ID of the mark */
+    id: number
+  }>
+  /** List of signatures */
+  signatures?: Array<{
+    /** ID of the signature */
+    id: number
+  }>
   /** Quantity minted */
   mintage?: number
   /** Comment about the issue */
@@ -162,7 +188,7 @@ export interface Type extends BaseType {
   url?: string
   /** Type */
   type?: string
-  /** Face value of the coin */
+  /** Face value */
   value?: {
     /** Face value in text format */
     text?: string
@@ -174,6 +200,7 @@ export interface Type extends BaseType {
     denominator?: number
     currency?: Currency
   }
+  /** Ruling authorities (emperor, queen, period, etc.) */
   ruler?: Array<{
     /** Unique ID of the ruling authority on Numista */
     id: number
@@ -189,16 +216,28 @@ export interface Type extends BaseType {
       name: string
     }
   }>
-  /** Shape of the coin */
+  /** Information about the demonetization of the coin or banknote */
+  demonetization?: {
+    /** True if the type is demonetized, false if it is not demonetized */
+    is_demonetized: number
+    /** Date of demonetisation (YYYY-MM-DD) */
+    demonetization_date?: string
+  }
+  /** Shape */
   shape?: string
-  /** Composition of coin (metallic content) */
+  /** Composition (metallic content) */
   composition?: {
     /** Description of the composition */
     text?: string
   }
-  /** Weight of the coin in grams */
+  /** Manufacturing technique */
+  technique?: {
+    /** Description of the technique */
+    text: string
+  }
+  /** Weight in grams */
   weight?: number
-  /** Size of coin (diameter) in millimeters */
+  /** Size (diameter) in millimeters */
   size?: number
   /** Thickness of the coin in millimeters */
   thickness?: number
@@ -255,6 +294,11 @@ export interface TypeSide {
   description?: string
   /** Lettering visible on the side of the type */
   lettering?: string
+  /** Scripts used to write the lettering on the side of the coins */
+  lettering_scripts?: {
+    /** Name of the script */
+    name: string
+  }
   /** Legend visible on the side of the type with abbreviations replaced by full words */
   unabridged_legend?: string
   /** Translation of the lettering visible on the side of the type */
@@ -267,6 +311,10 @@ export interface TypeSide {
   picture_copyright?: string
   /** URL to the website of the owner of the picture. Pictures should not be used without consent from their owner */
   picture_copyright_url?: string
+  /** Name of the license of the picture, if the owner of the picture specified a license */
+  license_name?: string
+  /** URL to the license of the picture, if the owner of the picture specified a license. */
+  license_url?: string
 }
 
 export interface TypeSideUpdate {
@@ -278,6 +326,11 @@ export interface TypeSideUpdate {
   description?: LocalizedLabel[]
   /** Lettering visible on the side of the type */
   lettering?: string
+  /** Scripts used to write the lettering on the side of the coins */
+  lettering_scripts?: Array<{
+    /** Unique ID of the script */
+    id: number
+  }>
   /** Legend visible on the side of the type with abbreviations replaced by full words */
   unabridged_legend?: string
   /** Translation of the lettering visible on the side of the type */

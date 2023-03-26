@@ -9,7 +9,10 @@
 - [description](TypeSide.md#description)
 - [engravers](TypeSide.md#engravers)
 - [lettering](TypeSide.md#lettering)
+- [lettering\_scripts](TypeSide.md#lettering_scripts)
 - [lettering\_translation](TypeSide.md#lettering_translation)
+- [license\_name](TypeSide.md#license_name)
+- [license\_url](TypeSide.md#license_url)
 - [picture](TypeSide.md#picture)
 - [picture\_copyright](TypeSide.md#picture_copyright)
 - [picture\_copyright\_url](TypeSide.md#picture_copyright_url)
@@ -42,11 +45,41 @@ Lettering visible on the side of the type
 
 ___
 
+### lettering\_scripts
+
+• `Optional` **lettering\_scripts**: `Object`
+
+Scripts used to write the lettering on the side of the coins
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | Name of the script |
+
+___
+
 ### lettering\_translation
 
 • `Optional` **lettering\_translation**: `string`
 
 Translation of the lettering visible on the side of the type
+
+___
+
+### license\_name
+
+• `Optional` **license\_name**: `string`
+
+Name of the license of the picture, if the owner of the picture specified a license
+
+___
+
+### license\_url
+
+• `Optional` **license\_url**: `string`
+
+URL to the license of the picture, if the owner of the picture specified a license.
 
 ___
 

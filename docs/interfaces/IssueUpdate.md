@@ -9,10 +9,12 @@
 - [comment](IssueUpdate.md#comment)
 - [gregorian\_year](IssueUpdate.md#gregorian_year)
 - [is\_dated](IssueUpdate.md#is_dated)
+- [marks](IssueUpdate.md#marks)
 - [max\_year](IssueUpdate.md#max_year)
 - [min\_year](IssueUpdate.md#min_year)
 - [mint\_letter](IssueUpdate.md#mint_letter)
 - [mintage](IssueUpdate.md#mintage)
+- [signatures](IssueUpdate.md#signatures)
 - [year](IssueUpdate.md#year)
 
 ## Properties
@@ -38,6 +40,14 @@ ___
 • **is\_dated**: `boolean`
 
 Informs whether the issuance year is present on the coin
+
+___
+
+### marks
+
+• `Optional` **marks**: { `id`: `number`  }[]
+
+List of marks (mint master mark, privy mark, die mark, etc.)
 
 ___
 
@@ -70,6 +80,14 @@ ___
 • `Optional` **mintage**: `number`
 
 Quantity minted
+
+___
+
+### signatures
+
+• `Optional` **signatures**: { `id`: `number`  }[]
+
+List of signatures
 
 ___
 
