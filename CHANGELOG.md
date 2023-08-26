@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.5.0](https://github.com/leopiccionia/numista-sdk/compare/v0.4.4...v0.5.0) (2023-08-26)
+
+Add `searchByImage` method implementing the new search-by-image (paid) feature in Numista.
+
 ## [0.4.4](https://github.com/leopiccionia/numista-sdk/compare/v0.4.3...v0.4.4) (2023-03-26)
 
 Add `C` (Craig's _Coins of the World, 1750-1850_) to the well-known catalogues.
