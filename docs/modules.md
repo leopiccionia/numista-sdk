@@ -38,6 +38,8 @@
 - [PricesRequest](interfaces/PricesRequest.md)
 - [PricesResponse](interfaces/PricesResponse.md)
 - [Reference](interfaces/Reference.md)
+- [SearchByImageRequest](interfaces/SearchByImageRequest.md)
+- [SearchByImageResponse](interfaces/SearchByImageResponse.md)
 - [SearchRequest](interfaces/SearchRequest.md)
 - [SearchResponse](interfaces/SearchResponse.md)
 - [SearchedType](interfaces/SearchedType.md)
@@ -56,6 +58,7 @@
 - [CopyrightType](modules.md#copyrighttype)
 - [Grade](modules.md#grade)
 - [Language](modules.md#language)
+- [MimeType](modules.md#mimetype)
 - [Orientation](modules.md#orientation)
 - [Scope](modules.md#scope)
 
@@ -102,6 +105,12 @@ ___
 ### Language
 
 Ƭ **Language**: ``"en"`` \| ``"es"`` \| ``"fr"``
+
+___
+
+### MimeType
+
+Ƭ **MimeType**: ``"image/jpeg"`` \| ``"image/png"``
 
 ___
 

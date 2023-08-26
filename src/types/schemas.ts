@@ -11,6 +11,8 @@ export type Grade = 'g' | 'vg' | 'f' | 'vf' | 'xf' | 'au' | 'unc'
 
 export type Language = 'en' | 'es' | 'fr'
 
+export type MimeType = 'image/jpeg' | 'image/png'
+
 export type Orientation = 'coin' | 'medal' | 'variable'
 
 /** @internal */

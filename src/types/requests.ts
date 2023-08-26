@@ -1,4 +1,4 @@
-import type { Category, Grade, Language, Price } from './schemas'
+import type { Category, Grade, Language, MimeType, Price } from './schemas'
 
 export interface BaseRequest {
   /** Language */
@@ -111,6 +111,25 @@ export interface PricesRequest extends BaseRequest {
   lang?: Language
   /** 3-letter ISO 4217 currency code */
   currency?: string
+}
+
+export interface SearchByImageRequest {
+  /** Catalogue category */
+  category?: Category
+  /** List of one or two input images in JPEG or PNG format with Base64 encoding */
+  images: Array<{
+    /** MIME type */
+    mime_type: MimeType
+    /** Base64 encoding of the image */
+    image_data: string
+  }>
+  /**
+   * Maximum number of results. Note that the method may return less results than the specified maximum if less matching types are found
+   *
+   * Minimum: 1. Maximum: 100
+   * @defaultValue 100
+  */
+  max_results?: number
 }
 
 /**

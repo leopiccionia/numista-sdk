@@ -1,4 +1,4 @@
-import type { BaseType, CollectedItem, Collection, Grade, Issuer } from './schemas'
+import type { BaseType, Category, CollectedItem, Collection, Grade, Issuer } from './schemas'
 
 export interface SearchedType extends BaseType {
   /** URL to a thumbnail of the picture of the obverse */
@@ -74,6 +74,32 @@ export interface PricesResponse {
     grade: Grade
     /** Estimate of the price determined by Numista */
     price: number
+  }>
+}
+
+export interface SearchByImageResponse {
+  /** Total count of results */
+  count: number
+  /** List of results */
+  types: Array<{
+    /** Unique ID of the type on Numista */
+    id: number
+    /** Title of the type */
+    title: string
+    /** Category */
+    category?: Category
+    /** Issuer */
+    issuer?: Issuer
+    /** First year the type was produced (in the Gregorian calendar) */
+    min_year?: number
+    /** Last year the type was produced (in the Gregorian calendar) */
+    max_year?: number
+    /** URL to a thumbnail of the picture of the obverse */
+    obverse_thumbnail?: string
+    /** URL to a thumbnail of the picture of the reverse */
+    reverse_thumbnail?: string
+    /** Number between 0 and 1. A lower distance indicates that the type is more similar to the input images */
+    similarity_distance?: number
   }>
 }
 

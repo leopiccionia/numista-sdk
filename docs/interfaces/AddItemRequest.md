@@ -34,7 +34,9 @@ Indicate whether the item is available for swap
 
 **`Default Value`**
 
+```ts
 false
+```
 
 ___
 
@@ -86,7 +88,9 @@ Quantity of items
 
 **`Default Value`**
 
+```ts
 1
+```
 
 ___
 

@@ -5,8 +5,8 @@ import { PaginatedResult } from './pagination'
 import { RestConnector } from './rest-api'
 import type { CollectedItem, Issue, IssueUpdate, Language, Type, TypeUpdate } from './types/schemas'
 import type { OAuthToken, Scope } from './types/oauth'
-import type { AddItemRequest, BaseRequest, CollectedItemsRequest, CollectionsRequest, EditItemRequest, OAuthClientCredentialsRequest, PricesRequest, SearchRequest } from './types/requests'
-import type { CataloguesResponse, CollectedItemsResponse, CollectionsResponse, IssuersResponse, PricesResponse, SearchResponse, UserResponse } from './types/responses'
+import type { AddItemRequest, BaseRequest, CollectedItemsRequest, CollectionsRequest, EditItemRequest, OAuthClientCredentialsRequest, PricesRequest, SearchByImageRequest, SearchRequest } from './types/requests'
+import type { CataloguesResponse, CollectedItemsResponse, CollectionsResponse, IssuersResponse, PricesResponse, SearchResponse, SearchByImageResponse, UserResponse } from './types/responses'
 import type { CatalogueCode } from './types/sugar'
 
 export interface ConnectorConfig {
@@ -266,6 +266,21 @@ export class NumistaConnector {
    */
   searchBanknotes (query: string, params: Partial<Omit<SearchRequest, 'category' | 'q'>> = {}): Promise<SearchResponse> {
     return this.search(query, { ...params, category: 'banknote' })
+  }
+
+  /**
+   * Find the coin, banknote, and exonumia types that match the input image(s)
+   *
+   * Search by image is a paid Numista feature. You will be charged monthly based on your usage. Additionally, your app is required to show the Numista N# reference when displaying the search results. Read Numista documentation for further details
+   * @param data - Search params
+   * @param params - Miscellaneous params
+   */
+  searchByImage (data: SearchByImageRequest, params: Partial<BaseRequest> = {}): Promise<SearchByImageResponse> {
+    const _params: BaseRequest = {
+      lang: this.#config.defaultLanguage,
+      ...params,
+    }
+    return this.#rest.post<SearchByImageResponse>('/search_by_image', _params, data)
   }
 
   /**

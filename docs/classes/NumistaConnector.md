@@ -31,6 +31,7 @@ The main entrypoint for Numista SDK
 - [removeItem](NumistaConnector.md#removeitem)
 - [search](NumistaConnector.md#search)
 - [searchBanknotes](NumistaConnector.md#searchbanknotes)
+- [searchByImage](NumistaConnector.md#searchbyimage)
 - [searchCoins](NumistaConnector.md#searchcoins)
 - [searchExonumia](NumistaConnector.md#searchexonumia)
 - [type](NumistaConnector.md#type)
@@ -344,7 +345,7 @@ Search the catalogue for coin, banknote and exonumia types (with pagination)
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `query` | `string` | Search query |
-| `params` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"q"`` \| ``"page"``\>\> | Miscellaneous params |
+| `params` | `Partial`<`Omit`<[`SearchRequest`](../interfaces/SearchRequest.md), ``"page"`` \| ``"q"``\>\> | Miscellaneous params |
 
 #### Returns
 
@@ -428,6 +429,27 @@ Search the catalogue for banknotes
 #### Returns
 
 `Promise`<[`SearchResponse`](../interfaces/SearchResponse.md)\>
+
+___
+
+### searchByImage
+
+▸ **searchByImage**(`data`, `params?`): `Promise`<[`SearchByImageResponse`](../interfaces/SearchByImageResponse.md)\>
+
+Find the coin, banknote, and exonumia types that match the input image(s)
+
+Search by image is a paid Numista feature. You will be charged monthly based on your usage. Additionally, your app is required to show the Numista N# reference when displaying the search results. Read Numista documentation for further details
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | [`SearchByImageRequest`](../interfaces/SearchByImageRequest.md) | Search params |
+| `params` | `Partial`<[`BaseRequest`](../interfaces/BaseRequest.md)\> | Miscellaneous params |
+
+#### Returns
+
+`Promise`<[`SearchByImageResponse`](../interfaces/SearchByImageResponse.md)\>
 
 ___
 
